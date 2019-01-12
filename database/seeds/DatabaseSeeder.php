@@ -17,5 +17,12 @@ class DatabaseSeeder extends Seeder
         $this->call(DistrictsTableSeeder::class);
         $this->call(SubDistrictsTableSeeder::class);
         $this->call(PostcodesTableSeeder::class);
+
+        factory(App\Cell::class, 50)->create();
+
+        factory(App\User::class, 1)->create([
+           'email' => 'teerpong.me@gmail.com',
+            'password' => bcrypt('123456')
+        ]);
     }
 }

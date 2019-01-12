@@ -19,4 +19,19 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Church member database system
+Route::namespace('Member')->name('member.')->group(function() {
+   Route::resource('church', 'ChurchController');
+
+   Route::resource('cell', 'CellController');
+});
+
+// Geolocation data
+Route::namespace('Data')->group(function() {
+    Route::get('regions', 'GeolocationController@getRegions');
+    Route::get('provinces/{region}/districts', 'GeolocationController@getProvinces');
+    Route::get('districts/{province}/sub-districts', 'GeolocationController@getDistricts');
+    Route::get('sub-districts/{district}/postcodes', 'GeolocationController@getSubDistricts');
+    Route::get('churches/{district}/cells', 'GeolocationController@getChurches');
+});
+

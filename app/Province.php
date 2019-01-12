@@ -12,4 +12,8 @@ class Province extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function region() {
+        return $this->belongsTo(Region::class);
+    }
 }

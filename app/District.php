@@ -12,4 +12,8 @@ class District extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function province() {
+        return $this->belongsTo(Province::class);
+    }
 }

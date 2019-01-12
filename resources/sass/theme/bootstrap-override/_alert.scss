@@ -16,4 +16,32 @@
   	padding: 15px 20px;
   	font-size: $font-size-base * 0.8;
   }
+
+  &.alert-success {
+    color: #fff;
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  &.alert-info {
+    color: #fff;
+    background-color: $info;
+    border-color: $info;
+  }
+
+  &.alert-warning {
+    color: #fff;
+    background-color: $warning;
+    border-color: $warning;
+  }
+
+  &.alert-danger {
+    color: #fff;
+    background-color: $danger;
+    border-color: $danger;
+  }
+
+  .close {
+    color: #fff;
+  }
 }

@@ -32,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->string('line')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('cell_id')->references('id')->on('cells');
         });
     }
 

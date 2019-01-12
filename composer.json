@@ -15,6 +15,7 @@
         "nasyrov/laravel-enums": "^1.1"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
@@ -39,7 +40,8 @@
         "classmap": [
             "database/seeds",
             "database/factories"
-        ]
+        ],
+        "files": ["app/Helpers/functions.php"]
     },
     "autoload-dev": {
         "psr-4": {

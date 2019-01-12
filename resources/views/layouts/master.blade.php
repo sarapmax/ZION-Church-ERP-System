@@ -18,7 +18,7 @@
         -------------------->
         <div class="menu-mobile menu-activated-on-click color-scheme-dark">
             <div class="mm-logo-buttons-w">
-                <a class="mm-logo" href="#"><img src="{{ asset('images/logo.png') }}"><span> ZION SYSTEM</span></a>
+                <a class="mm-logo" href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}"><span> ZION SYSTEM</span></a>
                 <div class="mm-buttons">
                     <div class="content-panel-open">
                         <div class="os-icon os-icon-grid-circles"></div>
@@ -38,7 +38,7 @@
                             {{ Auth::user()->fullname }}
                         </div>
                         <div class="logged-user-role">
-                            {{ Auth::user()->administrative_role }}
+                            {{ Auth::user()->administrative_role->getKey() }}
                         </div>
                     </div>
                 </div>
@@ -48,9 +48,25 @@
                 -------------------->
                 <ul class="main-menu">
                     <li class="selected">
+                        <a href="{{ route('member.church.index') }}">
+                            <div class="icon-w">
+                                <div class="fas fa-church"></div>
+                            </div>
+                            <span>คริสตจักร</span>
+                        </a>
+                    </li>
+                    <li class="selected">
+                        <a href="{{ route('member.cell.index') }}">
+                            <div class="icon-w">
+                                <div class="fas fas-place-of-worship"></div>
+                            </div>
+                            <span>กลุ่มแคร์</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="">
                             <div class="icon-w">
-                                <div class="os-icon os-icon-layout"></div>
+                                <div class="fas fa-users"></div>
                             </div>
                             <span>ข้อมูลสมาชิก</span>
                         </a>
@@ -69,7 +85,7 @@
         -------------------->
         <div class="menu-w color-scheme-light menu-position-side menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link">
             <div class="logo-w">
-                <a class="logo" href="">
+                <a class="logo" href="{{ url('/') }}">
                     <div class="logo-element"></div>
                     <div class="logo-label">
                         ZION SYSTEM
@@ -124,10 +140,26 @@
                 <li class="sub-header">
                     <span>ระบบฐานข้อมูลสมาชิก</span>
                 </li>
-                <li class="selected">
+                <li>
+                    <a href="{{ route('member.church.index') }}">
+                        <div class="icon-w">
+                            <div class="fas fa-church"></div>
+                        </div>
+                        <span>คริสตจักร</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('member.cell.index') }}">
+                        <div class="icon-w">
+                            <div class="fas fa-place-of-worship"></div>
+                        </div>
+                        <span>กลุ่มแคร์</span>
+                    </a>
+                </li>
+                <li>
                     <a href="">
                         <div class="icon-w">
-                            <div class="os-icon os-icon-layout"></div>
+                            <div class="fas fa-users"></div>
                         </div>
                         <span>ข้อมูลสมาชิก</span>
                     </a>
@@ -205,7 +237,9 @@
             END - Breadcrumbs
             -------------------->
             <div class="content-i">
-                <div class="content-box">
+                <div class="content-box" id="app">
+                    @include('partials.flash-message')
+
                     @yield('content')
                 </div>
             </div>
