@@ -1227,7 +1227,11 @@ a.el-tablo {
 
   .logo-w {
     text-align: center;
-    padding: 20%;
+    padding: 10%;
+
+    img {
+      width: 160px;
+    }
   }
   .auth-header {
     border-bottom: 1px solid rgba(0,0,0,0.1);

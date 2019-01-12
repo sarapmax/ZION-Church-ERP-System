@@ -9,6 +9,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
+
 <body class="menu-position-side menu-side-left full-screen">
 <div class="all-wrapper solid-bg-all">
     <div class="layout-w">
@@ -34,10 +35,10 @@
                     </div>
                     <div class="logged-user-info-w">
                         <div class="logged-user-name">
-                            Maria Gomez
+                            {{ Auth::user()->fullname }}
                         </div>
                         <div class="logged-user-role">
-                            Administrator
+                            {{ Auth::user()->administrative_role }}
                         </div>
                     </div>
                 </div>
@@ -82,10 +83,10 @@
                     </div>
                     <div class="logged-user-info-w">
                         <div class="logged-user-name">
-                            Maria Gomez
+                            {{ Auth::user()->fullname }}
                         </div>
                         <div class="logged-user-role">
-                            Administrator
+                            {{ Auth::user()->administrative_role->getKey() }}
                         </div>
                     </div>
                     <div class="logged-user-toggler-arrow">
@@ -98,10 +99,10 @@
                             </div>
                             <div class="logged-user-info-w">
                                 <div class="logged-user-name">
-                                    Maria Gomez
+                                    {{ Auth::user()->fullname }}
                                 </div>
                                 <div class="logged-user-role">
-                                    Administrator
+                                    {{ Auth::user()->administrative_role->getKey() }}
                                 </div>
                             </div>
                         </div>
@@ -110,7 +111,7 @@
                         </div>
                         <ul>
                             <li>
-                                <a href="#"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a>
+                                @include('partials.logout')
                             </li>
                         </ul>
                     </div>
@@ -151,7 +152,7 @@
                     <div class="logged-user-w">
                         <div class="logged-user-i">
                             <div class="avatar-w">
-                                <i class="os-icon os-icon-user-male-circle"></i> Maria Gomez
+                                <i class="os-icon os-icon-user-male-circle"></i> {{ Auth::user()->fullname }}
                             </div>
                             <div class="logged-user-menu color-style-bright">
                                 <div class="logged-user-avatar-info">
@@ -160,10 +161,10 @@
                                     </div>
                                     <div class="logged-user-info-w">
                                         <div class="logged-user-name">
-                                            Maria Gomez
+                                            {{ Auth::user()->fullname }}
                                         </div>
                                         <div class="logged-user-role">
-                                            Administrator
+                                            {{ Auth::user()->administrative_role->getKey() }}
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +173,7 @@
                                 </div>
                                 <ul>
                                     <li>
-                                        <a href="#"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a>
+                                        @include('partials.logout')
                                     </li>
                                 </ul>
                             </div>
@@ -213,6 +214,7 @@
 </div>
 
 <script src="{{ mix('js/app.js') }}"></script>
+
 @yield('scripts')
 </body>
 </html>

@@ -17154,7 +17154,11 @@ a.el-tablo:hover .label {
 
 .auth-box-w .logo-w {
   text-align: center;
-  padding: 20%;
+  padding: 10%;
+}
+
+.auth-box-w .logo-w img {
+  width: 160px;
 }
 
 .auth-box-w .auth-header {
