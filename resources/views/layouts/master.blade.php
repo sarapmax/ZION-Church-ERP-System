@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>ZION SYSTEM</title>
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('styles')

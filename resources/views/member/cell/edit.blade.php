@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="element-wrapper">
-                <h6 class="element-header">
+                <h5 class="element-header">
                     แก้ไขกลุ่มแคร์
-                </h6>
+                </h5>
                 <div class="element-box">
                     <form action="{{ route('member.cell.update', $cell) }}" method="POST">
                         @csrf

@@ -4,9 +4,9 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="element-wrapper">
-            <h6 class="element-header">
+            <h5 class="element-header">
                 คริสตจักร
-            </h6>
+            </h5>
             <div class="element-box">
                 <div class="controls-above-table">
                     <div class="row">
@@ -26,10 +26,10 @@
                     <table class="table table-lightborder">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>รหัส</th>
                             <th>จังหวัด</th>
                             <th>อำเภอ</th>
-                            <th>คริสตจักร</th>
+                            <th class="text-primary">คริสตจักร</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -39,7 +39,7 @@
                             <td>{{ $church->id }}</td>
                             <td>{{ $church->district->province->name }}</td>
                             <td>{{ $church->district->name }}</td>
-                            <td>{{ $church->name }}</td>
+                            <td class="text-primary font-weight-bold">{{ $church->name }}</td>
                             <td>
                                 <a href="{{ route('member.church.edit', $church) }}"><i class="far fa-edit"></i></a>
 

@@ -55,6 +55,10 @@
     td {
       border-color: rgba(83, 101, 140, 0.08);
     }
+
+    th {
+      font-size: $font-size-base;
+    }
   }
   &.table-clean {
     tr:first-child td{

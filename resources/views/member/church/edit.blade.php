@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="element-wrapper">
-                <h6 class="element-header">
+                <h5 class="element-header">
                     แก้ไขคริสตจักร
-                </h6>
+                </h5>
                 <div class="element-box">
                     <form action="{{ route('member.church.update', $church) }}" method="POST">
                         @csrf
