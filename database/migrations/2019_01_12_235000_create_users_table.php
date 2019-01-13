@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('nickname');
+            $table->string('gender');
             $table->date('birthday');
             $table->string('idcard', 13)->unique();
             $table->string('race');

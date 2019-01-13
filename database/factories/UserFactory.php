@@ -24,6 +24,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'first_name' => $faker->name,
         'last_name' => $faker->lastName,
         'nickname' => $faker->name,
+        'gender' => $faker->randomElement($array = ['male', 'female']),
         'birthday' => $faker->date(),
         'idcard' => $faker->numberBetween(13, 13),
         'race' => $faker->word,
