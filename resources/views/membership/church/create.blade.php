@@ -8,7 +8,7 @@
                 เพิ่มคริสจักร
             </h5>
             <div class="element-box">
-                <form action="{{ route('member.church.store') }}" method="POST">
+                <form action="{{ route('membership.church.store') }}" method="POST">
                     @csrf
 
                     @include('components.geolocation', [

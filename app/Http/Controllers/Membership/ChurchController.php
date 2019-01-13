@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Membership;
 
 use App\Church;
 use App\Enums\SubmissionTypeEnum;
@@ -27,7 +27,7 @@ class ChurchController extends Controller
     {
         $churches = Church::with(['district', 'district.province'])->get();
 
-        return view('member.church.index', compact('churches'));
+        return view('membership.church.index', compact('churches'));
     }
 
     /**
@@ -37,7 +37,7 @@ class ChurchController extends Controller
      */
     public function create()
     {
-        return view('member.church.create');
+        return view('membership.church.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class ChurchController extends Controller
             return redirect()->back()->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว')->withInput($request->except('name'));
         }
 
-        return redirect()->route('member.church.index')->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว');
+        return redirect()->route('membership.church.index')->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว');
     }
 
     /**
@@ -85,7 +85,7 @@ class ChurchController extends Controller
     {
         $church = Church::with(['district', 'district.province', 'district.province.region'])->find($id);
 
-        return view('member.church.edit', compact('church'));
+        return view('membership.church.edit', compact('church'));
     }
 
     /**
@@ -111,7 +111,7 @@ class ChurchController extends Controller
 
         $church->update($request->all());
 
-        return redirect()->route('member.church.index')->with('success', 'แก้ไขคริสตจักรเรียบร้อยแล้ว');
+        return redirect()->route('membership.church.index')->with('success', 'แก้ไขคริสตจักรเรียบร้อยแล้ว');
     }
 
     /**

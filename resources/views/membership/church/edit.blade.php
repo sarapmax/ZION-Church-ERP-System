@@ -5,18 +5,27 @@
         <div class="col-lg-12">
             <div class="element-wrapper">
                 <h5 class="element-header">
-                    เพิ่มกลุ่มแคร์
+                    แก้ไขคริสตจักร
                 </h5>
                 <div class="element-box">
-                    <form action="{{ route('member.cell.store') }}" method="POST">
+                    <form action="{{ route('membership.church.update', $church) }}" method="POST">
                         @csrf
 
-                        @include('components.geolocation', ['old' => setGeolocationOldData(), 'excepts' => []])
+                        {{ method_field('PUT') }}
+
+                        @include('components.geolocation', [
+                            'old' => setGeolocationOldData(
+                                $church->district->province->region->id,
+                                $church->district->province->id,
+                                $church->district->id
+                                ),
+                            'excepts' => ['church']
+                        ])
 
                         <div class="form-group">
-                            <label for="name">ชื่อกลุ่มแคร์ </label>
+                            <label for="name">ชื่อคริสตจักร </label>
                             <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                   name="name" value="{{ old('name') }}">
+                                   name="name" value="{{ old('name', $church->name) }}">
 
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -26,8 +35,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" name="submit_type" value="{{ \App\Enums\SubmissionTypeEnum::ADD }}"><i class="fas fa-check"></i> บันทึก</button>
-                            <button type="submit" class="btn btn-primary" name="submit_type" value="{{ \App\Enums\SubmissionTypeEnum::ADD_AND_ADD_ANOTHER }}"><i class="fas fa-check-double"></i> บันทึก & บันทึกอันต่อไป</button>
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
                         </div>
                     </form>
                 </div>

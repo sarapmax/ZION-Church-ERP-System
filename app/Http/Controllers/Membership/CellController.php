@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Membership;
 
 use App\Cell;
 use App\Enums\SubmissionTypeEnum;
@@ -27,7 +27,7 @@ class CellController extends Controller
     {
         $cells = Cell::with(['church', 'church.district', 'church.district.province'])->get();
 
-        return view('member.cell.index', compact('cells'));
+        return view('membership.cell.index', compact('cells'));
     }
 
     /**
@@ -37,7 +37,7 @@ class CellController extends Controller
      */
     public function create()
     {
-        return view('member.cell.create');
+        return view('membership.cell.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class CellController extends Controller
             return redirect()->back()->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว')->withInput($request->except('name'));
         }
 
-        return redirect()->route('member.church.index')->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว');
+        return redirect()->route('membership.church.index')->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว');
     }
 
     /**
@@ -86,7 +86,7 @@ class CellController extends Controller
     {
         $cell = Cell::with(['church', 'church.district', 'church.district.province', 'church.district.province.region'])->find($id);
 
-        return view('member.cell.edit', compact('cell'));
+        return view('membership.cell.edit', compact('cell'));
     }
 
     /**
@@ -113,7 +113,7 @@ class CellController extends Controller
 
         $cell->update($request->all());
 
-        return redirect()->route('member.cell.index')->with('success', 'แก้ไขกลุ่มแคร์เรียบร้อยแล้ว');
+        return redirect()->route('membership.cell.index')->with('success', 'แก้ไขกลุ่มแคร์เรียบร้อยแล้ว');
     }
 
     /**

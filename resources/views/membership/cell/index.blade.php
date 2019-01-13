@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-inline justify-content-sm-end">
-                                    <a href="{{ route('member.cell.create') }}" class="btn btn-primary">เพิ่มกลุ่มแคร์</a>
+                                    <a href="{{ route('membership.cell.create') }}" class="btn btn-primary">เพิ่มกลุ่มแคร์</a>
                                 </div>
 
                             </div>
@@ -43,11 +43,11 @@
                                     <td>{{ $cell->church->name }}</td>
                                     <td class="text-primary font-weight-bold">{{ $cell->name }}</td>
                                     <td>
-                                        <a href="{{ route('member.cell.edit', $cell) }}"><i class="far fa-edit"></i></a>
+                                        <a href="{{ route('membership.cell.edit', $cell) }}"><i class="far fa-edit"></i></a>
 
                                         <a href="javascript:void(0);" onclick="$(this).find('form').submit();" >
                                             <i class="far fa-trash-alt"></i>
-                                            <form action="{{ route('member.cell.destroy', $cell) }}" method="POST" onsubmit="return confirm('Are you sure to delete this?')">
+                                            <form action="{{ route('membership.cell.destroy', $cell) }}" method="POST" onsubmit="return confirm('Are you sure to delete this?')">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                             </form>

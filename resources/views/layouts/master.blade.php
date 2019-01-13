@@ -49,7 +49,7 @@
                 -------------------->
                 <ul class="main-menu">
                     <li class="selected">
-                        <a href="{{ route('member.church.index') }}">
+                        <a href="{{ route('membership.church.index') }}">
                             <div class="icon-w">
                                 <div class="fas fa-church"></div>
                             </div>
@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li class="selected">
-                        <a href="{{ route('member.cell.index') }}">
+                        <a href="{{ route('membership.cell.index') }}">
                             <div class="icon-w">
                                 <div class="fas fas-place-of-worship"></div>
                             </div>
@@ -142,7 +142,7 @@
                     <span>ระบบฐานข้อมูลสมาชิก</span>
                 </li>
                 <li>
-                    <a href="{{ route('member.church.index') }}">
+                    <a href="{{ route('membership.church.index') }}">
                         <div class="icon-w">
                             <div class="fas fa-church"></div>
                         </div>
@@ -150,7 +150,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('member.cell.index') }}">
+                    <a href="{{ route('membership.cell.index') }}">
                         <div class="icon-w">
                             <div class="fas fa-place-of-worship"></div>
                         </div>
@@ -158,7 +158,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('membership.member.index') }}">
                         <div class="icon-w">
                             <div class="fas fa-users"></div>
                         </div>
@@ -239,7 +239,7 @@
             -------------------->
             <div class="content-i">
                 <div class="content-box" id="app">
-                    @include('partials.flash-message')
+                    @include('layouts.flash-message')
 
                     @yield('content')
                 </div>

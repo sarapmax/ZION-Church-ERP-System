@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 // Church member database system
-Route::namespace('Member')->name('member.')->prefix('member')->group(function() {
+Route::namespace('Membership')->name('membership.')->prefix('membership')->group(function() {
    Route::resource('church', 'ChurchController');
 
    Route::resource('cell', 'CellController');

@@ -5,27 +5,28 @@
         <div class="col-lg-12">
             <div class="element-wrapper">
                 <h5 class="element-header">
-                    แก้ไขคริสตจักร
+                    แก้ไขกลุ่มแคร์
                 </h5>
                 <div class="element-box">
-                    <form action="{{ route('member.church.update', $church) }}" method="POST">
+                    <form action="{{ route('membership.cell.update', $cell) }}" method="POST">
                         @csrf
 
                         {{ method_field('PUT') }}
 
                         @include('components.geolocation', [
                             'old' => setGeolocationOldData(
-                                $church->district->province->region->id,
-                                $church->district->province->id,
-                                $church->district->id
+                                $cell->church->district->province->region->id,
+                                $cell->church->district->province->id,
+                                $cell->church->district->id,
+                                $cell->church_id
                                 ),
-                            'excepts' => ['church']
+                            'excepts' => []
                         ])
 
                         <div class="form-group">
-                            <label for="name">ชื่อคริสตจักร </label>
+                            <label for="name">ชื่อกลุ่มแคร์ </label>
                             <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                   name="name" value="{{ old('name', $church->name) }}">
+                                   name="name" value="{{ old('name', $cell->name) }}">
 
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
