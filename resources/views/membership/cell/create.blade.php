@@ -11,7 +11,7 @@
                     <form action="{{ route('membership.cell.store') }}" method="POST">
                         @csrf
 
-                        @include('components.geolocation', ['old' => setGeolocationOldData(), 'excepts' => []])
+                        @include('components.geolocation', ['old' => setGeolocationOldData(), 'excepts' => ['cell']])
 
                         <div class="form-group">
                             <label for="name">ชื่อกลุ่มแคร์ </label>

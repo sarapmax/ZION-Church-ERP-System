@@ -13,7 +13,7 @@
 
                     @include('components.geolocation', [
                         'old' => setGeolocationOldData(),
-                        'excepts' => ['church']
+                        'excepts' => ['church', 'cell']
                     ])
 
                     <div class="form-group">

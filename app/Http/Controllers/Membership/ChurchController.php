@@ -49,7 +49,6 @@ class ChurchController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'region_id' => 'required|exists:regions,id',
             'province_id' => 'required|exists:provinces,id',
             'district_id' => 'required|exists:districts,id',
             'name' => 'required|min:3|unique:churches'
@@ -83,7 +82,7 @@ class ChurchController extends Controller
      */
     public function edit($id)
     {
-        $church = Church::with(['district', 'district.province', 'district.province.region'])->find($id);
+        $church = Church::with(['district', 'district.province'])->find($id);
 
         return view('membership.church.edit', compact('church'));
     }
@@ -99,7 +98,6 @@ class ChurchController extends Controller
     public function update(Request $request, Church $church)
     {
         $request->validate([
-            'region_id' => 'required|exists:regions,id',
             'province_id' => 'required|exists:provinces,id',
             'district_id' => 'required|exists:districts,id',
             'name' => [

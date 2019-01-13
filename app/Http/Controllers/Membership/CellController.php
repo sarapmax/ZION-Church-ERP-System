@@ -49,7 +49,6 @@ class CellController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'region_id' => 'required|exists:regions,id',
             'province_id' => 'required|exists:provinces,id',
             'district_id' => 'required|exists:districts,id',
             'church_id' => 'required|exists:churches,id',
@@ -84,7 +83,7 @@ class CellController extends Controller
      */
     public function edit($id)
     {
-        $cell = Cell::with(['church', 'church.district', 'church.district.province', 'church.district.province.region'])->find($id);
+        $cell = Cell::with(['church', 'church.district', 'church.district.province'])->find($id);
 
         return view('membership.cell.edit', compact('cell'));
     }
@@ -100,7 +99,6 @@ class CellController extends Controller
     public function update(Request $request, Cell $cell)
     {
         $request->validate([
-            'region_id' => 'required|exists:regions,id',
             'province_id' => 'required|exists:provinces,id',
             'district_id' => 'required|exists:districts,id',
             'church_id' => 'required|exists:churches,id',

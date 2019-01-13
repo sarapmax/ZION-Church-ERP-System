@@ -28,10 +28,10 @@ Route::namespace('Membership')->name('membership.')->prefix('membership')->group
 
 // Geolocation data
 Route::namespace('Data')->group(function() {
-    Route::get('regions', 'GeolocationController@getRegions');
-    Route::get('provinces/{region}/districts', 'GeolocationController@getProvinces');
+    Route::get('provinces', 'GeolocationController@getProvinces');
     Route::get('districts/{province}/sub-districts', 'GeolocationController@getDistricts');
-    Route::get('sub-districts/{district}/postcodes', 'GeolocationController@getSubDistricts');
     Route::get('churches/{district}/cells', 'GeolocationController@getChurches');
+    Route::get('cells/{church}', 'GeolocationController@getCells');
+    Route::get('sub-districts/{district}/postcodes', 'GeolocationController@getSubDistricts');
 });
 

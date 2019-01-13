@@ -15,11 +15,10 @@
 
                         @include('components.geolocation', [
                             'old' => setGeolocationOldData(
-                                $church->district->province->region->id,
                                 $church->district->province->id,
                                 $church->district->id
                                 ),
-                            'excepts' => ['church']
+                            'excepts' => ['church', 'cell']
                         ])
 
                         <div class="form-group">

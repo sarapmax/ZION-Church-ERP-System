@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Data;
 
+use App\Cell;
 use App\Church;
 use App\District;
 use App\Province;
-use App\Region;
 use App\SubDistrict;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,24 +13,13 @@ use App\Http\Controllers\Controller;
 class GeolocationController extends Controller
 {
     /**
-     * Get all regions.
+     * Get all provinces.
      *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function getRegions() {
-        return Region::all();
+    public function getProvinces() {
+        return Province::all();
     }
-
-    /**
-     * Get provinces by a region.
-     *
-     * @param Region $region
-     * @return mixed
-     */
-    public function getProvinces(Region $region) {
-        return Province::whereRegionId($region->id)->get();
-    }
-
 
     /**
      * Get districts by a province.
@@ -43,16 +32,6 @@ class GeolocationController extends Controller
     }
 
     /**
-     * Get sub districts by a district.
-     *
-     * @param District $district
-     * @return mixed
-     */
-    public function getSubDistricts(District $district) {
-        return SubDistrict::whereDistrictId($district->id)->get();
-    }
-
-    /**
      * Get churches by a district.
      *
      * @param District $district
@@ -60,5 +39,25 @@ class GeolocationController extends Controller
      */
     public function getChurches(District $district) {
         return Church::whereDistrictId($district->id)->get();
+    }
+
+    /**
+     * Get cells by a church.
+     *
+     * @param Church $church
+     * @return mixed
+     */
+    public function getCells(Church $church) {
+        return Cell::whereChurchId($church->id)->get();
+    }
+
+    /**
+     * Get sub districts by a district.
+     *
+     * @param District $district
+     * @return mixed
+     */
+    public function getSubDistricts(District $district) {
+        return SubDistrict::whereDistrictId($district->id)->get();
     }
 }
