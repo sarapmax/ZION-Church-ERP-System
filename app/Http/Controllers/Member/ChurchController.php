@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Church;
+use App\Enums\SubmissionTypeEnum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
@@ -56,7 +57,11 @@ class ChurchController extends Controller
 
         Church::create($request->all());
 
-        return redirect()->route('member.church.index')->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว');;
+        if ($request->submit_type == SubmissionTypeEnum::ADD_AND_ADD_ANOTHER) {
+            return redirect()->back()->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว')->withInput($request->except('name'));
+        }
+
+        return redirect()->route('member.church.index')->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว');
     }
 
     /**

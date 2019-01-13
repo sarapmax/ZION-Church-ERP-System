@@ -26,7 +26,8 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                            <button type="submit" class="btn btn-primary" name="submit_type" value="{{ \App\Enums\SubmissionTypeEnum::ADD }}"><i class="fas fa-check"></i> บันทึก</button>
+                            <button type="submit" class="btn btn-primary" name="submit_type" value="{{ \App\Enums\SubmissionTypeEnum::ADD_AND_ADD_ANOTHER }}"><i class="fas fa-check-double"></i> บันทึก & บันทึกอันต่อไป</button>
                         </div>
                     </form>
                 </div>

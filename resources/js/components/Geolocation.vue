@@ -75,8 +75,6 @@
         created() {
             this.getRegions()
 
-            console.log(this.old)
-
             this.region_id = this.old.region_id
 
             this.getProvinces().then(() => {
