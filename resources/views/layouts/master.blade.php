@@ -158,7 +158,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('membership.member.index') }}">
+                    <a href="{{ route('membership.user.index') }}">
                         <div class="icon-w">
                             <div class="fas fa-users"></div>
                         </div>

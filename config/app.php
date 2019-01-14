@@ -226,6 +226,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // Custom enum
+        'SpiritualStatus' => \App\Enums\SpiritualStatusEnum::class,
+        'MariageStatus' => \App\Enums\MariageStatusEnum::class,
     ],
 
 ];

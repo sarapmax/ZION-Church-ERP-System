@@ -17,7 +17,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'cell_id',
+        'email',
+        'spiritual_status',
+        'first_name',
+        'last_name',
+        'nickname',
+        'gender',
+        'birthday',
+        'idcard',
+        'race',
+        'nationality',
+        'mobile_number',
+        'facebook',
+        'line',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'birthday'
     ];
 
     /**
@@ -28,6 +50,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot() {
+        parent::boot();
+
+        // Format the user id to always start from 6 digits.
+        static::creating(function ($user) {
+            $userCode = sprintf("%06s", sprintf("%06s", User::count() + 1));
+
+            $user->code = $userCode;
+            $user->password = bcrypt($userCode);
+            $user->administrative_status = AdministrativeStatusEnum::USER;
+        });
+    }
 
     /**
      * Concatenate first name and last name together
@@ -46,5 +86,22 @@ class User extends Authenticatable
      */
     public function getAdministrativeRoleAttribute() {
         return new AdministrativeStatusEnum($this->administrative_status);
+    }
+
+    /**
+     * Get user's addresses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function addresses() {
+        return $this->morphMany(Address::class, 'addressable');
+    }
+
+    public function emergencyContact() {
+        return $this->hasOne(EmergencyContact::class);
+    }
+
+    public function mariage() {
+        return $this->hasOne(Mariage::class);
     }
 }

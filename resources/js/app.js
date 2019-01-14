@@ -25,6 +25,11 @@ import Geolocation from './components/Geolocation.vue';
 
 Vue.component('geolocation', Geolocation);
 
+// Pages
+import CreateUser from './pages/user/CreateUser.vue';
+
+Vue.component('create-user', CreateUser)
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

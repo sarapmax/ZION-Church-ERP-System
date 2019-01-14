@@ -26,10 +26,10 @@ $factory->define(App\User::class, function (Faker $faker) {
         'nickname' => $faker->name,
         'gender' => $faker->randomElement($array = ['male', 'female']),
         'birthday' => $faker->date(),
-        'idcard' => $faker->numberBetween(13, 13),
+        'idcard' => $faker->randomNumber($nbDigits = 3, $strict = true),
         'race' => $faker->word,
         'nationality' => $faker->word,
-        'mobile_number' => $faker->numberBetween(10, 10),
+        'mobile_number' => $faker->randomNumber($nbDigits = 3, $strict = true),
         'facebook' => $faker->word,
         'line' => $faker->word,
     ];

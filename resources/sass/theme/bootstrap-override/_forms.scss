@@ -1,6 +1,12 @@
 label {
   margin-bottom: 4px;
 }
+
+.required:before {
+  content: '*';
+  color: $danger;
+}
+
 button, input, optgroup, select, textarea {
   font-family: $font-family-alt;
   font-weight: $font-alt-weight-normal;

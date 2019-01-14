@@ -12,8 +12,12 @@
                     @csrf
 
                     @include('components.geolocation', [
-                        'old' => setGeolocationOldData(),
-                        'excepts' => ['church', 'cell']
+                        'name' => [],
+                        'old' => [
+                            'province_id' => old('province_id'),
+                            'district_id' => old('district_id'),
+                        ],
+                        'excepts' => ['church', 'cell', 'subDistrict']
                     ])
 
                     <div class="form-group">

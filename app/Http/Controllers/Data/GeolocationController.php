@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Data;
 use App\Cell;
 use App\Church;
 use App\District;
+use App\Postcode;
 use App\Province;
 use App\SubDistrict;
 use Illuminate\Http\Request;
@@ -59,5 +60,15 @@ class GeolocationController extends Controller
      */
     public function getSubDistricts(District $district) {
         return SubDistrict::whereDistrictId($district->id)->get();
+    }
+
+    /**
+     * Get postcode by a sub district.
+     *
+     * @param SubDistrict $subDistrict
+     * @return mixed
+     */
+    public function getPostcode(SubDistrict $subDistrict) {
+        return Postcode::whereSubDistrictId($subDistrict->id)->first();
     }
 }

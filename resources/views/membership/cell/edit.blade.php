@@ -14,12 +14,13 @@
                         {{ method_field('PUT') }}
 
                         @include('components.geolocation', [
-                            'old' => setGeolocationOldData(
-                                $cell->church->district->province->id,
-                                $cell->church->district->id,
-                                $cell->church_id
-                                ),
-                            'excepts' => ['cell']
+                            'name' => [],
+                            'old' => [
+                                'province_id' => old('province_id', $cell->church->district->province->id),
+                                'district_id' => old('district_id', $cell->church->district->id),
+                                'church_id' => old('church_id', $cell->church_id),
+                            ],
+                            'excepts' => ['cell', 'subDistrict']
                         ])
 
                         <div class="form-group">

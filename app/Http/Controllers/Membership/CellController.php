@@ -61,7 +61,7 @@ class CellController extends Controller
             return redirect()->back()->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว')->withInput($request->except('name'));
         }
 
-        return redirect()->route('membership.church.index')->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว');
+        return redirect()->route('membership.cell.index')->with('success', 'เพิ่มกลุ่มแคร์เรียบร้อยแล้ว');
     }
 
     /**
