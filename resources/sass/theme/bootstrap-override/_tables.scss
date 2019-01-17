@@ -26,6 +26,10 @@
   }
   th {
     font-weight: $font-weight-bold;
+    white-space: nowrap;
+  }
+  td {
+    white-space: nowrap;
   }
   .smaller, &.smaller {
     font-size: $font-size-base * 0.8;
@@ -188,6 +192,7 @@
 @media (min-width: 1100px){
   .table-responsive {
     overflow: visible;
+    display: table;
   }
 }
 
