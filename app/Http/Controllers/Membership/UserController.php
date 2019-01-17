@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('cell', 'cell.church')->get();
 
         return view('membership.user.index', compact('users'));
     }

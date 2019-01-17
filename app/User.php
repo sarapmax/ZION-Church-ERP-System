@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Enums\AdministrativeStatusEnum;
+use App\Enums\SpiritualStatusEnum;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -86,6 +87,16 @@ class User extends Authenticatable
      */
     public function getAdministrativeStatusAttribute() {
         return (new AdministrativeStatusEnum($this->attributes['administrative_status']))->getKey();
+    }
+
+    /**
+     * Get user's spiritual status;
+     *
+     * @return SpiritualStatusEnum
+     * @internal param $attribute
+     */
+    public function getSpiritualStatusAttribute() {
+        return (new SpiritualStatusEnum($this->attributes['spiritual_status']))->getKey();
     }
 
     /**

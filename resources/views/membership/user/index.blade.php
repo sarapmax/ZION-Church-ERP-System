@@ -27,14 +27,23 @@
                             <thead>
                             <tr>
                                 <th>รหัสสมาชิก</th>
+                                <th>คริสตจักร</th>
+                                <th>แคร์</th>
+                                <th>สถานะฝ่ายจิตวิญญาณ</th>
+                                <th>ชื่อ</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>
+                                    <td>{{ $user->code }}</td>
+                                    <td>{{ $user->cell->church->name }}</td>
+                                    <td>{{ $user->cell->name }}</td>
+                                    <td>{{ __('spiritual-status.' . $user->spiritual_status) }}</td>
+                                    <td>{{ $user->fullname }}</td>
+                                    <td class="link-action">
+                                        <a href=""><i class="far fa-eye"></i></a>
                                         <a href="{{ route('membership.user.edit', $user) }}"><i class="far fa-edit"></i></a>
 
                                         <a href="javascript:void(0);" onclick="$(this).find('form').submit();" >
