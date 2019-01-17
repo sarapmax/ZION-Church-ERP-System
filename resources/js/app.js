@@ -26,7 +26,7 @@ import Geolocation from './components/Geolocation.vue';
 Vue.component('geolocation', Geolocation);
 
 // Pages
-import CreateUser from './pages/user/CreateUser.vue';
+import CreateUser from './pages/membership/user/CreateUser.vue';
 
 Vue.component('create-user', CreateUser)
 
