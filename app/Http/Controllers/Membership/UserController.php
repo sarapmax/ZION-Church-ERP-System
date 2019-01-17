@@ -104,7 +104,7 @@ class UserController extends Controller
             'postcode' => $request->emergency_address_postcode
         ]);
 
-        return redirect()->route('membership.user.index')->with('success', 'เพิ่มสมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.user.index')->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 
     /**
@@ -223,17 +223,20 @@ class UserController extends Controller
             'postcode' => $request->emergency_address_postcode
         ]);
 
-        return redirect()->route('membership.user.index')->with('success', 'แก้สมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.user.index')->with('success', 'แก้ไขข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->back()->with('success', 'ลบข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 }

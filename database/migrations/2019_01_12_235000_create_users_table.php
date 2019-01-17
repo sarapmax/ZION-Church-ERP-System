@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('line')->nullable();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('cell_id')->references('id')->on('cells');

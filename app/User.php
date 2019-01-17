@@ -4,13 +4,14 @@ namespace App;
 
 use App\Enums\AdministrativeStatusEnum;
 use App\Enums\SpiritualStatusEnum;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -39,9 +40,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $dates = [
-        'birthday'
-    ];
+    protected $dates = ['deleted_at', 'birthday'];
 
     /**
      * The attributes that should be hidden for arrays.
