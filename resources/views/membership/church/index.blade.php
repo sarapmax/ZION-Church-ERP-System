@@ -40,7 +40,7 @@
                             <td>{{ $church->district->province->name }}</td>
                             <td>{{ $church->district->name }}</td>
                             <td class="text-primary font-weight-bold">{{ $church->name }}</td>
-                            <td>
+                            <td class="link-action">
                                 <a href="{{ route('membership.church.edit', $church) }}"><i class="far fa-edit"></i></a>
 
                                 <a href="javascript:void(0);" onclick="$(this).find('form').submit();" >
