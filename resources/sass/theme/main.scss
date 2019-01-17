@@ -44,6 +44,8 @@ TABLE OF CONTENTS
 */
 /* 1. Theme Variables */
 @import "theme-variables";
+/* 1a. User Override Variables */
+@import "user-override/user-variables";
 /* 2. Theme Mixins */
 @import "theme-mixins";
 /* 3. Bootstrap Override Styles */
@@ -83,7 +85,9 @@ TABLE OF CONTENTS
 @import "utilities";
 /* 11. Icon Fonts */
 @import "osfont";
-/* ##. Responsive Styles */
-@import "responsive";
 /* 24. Top Bar styles */
 @import "top_bar";
+/* ##. Responsive Styles */
+@import "responsive";
+/* ##. User Override Styles */
+@import "user-override/user-styles";
