@@ -150,8 +150,6 @@
 
             this.setError()
 
-            console.log(this.error)
-
             this.getProvinces()
 
             this.province_id = this.old.province_id

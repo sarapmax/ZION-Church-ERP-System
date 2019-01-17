@@ -84,12 +84,12 @@ class User extends Authenticatable
      * @return AdministrativeStatusEnum
      * @internal param $attribute
      */
-    public function getAdministrativeRoleAttribute() {
-        return new AdministrativeStatusEnum($this->administrative_status);
+    public function getAdministrativeStatusAttribute() {
+        return (new AdministrativeStatusEnum($this->attributes['administrative_status']))->getKey();
     }
 
     /**
-     * Get user's addresses.
+     * Relate user's addresses.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
@@ -97,11 +97,31 @@ class User extends Authenticatable
         return $this->morphMany(Address::class, 'addressable');
     }
 
+    /**
+     * Relate to user's emergency contact.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function emergencyContact() {
         return $this->hasOne(EmergencyContact::class);
     }
 
+
+    /**
+     * Relate to user's marigae imformation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function mariage() {
         return $this->hasOne(Mariage::class);
+    }
+
+    /**
+     * Relate to user's cell.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function cell() {
+        return $this->belongsTo(Cell::class);
     }
 }
