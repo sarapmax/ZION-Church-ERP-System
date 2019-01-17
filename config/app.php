@@ -229,6 +229,7 @@ return [
         // Custom enum
         'SpiritualStatus' => \App\Enums\SpiritualStatusEnum::class,
         'MariageStatus' => \App\Enums\MariageStatusEnum::class,
+        'AddressType' => \App\Enums\AddressTypeEnum::class,
     ],
 
 ];

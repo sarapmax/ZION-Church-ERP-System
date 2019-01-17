@@ -38,14 +38,12 @@ class UserRequest extends FormRequest
             'nickname' =>                   'required|min:2',
             'gender' =>                     ['required', Rule::in(['male', 'female'])],
             'birthday' =>                   'required|date',
-            'idcard' =>                     'required|alpha_num|digits:13|unique:users',
             'race' =>                       'required',
             'nationality' =>                'required',
 
-            'email' =>                      'required|email|unique:users',
             'mobile_number' =>              'required|alpha_num|digits:10',
 
-             'marital_status' =>            ['required', Rule::in(array_values(MariageStatusEnum::constants()->toArray()))],
+            'marital_status' =>            ['required', Rule::in(array_values(MariageStatusEnum::constants()->toArray()))],
 
             'emergency_name' =>            'required|min:3',
             'emergency_relationship' =>    'required',
@@ -61,6 +59,28 @@ class UserRequest extends FormRequest
 
          $rules += $this->addressValidation('emergency_address');
 
+         // Differentiate between POST AND PUT.
+        switch ($this->getMethod())
+        {
+            // Handle create.
+            case 'post':
+            case 'POST':
+                $rules += [
+                    'idcard' => ['required', 'alpha_num', 'digits:13', 'unique:users'],
+                    'email' =>  ['required', 'email', 'unique:users']
+                ];
+                break;
+
+            // Handle update.
+            case 'put':
+            case 'PUT':
+                $rules += [
+                    'idcard' => ['required', 'alpha_num', 'digits:13', Rule::unique('users')->ignore($this->route('user'))],
+                    'email' =>  ['required', 'email', Rule::unique('users')->ignore($this->route('user'))]
+                ];
+                break;
+        }
+        
         return $rules;
     }
 

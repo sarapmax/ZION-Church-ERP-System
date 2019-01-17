@@ -26,10 +26,16 @@ class EmergencyContact extends Model
         'mobile_number',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user() {
         $this->belongsTo(User::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
     public function address() {
         return $this->morphOne(Address::class, 'addressable');
     }

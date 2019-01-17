@@ -17,6 +17,7 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('sub_district_id');
             $table->morphs('addressable');
+            $table->unsignedInteger('type');
             $table->text('detail');
             $table->string('postcode', 5);
         });

@@ -1,15 +1,15 @@
 <script>
     export default {
-        props: ['old'],
+        props: ['oldSameAddress'],
 
         data() {
-            return {
-                sameAddress: false
-            }
+          return {
+              sameAddress: false
+          }
         },
 
         created() {
-            if(this.old.same_address) {
+            if (this.oldSameAddress) {
                 this.sameAddress = true
             }
         }

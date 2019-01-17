@@ -95,8 +95,8 @@ class User extends Authenticatable
      * @return SpiritualStatusEnum
      * @internal param $attribute
      */
-    public function getSpiritualStatusAttribute() {
-        return (new SpiritualStatusEnum($this->attributes['spiritual_status']))->getKey();
+    public function getSpiritualStatusNameAttribute() {
+        return (new SpiritualStatusEnum($this->spiritual_status))->getKey();
     }
 
     /**
@@ -134,5 +134,15 @@ class User extends Authenticatable
      */
     public function cell() {
         return $this->belongsTo(Cell::class);
+    }
+
+
+    /**
+     * Check whether a user has the same address or not.
+     *
+     * @return bool
+     */
+    public function getSameAddressAttribute() {
+        return $this->addresses->count() == 1;
     }
 }

@@ -40,7 +40,7 @@
                                     <td>{{ $user->code }}</td>
                                     <td>{{ $user->cell->church->name }}</td>
                                     <td>{{ $user->cell->name }}</td>
-                                    <td>{{ __('spiritual-status.' . $user->spiritual_status) }}</td>
+                                    <td>{{ __('spiritual-status.' . $user->spiritual_status_name) }}</td>
                                     <td>{{ $user->fullname }}</td>
                                     <td class="link-action">
                                         <a href=""><i class="far fa-eye"></i></a>

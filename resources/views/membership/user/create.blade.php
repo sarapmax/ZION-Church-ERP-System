@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <create-user inline-template :old="{{ json_encode(Session::getOldInput()) }}">
+    <user-form inline-template :old-same-address="{{ json_encode(old('same_address')) }}">
         <div class="row">
             <div class="col-lg-12">
                 <div class="element-wrapper">
@@ -246,7 +246,15 @@
                                     <span>ที่อยู่ตามทะเบียนบ้าน</span>
                                 </legend>
 
-                                @include('partials.forms.address', ['name' => 'original_address'])
+                                @include('partials.forms.address', [
+                                    'name' => 'original_address',
+                                    'old' => [
+                                        'province_id' => old('original_address_province_id'),
+                                        'district_id' => old('original_address_district_id'),
+                                        'sub_district_id' => old('original_address_sub_district_id'),
+                                        'detail' => old('original_address_detail')
+                                    ]
+                                ])
                             </fieldset>
 
                             {{--Original Address fields--}}
@@ -268,7 +276,15 @@
                                 </div>
 
                                 <div v-show="!sameAddress">
-                                    @include('partials.forms.address', ['name' => 'current_address'])
+                                    @include('partials.forms.address', [
+                                        'name' => 'current_address',
+                                        'old' => [
+                                            'province_id' => old('current_address_province_id'),
+                                            'district_id' => old('current_address_district_id'),
+                                            'sub_district_id' => old('current_address_sub_district_id'),
+                                            'detail' => old('current_address_detail')
+                                        ]
+                                    ])
                                 </div>
                             </fieldset>
 
@@ -428,7 +444,15 @@
                                     @endif
                                 </div>
 
-                                @include('partials.forms.address', ['name' => 'emergency_address'])
+                                @include('partials.forms.address', [
+                                    'name' => 'emergency_address',
+                                    'old' => [
+                                        'province_id' => old('emergency_address_province_id'),
+                                        'district_id' => old('emergency_address_district_id'),
+                                        'sub_district_id' => old('emergency_address_sub_district_id'),
+                                        'detail' => old('emergency_address_detail')
+                                    ]
+                                ])
                             </fieldset>
 
                             <hr/>
@@ -441,5 +465,5 @@
                 </div>
             </div>
         </div>
-    </create-user>
+    </user-form>
 @endsection

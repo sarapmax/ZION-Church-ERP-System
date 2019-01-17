@@ -6,9 +6,9 @@
         'postcode' => $name . '_postcode'
     ],
     'old' => [
-        'province_id' => old($name . '_province_id'),
-        'district_id' => old($name . '_district_id'),
-        'sub_district_id' => old($name . '_sub_district_id'),
+        'province_id' => $old['province_id'],
+        'district_id' => $old['district_id'],
+        'sub_district_id' => $old['sub_district_id'],
     ],
     'excepts' => []
 ])
@@ -19,7 +19,7 @@
               class="form-control{{ $errors->has($name . '_detail') ? ' is-invalid' : '' }}"
               name="{{ $name }}_detail"
               rows="4"
-              placeholder="120/52-53 ซอยบางศรีเมือง 6/7 หมู่บ้านธนภัทร 5">{{ old($name . '_detail') }}</textarea>
+              placeholder="120/52-53 ซอยบางศรีเมือง 6/7 หมู่บ้านธนภัทร 5">{{ $old['detail'] }}</textarea>
 
     @if ($errors->has($name . '_detail'))
         <span class="invalid-feedback" role="alert">

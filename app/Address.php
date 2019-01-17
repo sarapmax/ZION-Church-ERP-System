@@ -19,7 +19,8 @@ class Address extends Model
      * @var array
      */
     protected $fillable = [
-       'sub_district_id',
+        'sub_district_id',
+        'type',
         'detail',
         'postcode'
     ];
@@ -29,5 +30,12 @@ class Address extends Model
      */
     public function addressable() {
         return $this->morphTo();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subDistrict() {
+        return $this->belongsTo(SubDistrict::class);
     }
 }

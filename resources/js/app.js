@@ -28,9 +28,9 @@ Vue.component('geolocation', Geolocation);
 Vue.component('church-structure-selection', ChurchStructureSelection);
 
 // Pages
-import CreateUser from './pages/membership/user/CreateUser.vue';
+import UserForm from './pages/membership/user/UserForm.vue';
 
-Vue.component('create-user', CreateUser)
+Vue.component('user-form', UserForm)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
