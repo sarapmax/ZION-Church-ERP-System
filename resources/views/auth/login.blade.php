@@ -23,13 +23,13 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                    <label for="code">รหัสสมาชิก</label>
+                    <input id="code" type="number" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" name="code" value="{{ old('code') }}" required autofocus>
                     <div class="pre-icon os-icon os-icon-user-male-circle"></div>
 
-                    @if ($errors->has('email'))
+                    @if ($errors->has('code'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $errors->first('code') }}</strong>
                         </span>
                     @endif
                 </div>
