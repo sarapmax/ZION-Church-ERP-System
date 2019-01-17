@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Data;
+namespace App\Http\Controllers\GeolocationData;
 
 use App\Cell;
 use App\Church;

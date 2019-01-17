@@ -18,17 +18,15 @@
                                     <span>ข้อมูลคริสตจักร</span>
                                 </legend>
 
-                                @include('components.geolocation', [
-                                        'name' => [],
-                                        'old' => [
-                                            'province_id' => old('province_id'),
-                                            'district_id' => old('district_id'),
-                                            'church_id' => old('church_id'),
-                                            'cell_id' => old('cell_id')
-                                        ],
-                                        'excepts' => ['subDistrict']
-                                    ]
-                                )
+                                @include('components.selection.church-structure', [
+                                    'old' => [
+                                        'province_id' => old('province_id'),
+                                        'district_id' => old('district_id'),
+                                        'church_id' => old('church_id'),
+                                        'cell_id' => old('cell_id')
+                                    ],
+                                    'excepts' => []
+                                ])
 
                                 <div class="form-group">
                                     <label for="spiritual_status" class="required">สถานะผู้เชื่อ </label>
@@ -242,7 +240,7 @@
                                 </div>
                             </fieldset>
 
-                            {{-- Current Address fields--}}
+                            {{--Current Address fields--}}
                             <fieldset>
                                 <legend>
                                     <span>ที่อยู่ตามทะเบียนบ้าน</span>

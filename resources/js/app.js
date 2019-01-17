@@ -22,8 +22,10 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 import Geolocation from './components/Geolocation.vue';
+import ChurchStructureSelection from './components/ChurchStructureSelection.vue'
 
 Vue.component('geolocation', Geolocation);
+Vue.component('church-structure-selection', ChurchStructureSelection);
 
 // Pages
 import CreateUser from './pages/membership/user/CreateUser.vue';

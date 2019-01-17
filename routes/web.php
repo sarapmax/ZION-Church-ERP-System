@@ -28,12 +28,18 @@ Route::namespace('Membership')->name('membership.')->prefix('membership')->group
    Route::resource('user', 'UserController');
 });
 
+// Church geolocation data
+Route::namespace('ChurchStructure')->prefix('church-structure')->group(function() {
+    Route::get('provinces', 'ProvinceController@index');
+    Route::get('provinces/{province}/districts', 'DistrictController@index');
+    Route::get('districts/{district}/churches', 'Churchcontroller@index');
+    Route::get('churches/{church}/cells', 'CellController@index');
+});
+
 // Geolocation data
-Route::namespace('Data')->group(function() {
+Route::namespace('GeolocationData')->prefix('geolocation-data')->group(function() {
     Route::get('provinces', 'GeolocationController@getProvinces');
     Route::get('provinces/{province}/districts', 'GeolocationController@getDistricts');
-    Route::get('districts/{district}/churches', 'GeolocationController@getChurches');
-    Route::get('churches/{church}/cells', 'GeolocationController@getCells');
     Route::get('districts/{district}/sub-districts', 'GeolocationController@getSubDistricts');
     Route::get('sub-districts/{subDistrict}/postcode', 'GeolocationController@getPostcode');
 });

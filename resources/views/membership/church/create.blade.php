@@ -11,13 +11,13 @@
                 <form action="{{ route('membership.church.store') }}" method="POST">
                     @csrf
 
-                    @include('components.geolocation', [
+                    @include('components.selection.geolocation', [
                         'name' => [],
                         'old' => [
                             'province_id' => old('province_id'),
-                            'district_id' => old('district_id'),
+                            'district_id' => old('district_id')
                         ],
-                        'excepts' => ['church', 'cell', 'subDistrict']
+                        'excepts' => ['subDistrict']
                     ])
 
                     <div class="form-group">

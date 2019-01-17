@@ -13,13 +13,13 @@
 
                         {{ method_field('PUT') }}
 
-                        @include('components.geolocation', [
+                        @include('components.selection.geolocation', [
                             'name' => [],
                             'old' => [
                                 'province_id' => old('province_id', $church->district->province->id),
                                 'district_id' => old('district_id', $church->district->id),
                             ],
-                            'excepts' => ['church', 'cell', 'subDistrict']
+                            'excepts' => ['subDistrict']
                         ])
 
                         <div class="form-group">

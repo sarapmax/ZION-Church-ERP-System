@@ -13,7 +13,17 @@ class District extends Model
      */
     public $timestamps = false;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function province() {
         return $this->belongsTo(Province::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function churches() {
+        return $this->hasMany(Church::class);
     }
 }

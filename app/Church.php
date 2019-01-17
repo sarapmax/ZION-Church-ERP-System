@@ -16,7 +16,17 @@ class Church extends Model
         'name'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function district() {
         return $this->belongsTo(District::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cells() {
+        return $this->hasMany(Cell::class);
     }
 }

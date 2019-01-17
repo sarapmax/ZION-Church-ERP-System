@@ -16,7 +16,17 @@ class Cell extends Model
         'name'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function church() {
         return $this->belongsTo(Church::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function members() {
+        return $this->hasMany(User::class);
     }
 }
