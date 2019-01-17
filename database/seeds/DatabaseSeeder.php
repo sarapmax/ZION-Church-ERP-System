@@ -18,13 +18,24 @@ class DatabaseSeeder extends Seeder
         $this->call(SubDistrictsTableSeeder::class);
         $this->call(PostcodesTableSeeder::class);
 
-        factory(App\Cell::class, 50)->create();
+        factory(App\User::class, 50)->create()->each(function($user) {
+            $user->addresses()->save(factory(\App\Address::class)->make([
+                'type' => \App\Enums\AddressTypeEnum::CURRENT
+            ]));
 
-        factory(App\User::class, 1)->create([
-           'email' => 'teerpong.me@gmail.com',
-            'password' => bcrypt('123456')
-        ]);
+            $user->addresses()->save(factory(App\Address::class)->make([
+                'type' => \App\Enums\AddressTypeEnum::ORIGINAL
+            ]));
 
-        factory(App\User::class, 10)->create();
+
+            $user->mariage()->save(factory(\App\Mariage::class)->make());
+
+
+            $emergencyContact = $user->emergencyContact()->save(factory(\App\EmergencyContact::class)->make());
+
+            $emergencyContact->address()->save(factory(\App\Address::class)->make([
+                'type' => \App\Enums\AddressTypeEnum::EMERGENCY
+            ]));
+        });
     }
 }
