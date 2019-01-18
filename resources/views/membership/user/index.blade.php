@@ -43,16 +43,13 @@
                                     <td>{{ __('spiritual-status.' . $user->spiritual_status_name) }}</td>
                                     <td>{{ $user->fullname }}</td>
                                     <td class="link-action">
-                                        <a href=""><i class="far fa-eye"></i></a>
+                                        <a href="{{ route('membership.user.show', $user) }}"><i class="far fa-eye"></i></a>
                                         <a href="{{ route('membership.user.edit', $user) }}"><i class="far fa-edit"></i></a>
 
-                                        <a href="javascript:void(0);" onclick="$(this).find('form').submit();" >
-                                            <i class="far fa-trash-alt"></i>
-                                            <form action="{{ route('membership.user.destroy', $user) }}" method="POST" onsubmit="return confirm('Are you sure to delete this?')">
-                                                @csrf
-                                                {{ method_field('DELETE') }}
-                                            </form>
-                                        </a>
+                                        @include('components.actions.delete', [
+                                            'type' => 'link',
+                                            'route' => route('membership.user.destroy', $user)
+                                        ])
                                     </td>
                                 </tr>
                             @endforeach

@@ -43,13 +43,10 @@
                             <td class="link-action">
                                 <a href="{{ route('membership.church.edit', $church) }}"><i class="far fa-edit"></i></a>
 
-                                <a href="javascript:void(0);" onclick="$(this).find('form').submit();" >
-                                    <i class="far fa-trash-alt"></i>
-                                    <form action="{{ route('membership.church.destroy', $church) }}" method="POST" onsubmit="return confirm('Are you sure to delete this?')">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                    </form>
-                                </a>
+                                @include('components.actions.delete', [
+                                    'type' => 'link',
+                                    'route' => route('membership.church.destroy', $church)
+                                ])
                             </td>
                         </tr>
                         @endforeach

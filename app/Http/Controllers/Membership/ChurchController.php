@@ -123,6 +123,6 @@ class ChurchController extends Controller
     {
         $church->delete();
 
-        return redirect()->back()->with('success', 'ลบคริสตจักรเรียบร้อยแล้ว');
+        return redirect()->route('membership.church.index')->with('success', 'ลบคริสตจักรเรียบร้อยแล้ว');
     }
 }

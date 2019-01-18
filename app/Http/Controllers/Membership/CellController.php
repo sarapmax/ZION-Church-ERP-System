@@ -125,6 +125,6 @@ class CellController extends Controller
     {
         $cell->delete();
 
-        return redirect()->back()->with('success', 'ลบกลุ่มแคร์เรียบร้อยแล้ว');
+        return redirect()->route('membership.cell.index')->with('success', 'ลบกลุ่มแคร์เรียบร้อยแล้ว');
     }
 }
