@@ -15,11 +15,11 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code')->unique();
+            $table->string('code')->unique()->nullable();
             $table->unsignedInteger('cell_id');
             $table->string('email')->unique();
-            $table->string('password');
-            $table->unsignedInteger('administrative_status');
+            $table->string('password')->nullable();
+            $table->unsignedInteger('administrative_status')->nullable();
             $table->unsignedInteger('spiritual_status');
             $table->string('first_name');
             $table->string('last_name');

@@ -1,6 +1,6 @@
 <?php
 
-use App\District;
+use App\Models\District;
 use Illuminate\Database\Seeder;
 
 class DistrictsTableSeeder extends Seeder

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Membership;
 
-use App\Church;
+use App\Models\Church;
 use App\Enums\SubmissionTypeEnum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

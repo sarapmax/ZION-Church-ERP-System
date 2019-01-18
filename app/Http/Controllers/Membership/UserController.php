@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Membership;
 
-use App\Address;
 use App\Enums\AddressTypeEnum;
-use App\Enums\SubmissionTypeEnum;
 use App\Http\Requests\UserRequest;
-use App\Mariage;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

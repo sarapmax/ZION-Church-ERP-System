@@ -1,6 +1,6 @@
 <?php
 
-use App\Postcode;
+use App\Models\Postcode;
 use Illuminate\Database\Seeder;
 
 class PostcodesTableSeeder extends Seeder

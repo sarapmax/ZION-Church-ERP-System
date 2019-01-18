@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Enums\AdministrativeStatusEnum;
 use App\Enums\SpiritualStatusEnum;
@@ -60,12 +60,14 @@ class User extends Authenticatable
         parent::boot();
 
         // Format the user id to always start from 6 digits.
-        static::creating(function ($user) {
-            $userCode = sprintf("%06s", sprintf("%06s", User::count() + 1));
+        static::created(function ($user) {
+            $userCode = sprintf("%06s", sprintf("%06s", $user->id));
 
             $user->code = $userCode;
             $user->password = bcrypt($userCode);
             $user->administrative_status = AdministrativeStatusEnum::USER;
+
+            $user->save();
         });
     }
 

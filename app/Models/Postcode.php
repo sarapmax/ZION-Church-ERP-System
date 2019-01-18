@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class Postcode extends Model
 {
     /**
      * Indicates if the model should be timestamped.

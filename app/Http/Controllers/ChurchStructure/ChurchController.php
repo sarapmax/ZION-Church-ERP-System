@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\ChurchStructure;
 
-use App\Church;
-use App\District;
+use App\Models\Church;
+use App\Models\District;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

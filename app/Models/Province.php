@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class District extends Model
+class Province extends Model
 {
     /**
      * Indicates if the model should be timestamped.
@@ -16,14 +16,14 @@ class District extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function province() {
-        return $this->belongsTo(Province::class);
+    public function region() {
+        return $this->belongsTo(Region::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function churches() {
-        return $this->hasMany(Church::class);
+    public function districts() {
+        return $this->hasMany(District::class);
     }
 }

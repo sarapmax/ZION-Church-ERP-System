@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Mariage::class, function (Faker $faker) {
+$factory->define(\App\Models\Mariage::class, function (Faker $faker) {
     return [
         'status' => $faker->randomElement(\App\Enums\MariageStatusEnum::values()),
         'spouse_name' => $faker->name,
