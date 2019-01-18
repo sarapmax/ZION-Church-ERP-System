@@ -13,7 +13,7 @@
 
                         {{ method_field('PUT') }}
 
-                        @include('components.selection.geolocation', [
+                        @include('components.selections.geolocation', [
                             'name' => [],
                             'old' => [
                                 'province_id' => old('province_id', $church->district->province->id),

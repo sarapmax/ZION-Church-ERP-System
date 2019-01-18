@@ -20,7 +20,7 @@
                                     <span>ข้อมูลคริสตจักร</span>
                                 </legend>
 
-                                @include('components.selection.church-structure', [
+                                @include('components.selections.church-structure', [
                                     'old' => [
                                         'province_id' => old('province_id', $user->cell->church->district->province->id),
                                         'district_id' => old('district_id', $user->cell->church->district->id),

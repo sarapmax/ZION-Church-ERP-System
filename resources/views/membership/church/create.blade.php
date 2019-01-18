@@ -11,7 +11,7 @@
                 <form action="{{ route('membership.church.store') }}" method="POST">
                     @csrf
 
-                    @include('components.selection.geolocation', [
+                    @include('components.selections.geolocation', [
                         'name' => [],
                         'old' => [
                             'province_id' => old('province_id'),

@@ -11,7 +11,7 @@
                     <form action="{{ route('membership.cell.store') }}" method="POST">
                         @csrf
 
-                        @include('components.selection.church-structure', [
+                        @include('components.selections.church-structure', [
                             'old' => [
                                 'province_id' => old('province_id'),
                                 'district_id' => old('district_id'),

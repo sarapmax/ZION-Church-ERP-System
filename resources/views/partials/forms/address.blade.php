@@ -1,4 +1,4 @@
-@include('components.selection.geolocation', [
+@include('components.selections.geolocation', [
     'name' => [
         'province_id' => $name . '_province_id',
         'district_id' => $name . '_district_id',
