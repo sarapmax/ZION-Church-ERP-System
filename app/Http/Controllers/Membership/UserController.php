@@ -101,18 +101,18 @@ class UserController extends Controller
             'postcode' => $request->emergency_address_postcode
         ]);
 
-        return redirect()->route('membership.user.index')->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.user.show', $user)->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('membership.user.show', compact('user'));
     }
 
     /**
@@ -220,20 +220,20 @@ class UserController extends Controller
             'postcode' => $request->emergency_address_postcode
         ]);
 
-        return redirect()->route('membership.user.index')->with('success', 'แก้ไขข้อมูลสมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.user.show', $user)->with('success', 'แก้ไขข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(User $user)
     {
         $user->delete();
 
-        return redirect()->back()->with('success', 'ลบข้อมูลสมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.user.index')->with('success', 'ลบข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 }

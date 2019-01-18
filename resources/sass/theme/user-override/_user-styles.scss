@@ -14,3 +14,38 @@
         }
     }
 }
+
+.detail-view {
+    .border-bottom {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .text-muted {
+        color: #798086;
+    }
+}
+
+.btn-white {
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+}
+
+.btn-white {
+    &:hover,
+    &:active,
+    &:focus {
+        opacity: .75;
+        background-color: #fff;
+        border-color: #fff;
+        -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+    }
+}
+
+.btn-white:not(:disabled):not(.disabled):active {
+    color: #292b2c;
+    background-color: #fff;
+    border-color: #fff;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+}

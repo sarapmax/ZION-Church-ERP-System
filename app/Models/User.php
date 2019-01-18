@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\AdministrativeStatusEnum;
 use App\Enums\SpiritualStatusEnum;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -145,5 +146,14 @@ class User extends Authenticatable
      */
     public function getSameAddressAttribute() {
         return $this->addresses->count() == 1;
+    }
+
+    /**
+     * Get user's age.
+     *
+     * @return int
+     */
+    public function getAgeAttribute() {
+        return Carbon::parse($this->birthday)->age;
     }
 }
