@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="element-wrapper">
                 <h5 class="element-header">
-                    แก้ไขกลุ่มแคร์
+                    แก้ไขกลุ่มแคร์ {{ $cell->name }}
                 </h5>
                 <div class="element-box">
                     <form action="{{ route('membership.cell.update', $cell) }}" method="POST">

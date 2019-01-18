@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="element-wrapper">
                     <h5 class="element-header">
-                        แก้ไขข้อมูลสมาชิก
+                        แก้ไขข้อมูลสมาชิกรหัส {{ $user->code }}
                     </h5>
                     <div class="element-box">
                         <form action="{{ route('membership.user.update', $user) }}" method="POST">

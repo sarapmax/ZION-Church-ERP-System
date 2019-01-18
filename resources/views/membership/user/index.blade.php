@@ -4,6 +4,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="element-wrapper">
+                <div class="element-actions">
+                    <a href="{{ route('membership.user.create') }}" class="btn btn-primary">เพิ่มข้อมูลสมาชิก</a>
+                </div>
                 <h5 class="element-header">
                     ข้อมูลสมาชิก
                 </h5>
@@ -14,9 +17,6 @@
 
                             </div>
                             <div class="col-sm-6">
-                                <div class="form-inline justify-content-sm-end">
-                                    <a href="{{ route('membership.user.create') }}" class="btn btn-primary">เพิ่มข้อมูลสมาชิก</a>
-                                </div>
 
                             </div>
                         </div>

@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="element-wrapper">
                 <h5 class="element-header">
-                    แก้ไขคริสตจักร
+                    แก้ไขคริสตจักร {{ $church->name }}
                 </h5>
                 <div class="element-box">
                     <form action="{{ route('membership.church.update', $church) }}" method="POST">
