@@ -13,11 +13,49 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with('cell', 'cell.church')->get();
+        $user = User::with('cell', 'cell.church');
+
+        if ($request->search_keyword != null) {
+            $user->where('first_name', 'LIKE', '%' . $request->search_keyword . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $request->search_keyword . '%')
+                ->orWhere('nickname', 'LIKE', '%' . $request->search_keyword . '%')
+                ->orWhere('code', 'LIKE', '%' . $request->search_keyword . '%');
+        }
+
+        if ($request->province_id != null) {
+            $user->whereHas('cell.church.district.province', function($query) use($request) {
+                $query->whereId($request->province_id);
+            });
+        }
+
+        if ($request->district_id != null) {
+            $user->whereHas('cell.church.district', function($query) use($request) {
+                $query->whereId($request->district_id);
+            });
+        }
+
+        if ($request->church_id != null) {
+            $user->whereHas('cell.church', function($query) use($request) {
+                $query->whereId($request->church_id);
+            });
+        }
+
+        if ($request->cell_id != null) {
+            $user->whereHas('cell', function($query) use($request) {
+                $query->whereId($request->cell_id);
+            });
+        }
+
+        if ($request->spiritual_status != null) {
+            $user->whereSpiritualStatus($request->spiritual_status);
+        }
+
+        $users = $user->paginate(20);
 
         return view('membership.user.index', compact('users'));
     }

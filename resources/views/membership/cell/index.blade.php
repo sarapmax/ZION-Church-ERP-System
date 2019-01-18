@@ -53,6 +53,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        {{ $cells->appends($_GET)->links() }}
                     </div>
                 </div>
             </div>

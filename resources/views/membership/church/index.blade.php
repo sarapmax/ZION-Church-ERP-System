@@ -51,6 +51,8 @@
                         @endforeach
                         </tbody>
                     </table>
+
+                    {{ $churches->appends($_GET)->links() }}
                 </div>
             </div>
         </div>

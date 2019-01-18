@@ -25,7 +25,7 @@ class CellController extends Controller
      */
     public function index()
     {
-        $cells = Cell::with(['church', 'church.district', 'church.district.province'])->get();
+        $cells = Cell::with(['church', 'church.district', 'church.district.province'])->paginate(20);
 
         return view('membership.cell.index', compact('cells'));
     }
