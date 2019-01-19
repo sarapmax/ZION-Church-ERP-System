@@ -11,14 +11,6 @@ use App\Http\Controllers\Controller;
 class MemberController extends Controller
 {
     /**
-     * UserController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @param Request $request

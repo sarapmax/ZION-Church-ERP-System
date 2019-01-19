@@ -13,14 +13,14 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware(['auth']);
+})->middleware(['auth', 'churchMemberSystem']);
 
 //Route('')
 
 Auth::routes(['register' => false]);
 
 // Church member database system
-Route::namespace('Membership')->name('membership.')->prefix('membership')->group(function() {
+Route::namespace('Membership')->middleware(['auth', 'churchMemberSystem'])->name('membership.')->prefix('membership')->group(function() {
    Route::resource('church', 'ChurchController');
 
    Route::resource('cell', 'CellController');

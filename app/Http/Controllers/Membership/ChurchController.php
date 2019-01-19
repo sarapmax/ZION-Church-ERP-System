@@ -11,14 +11,6 @@ use Illuminate\Validation\Rule;
 class ChurchController extends Controller
 {
     /**
-     * ChurchController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

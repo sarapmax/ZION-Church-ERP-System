@@ -21,7 +21,7 @@
             </h4>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-
+                @include('layouts.flash-message')
                 <div class="form-group">
                     <label for="code">รหัสสมาชิก</label>
                     <input id="code" type="number" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" name="code" value="{{ old('code') }}" required autofocus>
