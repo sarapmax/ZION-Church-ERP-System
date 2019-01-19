@@ -4,14 +4,15 @@ namespace App\Models;
 
 use App\Enums\AdministrativeStatusEnum;
 use App\Enums\SpiritualStatusEnum;
-use App\Models\Scopes\UserDataAccess;
+use App\Models\Scopes\ChurchStructureAccess;
+use App\Models\Supports\UserMemberShare;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Member extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, UserMemberShare;
 
     /**
      * The table associated with the model.
@@ -66,7 +67,8 @@ class Member extends Model
     protected static function boot() {
         parent::boot();
 
-//        static::addGlobalScope(new memberDataAccess());
+        static::addGlobalScope(new ChurchStructureAccess());
+
         // Format the member id to always start from 6 digits.
         static::created(function ($member) {
             $memberCode = sprintf("%06s", sprintf("%06s", $member->id));
@@ -77,16 +79,6 @@ class Member extends Model
 
             $member->save();
         });
-    }
-
-
-    /**
-     * Concatenate first name and last name together
-     *
-     * @return string
-     */
-    public function getFullnameAttribute() {
-        return $this->first_name . ' ' . $this->last_name;
     }
 
     /**
@@ -128,16 +120,6 @@ class Member extends Model
     }
 
     /**
-     * Relate to member's cell.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function cell() {
-        return $this->belongsTo(Cell::class);
-    }
-
-
-    /**
      * Check whether a member has the same address or not.
      *
      * @return bool
@@ -153,53 +135,5 @@ class Member extends Model
      */
     public function getAgeAttribute() {
         return Carbon::parse($this->birthday)->age;
-    }
-
-    /**
-     * @param $query
-     */
-    public function scopeChurchStructureAccess($query) {
-        // Only if the administrative status of member is "member" is applied for this accession.
-        if (auth()->member()->administrative_status == AdministrativeStatusEnum::MEMBER) {
-            $cellLeaderAccessable = [
-                SpiritualStatusEnum::NEW_COMER,
-                SpiritualStatusEnum::NEW_BELIEVER,
-                SpiritualStatusEnum::REGULAR_BELIEVER,
-                SpiritualStatusEnum::CHURCH_MEMBER,
-                SpiritualStatusEnum::SHEPHERD,
-                SpiritualStatusEnum::CELL_LEADER
-            ];
-
-            $churchLeaderAccessable = array_merge($cellLeaderAccessable, [SpiritualStatusEnum::CHURCH_LEADER]);
-
-            $districtLeaderAccessable = array_merge($churchLeaderAccessable, [SpiritualStatusEnum::DISTRICT_LEADER]);
-
-            $provinceLeaderAccessable = array_merge($districtLeaderAccessable, [SpiritualStatusEnum::PROVINCE_LEADER]);
-
-            switch (auth()->member()->spiritual_status) {
-                case SpiritualStatusEnum::CELL_LEADER:
-                    $query->whereHas('cell', function($cell) {
-                        $cell->whereId(auth()->member()->cell_id);
-                    })->whereIn('spiritual_status', $cellLeaderAccessable);
-                    break;
-                case SpiritualStatusEnum::CHURCH_LEADER:
-                    $query->whereHas('cell.church', function($church) {
-                        $church->whereId(auth()->member()->cell->church->id);
-                    })->whereIn('spiritual_status', $churchLeaderAccessable);
-                    break;
-                case SpiritualStatusEnum::DISTRICT_LEADER:
-                    $query->whereHas('cell.church.district', function($church) {
-                        $church->whereId(auth()->member()->cell->church->district->id);
-                    })->whereIn('spiritual_status', $districtLeaderAccessable);
-                    break;
-                case SpiritualStatusEnum::PROVINCE_LEADER:
-                    $query->whereHas('cell.church.district.province', function($church) {
-                        $church->whereId(auth()->member()->cell->church->district->province->id);
-                    })->whereIn('spiritual_status', $provinceLeaderAccessable);
-                    break;
-                case  SpiritualStatusEnum::PASTOR
-                :break;
-            }
-        }
     }
 }

@@ -147,7 +147,7 @@ class MemberController extends Controller
             'postcode' => $request->emergency_address_postcode
         ]);
 
-        return redirect()->route('membership.member.show', $member)->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.member.index')->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 
     /**
@@ -158,8 +158,6 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-//        $member = User::churchStructureAccess()->findOrFail($member->id);
-
         return view('membership.member.show', compact('member'));
     }
 
@@ -171,8 +169,6 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-//        $member = User::findOrFail($id);
-
         return view('membership.member.edit', compact('member'));
     }
 
@@ -280,8 +276,6 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-//        $member = User::churchStructureAccess()->findOrFail($member->id);
-
         $member->delete();
 
         return redirect()->route('membership.member.index')->with('success', 'ลบข้อมูลสมาชิกเรียบร้อยแล้ว');

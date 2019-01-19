@@ -2,13 +2,14 @@
 namespace App\Models;
 
 use App\Enums\AdministrativeStatusEnum;
+use App\Models\Supports\UserMemberShare;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, UserMemberShare;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -18,15 +19,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     * Concatenate first name and last name together
-     *
-     * @return string
-     */
-    public function getFullnameAttribute() {
-        return $this->first_name . ' ' . $this->last_name;
-    }
 
     /**
      * Get member's administrative status;
