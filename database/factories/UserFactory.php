@@ -13,14 +13,14 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(App\Models\Member::class, function (Faker $faker) {
     return [
-        'cell_id' => factory(App\Models\Cell::class)->create()->id,
+        'cell_id' => 1,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
         'remember_token' => str_random(10),
         'administrative_status' => 1,
-        'spiritual_status' => 6,
+        'spiritual_status' => $faker->randomElement(\App\Enums\SpiritualStatusEnum::values()),
         'first_name' => $faker->name,
         'last_name' => $faker->lastName,
         'nickname' => $faker->userName,

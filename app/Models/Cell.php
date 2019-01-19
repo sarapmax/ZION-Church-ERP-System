@@ -27,6 +27,6 @@ class Cell extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function members() {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Member::class);
     }
 }

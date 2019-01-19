@@ -15,14 +15,14 @@ class CreateMariagesTable extends Migration
     {
         Schema::create('mariages', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('member_id');
             $table->unsignedInteger('status');
             $table->string('spouse_name')->nullable();
             $table->string('spouse_nickname')->nullable();
             $table->date('spouse_birthday')->nullable();
             $table->boolean('spouse_christian')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('member_id')->references('id')->on('users');
         });
     }
 

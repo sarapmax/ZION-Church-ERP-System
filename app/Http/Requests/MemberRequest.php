@@ -7,7 +7,7 @@ use App\Enums\SpiritualStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest
+class MemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-         $rules = [
+        $rules = [
             'province_id' =>                'required|exists:provinces,id',
             'district_id' =>                'required|exists:districts,id',
             'church_id' =>                  'required|exists:churches,id',
@@ -50,16 +50,16 @@ class UserRequest extends FormRequest
             'emergency_mobile_number' =>   'required|alpha_num|digits:10'
         ];
 
-         $rules += $this->addressValidation('original_address');
+        $rules += $this->addressValidation('original_address');
 
-         //If the users checked that they live the as same address, we no longer have to require the current address.
-         if(!$this->request->has('same_address')) {
-             $rules += $this->addressValidation('current_address');
-         }
+        //If the users checked that they live the as same address, we no longer have to require the current address.
+        if(!$this->request->has('same_address')) {
+            $rules += $this->addressValidation('current_address');
+        }
 
-         $rules += $this->addressValidation('emergency_address');
+        $rules += $this->addressValidation('emergency_address');
 
-         // Differentiate between POST AND PUT.
+        // Differentiate between POST AND PUT.
         switch ($this->getMethod())
         {
             // Handle create.
@@ -75,14 +75,15 @@ class UserRequest extends FormRequest
             case 'put':
             case 'PUT':
                 $rules += [
-                    'idcard' => ['required', 'alpha_num', 'digits:13', Rule::unique('users')->ignore($this->route('user'))],
-                    'email' =>  ['required', 'email', Rule::unique('users')->ignore($this->route('user'))]
+                    'idcard' => ['required', 'alpha_num', 'digits:13', Rule::unique('users')->ignore($this->route('member'))],
+                    'email' =>  ['required', 'email', Rule::unique('users')->ignore($this->route('member'))]
                 ];
                 break;
         }
-        
+
         return $rules;
     }
+
 
     private function addressValidation($name) {
         return [

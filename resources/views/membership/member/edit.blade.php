@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-    <user-form inline-template :old-same-address="{{ json_encode(old('same_address', $user->same_address)) }}">
+    <user-form inline-template :old-same-address="{{ json_encode(old('same_address', $member->same_address)) }}">
         <div class="row">
             <div class="col-lg-12">
                 <div class="element-wrapper">
                     <h5 class="element-header">
-                        แก้ไขข้อมูลสมาชิกรหัส {{ $user->code }}
+                        แก้ไขข้อมูลสมาชิกรหัส {{ $member->code }}
                     </h5>
                     <div class="element-box">
-                        <form action="{{ route('membership.user.update', $user) }}" method="POST">
+                        <form action="{{ route('membership.member.update', $member) }}" method="POST">
                             @csrf
 
                             {{ method_field('PUT') }}
@@ -22,10 +22,10 @@
 
                                 @include('components.selections.church-structure', [
                                     'old' => [
-                                        'province_id' => old('province_id', $user->cell->church->district->province->id),
-                                        'district_id' => old('district_id', $user->cell->church->district->id),
-                                        'church_id' => old('church_id', $user->cell->church->id),
-                                        'cell_id' => old('cell_id', $user->cell_id)
+                                        'province_id' => old('province_id', $member->cell->church->district->province->id),
+                                        'district_id' => old('district_id', $member->cell->church->district->id),
+                                        'church_id' => old('church_id', $member->cell->church->id),
+                                        'cell_id' => old('cell_id', $member->cell_id)
                                     ],
                                     'excepts' => []
                                 ])
@@ -35,7 +35,7 @@
                                     <select id="spiritual_status" class="form-control{{ $errors->has('spiritual_status') ? ' is-invalid' : '' }}" name="spiritual_status">
                                         <option value="">-- Select --</option>
                                         @foreach(SpiritualStatus::constants() as $key => $value)
-                                            <option value="{{ $value }}" @if(old('spiritual_status', $user->spiritual_status) == $value) selected @endif>{{ __('spiritual-status.' . $key) }}</option>
+                                            <option value="{{ $value }}" @if(old('spiritual_status', $member->spiritual_status) == $value) selected @endif>{{ __('spiritual-status.' . $key) }}</option>
                                         @endforeach
                                     </select>
                                     <div class="help-block form-text text-muted form-control-feedback">
@@ -61,7 +61,7 @@
                                     <input id="first_name" type="text"
                                            class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
                                            name="first_name"
-                                           value="{{ old('first_name', $user->first_name) }}" required>
+                                           value="{{ old('first_name', $member->first_name) }}" required>
 
                                     @if ($errors->has('first_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
                                     <input id="last_name" type="text"
                                            class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
                                            name="last_name"
-                                           value="{{ old('last_name', $user->last_name) }}" required>
+                                           value="{{ old('last_name', $member->last_name) }}" required>
 
                                     @if ($errors->has('last_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
                                     <input id="nickname" type="text"
                                            class="form-control{{ $errors->has('nickname') ? ' is-invalid' : '' }}"
                                            name="nickname"
-                                           value="{{ old('nickname', $user->nickname) }}" required>
+                                           value="{{ old('nickname', $member->nickname) }}" required>
 
                                     @if ($errors->has('nickname'))
                                         <span class="invalid-feedback" role="alert">
@@ -102,8 +102,8 @@
                                     <label for="gender" class="required">เพศ </label>
                                     <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" required>
                                         <option value="">-- Select --</option>
-                                        <option value="male" @if(old('gender', $user->gender) == 'male') selected @endif>ชาย</option>
-                                        <option value="female" @if(old('gender', $user->gender) == 'female') selected @endif>หญิง</option>
+                                        <option value="male" @if(old('gender', $member->gender) == 'male') selected @endif>ชาย</option>
+                                        <option value="female" @if(old('gender', $member->gender) == 'female') selected @endif>หญิง</option>
                                     </select>
 
                                     @if ($errors->has('gender'))
@@ -118,7 +118,7 @@
                                     <input id="birthday" type="text"
                                            class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}"
                                            name="birthday"
-                                           value="{{ old('birthday', $user->birthday) }}" required>
+                                           value="{{ old('birthday', $member->birthday) }}" required>
 
                                     @if ($errors->has('birthday'))
                                         <span class="invalid-feedback" role="alert">
@@ -132,7 +132,7 @@
                                     <input id="idcard" type="text"
                                            class="form-control{{ $errors->has('idcard') ? ' is-invalid' : '' }}"
                                            name="idcard"
-                                           value="{{ old('idcard', $user->idcard) }}" required>
+                                           value="{{ old('idcard', $member->idcard) }}" required>
                                     <div class="help-block form-text text-muted form-control-feedback">
                                         เลขบัตรประจำตัวประชาชน 13 หลัก - ข้อมูลสำคัญ กรุณาตรวจสอบข้อมูลให้ถูกต้อง
                                     </div>
@@ -148,7 +148,7 @@
                                     <label for="race" class="required">เชื้อขาติ </label>
                                     <input id="race" type="text"
                                            class="form-control{{ $errors->has('race') ? ' is-invalid' : '' }}" name="race"
-                                           value="{{ old('race', $user->race) }}" required>
+                                           value="{{ old('race', $member->race) }}" required>
 
                                     @if ($errors->has('race'))
                                         <span class="invalid-feedback" role="alert">
@@ -162,7 +162,7 @@
                                     <input id="nationality" type="text"
                                            class="form-control{{ $errors->has('nationality') ? ' is-invalid' : '' }}"
                                            name="nationality"
-                                           value="{{ old('nationality', $user->nationality) }}" required>
+                                           value="{{ old('nationality', $member->nationality) }}" required>
 
                                     @if ($errors->has('nationality'))
                                         <span class="invalid-feedback" role="alert">
@@ -182,7 +182,7 @@
                                     <label for="email">Email </label>
                                     <input id="email" type="text"
                                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
-                                           value="{{ old('email', $user->email) }}">
+                                           value="{{ old('email', $member->email) }}">
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -196,7 +196,7 @@
                                     <input id="mobile_number" type="text"
                                            class="form-control{{ $errors->has('mobile_number') ? ' is-invalid' : '' }}"
                                            name="mobile_number"
-                                           value="{{ old('mobile_number', $user->mobile_number) }}" required>
+                                           value="{{ old('mobile_number', $member->mobile_number) }}" required>
                                     <div class="help-block form-text text-muted form-control-feedback">
                                         เบอร์โทรศัพท์มือถือ 10 หลัก ไม่ต้องมีเคลื่องหมายหรือเว้นวรรค
                                     </div>
@@ -213,7 +213,7 @@
                                     <input id="facebook" type="text"
                                            class="form-control{{ $errors->has('facebook') ? ' is-invalid' : '' }}"
                                            name="facebook"
-                                           value="{{ old('facebook', $user->facebook) }}">
+                                           value="{{ old('facebook', $member->facebook) }}">
                                     <div class="help-block form-text text-muted form-control-feedback">
                                         กรุณากรอกเป็นชื่อ Facebook หรือ URL
                                     </div>
@@ -229,7 +229,7 @@
                                     <label for="line">Line ID</label>
                                     <input id="line" type="text"
                                            class="form-control{{ $errors->has('line') ? ' is-invalid' : '' }}" name="line"
-                                           value="{{ old('line', $user->line) }}">
+                                           value="{{ old('line', $member->line) }}">
                                     <div class="help-block form-text text-muted form-control-feedback">
                                         กรุณากรอกเป็น Line ID
                                     </div>
@@ -248,7 +248,7 @@
                                     <span>ที่อยู่ตามทะเบียนบ้าน</span>
                                 </legend>
 
-                                @foreach($user->addresses as $address)
+                                @foreach($member->addresses as $address)
                                     @if($address->type == AddressType::ORIGINAL)
                                         @include('partials.forms.address', [
                                             'name' => 'original_address',
@@ -282,7 +282,7 @@
                                 </div>
 
                                 <div v-show="!sameAddress">
-                                    @foreach($user->addresses as $address)
+                                    @foreach($member->addresses as $address)
                                         @if($address->type == AddressType::CURRENT)
                                             @include('partials.forms.address', [
                                                 'name' => 'current_address',
@@ -296,7 +296,7 @@
                                         @endif
                                     @endforeach
 
-                                    @if($user->same_address)
+                                    @if($member->same_address)
                                         @include('partials.forms.address', [
                                             'name' => 'current_address',
                                             'old' => [
@@ -321,7 +321,7 @@
                                     <select id="marital_status" class="form-control{{ $errors->has('marital_status') ? ' is-invalid' : '' }}" name="marital_status" required>
                                         <option value="">-- Select --</option>
                                         @foreach(MariageStatus::constants() as $key => $value)
-                                            <option value="{{ $value }}" @if(old('marital_status', $user->mariage->status) == $value) selected @endif>{{ __('mariage-status.' . $key) }}</option>
+                                            <option value="{{ $value }}" @if(old('marital_status', $member->mariage->status) == $value) selected @endif>{{ __('mariage-status.' . $key) }}</option>
                                         @endforeach
                                     </select>
 
@@ -337,7 +337,7 @@
                                     <input id="spoouse_name" type="text"
                                            class="form-control{{ $errors->has('spoouse_name') ? ' is-invalid' : '' }}"
                                            name="spoouse_name"
-                                           value="{{ old('spoouse_name', $user->mariage->spouse_name) }}">
+                                           value="{{ old('spoouse_name', $member->mariage->spouse_name) }}">
 
                                     @if ($errors->has('spoouse_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -351,7 +351,7 @@
                                     <input id="spouse_nickname" type="text"
                                            class="form-control{{ $errors->has('spouse_nickname') ? ' is-invalid' : '' }}"
                                            name="spouse_nickname"
-                                           value="{{ old('spouse_nickname', $user->mariage->spouse_nickname) }}">
+                                           value="{{ old('spouse_nickname', $member->mariage->spouse_nickname) }}">
 
                                     @if ($errors->has('spouse_nickname'))
                                         <span class="invalid-feedback" role="alert">
@@ -365,7 +365,7 @@
                                     <input id="spouse_birthday" type="text"
                                            class="form-control{{ $errors->has('spouse_birthday') ? ' is-invalid' : '' }}"
                                            name="spouse_birthday"
-                                           value="{{ old('spouse_birthday', $user->mariage->spouse_birthday) }}">
+                                           value="{{ old('spouse_birthday', $member->mariage->spouse_birthday) }}">
 
                                     @if ($errors->has('spouse_birthday'))
                                         <span class="invalid-feedback" role="alert">
@@ -376,7 +376,7 @@
 
                                 <div class="form-group">
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="spouse_christian" value="yes" @if(old('spouse_christian', $user->mariage->spouse_christian)) checked @endif> เป็นคริสเตียน
+                                        <input type="checkbox" name="spouse_christian" value="yes" @if(old('spouse_christian', $member->mariage->spouse_christian)) checked @endif> เป็นคริสเตียน
                                     </label>
 
                                     @if ($errors->has('spouse_christian'))
@@ -398,7 +398,7 @@
                                     <input id="emergency_name" type="text"
                                            class="form-control{{ $errors->has('emergency_name') ? ' is-invalid' : '' }}"
                                            name="emergency_name"
-                                           value="{{ old('emergency_name', $user->emergencyContact->name) }}" required>
+                                           value="{{ old('emergency_name', $member->emergencyContact->name) }}" required>
 
                                     @if ($errors->has('emergency_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -412,7 +412,7 @@
                                     <input id="emergency_nickname" type="text"
                                            class="form-control{{ $errors->has('emergency_nickname') ? ' is-invalid' : '' }}"
                                            name="emergency_nickname"
-                                           value="{{ old('emergency_nickname', $user->emergencyContact->nickname) }}">
+                                           value="{{ old('emergency_nickname', $member->emergencyContact->nickname) }}">
 
                                     @if ($errors->has('emergency_nickname'))
                                         <span class="invalid-feedback" role="alert">
@@ -426,7 +426,7 @@
                                     <input id="emergency_age" type="number"
                                            class="form-control{{ $errors->has('emergency_age') ? ' is-invalid' : '' }}"
                                            name="emergency_age"
-                                           value="{{ old('emergency_age', $user->emergencyContact->age) }}">
+                                           value="{{ old('emergency_age', $member->emergencyContact->age) }}">
 
                                     @if ($errors->has('emergency_age'))
                                         <span class="invalid-feedback" role="alert">
@@ -440,7 +440,7 @@
                                     <input id="emergency_relationship" type="text"
                                            class="form-control{{ $errors->has('emergency_relationship') ? ' is-invalid' : '' }}"
                                            name="emergency_relationship"
-                                           value="{{ old('emergency_relationship', $user->emergencyContact->relationship) }}" required>
+                                           value="{{ old('emergency_relationship', $member->emergencyContact->relationship) }}" required>
 
                                     @if ($errors->has('emergency_relationship'))
                                         <span class="invalid-feedback" role="alert">
@@ -454,7 +454,7 @@
                                     <input id="emergency_mobile_number" type="text"
                                            class="form-control{{ $errors->has('emergency_mobile_number') ? ' is-invalid' : '' }}"
                                            name="emergency_mobile_number"
-                                           value="{{ old('emergency_mobile_number', $user->emergencyContact->mobile_number) }}" required>
+                                           value="{{ old('emergency_mobile_number', $member->emergencyContact->mobile_number) }}" required>
                                     <div class="help-block form-text text-muted form-control-feedback">
                                         เบอร์โทรศัพท์มือถือ 10 หลัก ไม่ต้องมีเคลื่องหมายหรือเว้นวรรค
                                     </div>
@@ -469,10 +469,10 @@
                                 @include('partials.forms.address', [
                                     'name' => 'emergency_address',
                                     'old' => [
-                                        'province_id' => old('emergency_address_province_id', $user->emergencyContact->address->subDistrict->district->province->id),
-                                        'district_id' => old('emergency_address_district_id', $user->emergencyContact->address->subDistrict->district->id),
-                                        'sub_district_id' => old('emergency_address_sub_district_id', $user->emergencyContact->address->sub_district_id),
-                                        'detail' => old('emergency_address_detail', $user->emergencyContact->address->detail)
+                                        'province_id' => old('emergency_address_province_id', $member->emergencyContact->address->subDistrict->district->province->id),
+                                        'district_id' => old('emergency_address_district_id', $member->emergencyContact->address->subDistrict->district->id),
+                                        'sub_district_id' => old('emergency_address_sub_district_id', $member->emergencyContact->address->sub_district_id),
+                                        'detail' => old('emergency_address_detail', $member->emergencyContact->address->detail)
                                     ]
                                 ])
                             </fieldset>

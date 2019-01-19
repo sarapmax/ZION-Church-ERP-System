@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Models\EmergencyContact::class, function (Faker $faker) {
     return [
-        'user_id' => '',
+        'member_id' => '',
         'name' => $faker->name,
         'nickname' => $faker->userName,
         'age' => $faker->numberBetween(20, 50),

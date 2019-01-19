@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Mariage extends Model
 {
@@ -37,10 +38,10 @@ class Mariage extends Model
     /**
      * Relate to user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function member() {
+        return $this->belongsTo(Member::class);
     }
 
     /**

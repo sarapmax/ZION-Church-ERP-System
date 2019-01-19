@@ -9,7 +9,7 @@
                         เพิ่มข้อมูลสมาชิก
                     </h5>
                     <div class="element-box">
-                        <form action="{{ route('membership.user.store') }}" method="POST">
+                        <form action="{{ route('membership.member.store') }}" method="POST">
                             @csrf
 
                             {{--Church detail fields--}}

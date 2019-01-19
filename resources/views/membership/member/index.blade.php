@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="element-wrapper">
                 <div class="element-actions">
-                    <a href="{{ route('membership.user.create') }}" class="btn btn-primary">เพิ่มข้อมูลสมาชิก</a>
+                    <a href="{{ route('membership.member.create') }}" class="btn btn-primary">เพิ่มข้อมูลสมาชิก</a>
                 </div>
                 <h5 class="element-header">
                     ข้อมูลสมาชิก
@@ -75,20 +75,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
+                            @foreach($members as $member)
                                 <tr>
-                                    <td>{{ $user->code }}</td>
-                                    <td>{{ $user->cell->church->name }}</td>
-                                    <td>{{ $user->cell->name }}</td>
-                                    <td>{{ __('spiritual-status.' . $user->spiritual_status_name) }}</td>
-                                    <td>{{ $user->fullname }}</td>
+                                    <td>{{ $member->code }}</td>
+                                    <td>{{ $member->cell->church->name }}</td>
+                                    <td>{{ $member->cell->name }}</td>
+                                    <td>{{ __('spiritual-status.' . $member->spiritual_status_name) }}</td>
+                                    <td>{{ $member->fullname }}</td>
                                     <td class="link-action">
-                                        <a href="{{ route('membership.user.show', $user) }}"><i class="far fa-eye"></i></a>
-                                        <a href="{{ route('membership.user.edit', $user) }}"><i class="far fa-edit"></i></a>
+                                        <a href="{{ route('membership.member.show', $member) }}"><i class="far fa-eye"></i></a>
+                                        <a href="{{ route('membership.member.edit', $member) }}"><i class="far fa-edit"></i></a>
 
                                         @include('components.actions.delete', [
                                             'type' => 'link',
-                                            'route' => route('membership.user.destroy', $user)
+                                            'route' => route('membership.member.destroy', $member)
                                         ])
                                     </td>
                                 </tr>
@@ -96,7 +96,7 @@
                             </tbody>
                         </table>
 
-                        {{ $users->appends($_GET)->links() }}
+                        {{ $members->appends($_GET)->links() }}
                     </div>
                 </div>
             </div>

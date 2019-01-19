@@ -6,7 +6,7 @@ use Nasyrov\Laravel\Enums\Enum;
 
 class AdministrativeStatusEnum extends Enum
 {
-    const USER = 1;
+    const MEMBER = 1;
     const DEVELOPER = 2;
     const ADMIN = 3;
 }

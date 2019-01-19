@@ -27,10 +27,10 @@ class EmergencyContact extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return void
      */
-    public function user() {
-        $this->belongsTo(User::class);
+    public function member() {
+        $this->belongsTo(Member::class);
     }
 
     /**

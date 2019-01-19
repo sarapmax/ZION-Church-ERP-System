@@ -3,13 +3,21 @@
 namespace App\Http\Controllers\Membership;
 
 use App\Enums\AddressTypeEnum;
-use App\Http\Requests\UserRequest;
-use App\Models\User;
+use App\Http\Requests\MemberRequest;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class MemberController extends Controller
 {
+    /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,46 +26,46 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::with('cell', 'cell.church');
+        $member = Member::with('cell', 'cell.church');
 
         if ($request->search_keyword != null) {
-            $user->where('first_name', 'LIKE', '%' . $request->search_keyword . '%')
+            $member->where('first_name', 'LIKE', '%' . $request->search_keyword . '%')
                 ->orWhere('last_name', 'LIKE', '%' . $request->search_keyword . '%')
                 ->orWhere('nickname', 'LIKE', '%' . $request->search_keyword . '%')
                 ->orWhere('code', 'LIKE', '%' . $request->search_keyword . '%');
         }
 
         if ($request->province_id != null) {
-            $user->whereHas('cell.church.district.province', function($query) use($request) {
+            $member->whereHas('cell.church.district.province', function($query) use($request) {
                 $query->whereId($request->province_id);
             });
         }
 
         if ($request->district_id != null) {
-            $user->whereHas('cell.church.district', function($query) use($request) {
+            $member->whereHas('cell.church.district', function($query) use($request) {
                 $query->whereId($request->district_id);
             });
         }
 
         if ($request->church_id != null) {
-            $user->whereHas('cell.church', function($query) use($request) {
+            $member->whereHas('cell.church', function($query) use($request) {
                 $query->whereId($request->church_id);
             });
         }
 
         if ($request->cell_id != null) {
-            $user->whereHas('cell', function($query) use($request) {
+            $member->whereHas('cell', function($query) use($request) {
                 $query->whereId($request->cell_id);
             });
         }
 
         if ($request->spiritual_status != null) {
-            $user->whereSpiritualStatus($request->spiritual_status);
+            $member->whereSpiritualStatus($request->spiritual_status);
         }
 
-        $users = $user->paginate(20);
+        $members = $member->orderBy('cell_id')->orderBy('spiritual_status', 'desc')->paginate(20);
 
-        return view('membership.user.index', compact('users'));
+        return view('membership.member.index', compact('members'));
     }
 
     /**
@@ -67,18 +75,18 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('membership.user.create');
+        return view('membership.member.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param UserRequest|Request $request
+     * @param MemberRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(MemberRequest $request)
     {
-        $user = User::create([
+        $member = Member::create([
             'cell_id' => $request->cell_id,
             'email' => $request->email,
             'spiritual_status' => $request->spiritual_status,
@@ -96,7 +104,7 @@ class UserController extends Controller
         ]);
 
         // Create user's marige.
-        $user->mariage()->create([
+        $member->mariage()->create([
             'status' => $request->marital_status,
             'spouse_name' => $request->spoouse_name,
             'spouse_nickname' => $request->spouse_nickname,
@@ -105,7 +113,7 @@ class UserController extends Controller
         ]);
 
         // Create user's addresses.
-        $user->addresses()->create([
+        $member->addresses()->create([
             'sub_district_id' => $request->original_address_sub_district_id,
             'type' => AddressTypeEnum::ORIGINAL,
             'detail' => $request->original_address_detail,
@@ -114,7 +122,7 @@ class UserController extends Controller
 
         // If the address is not the same.
         if (!$request->has('same_address')) {
-            $user->addresses()->create([
+            $member->addresses()->create([
                 'sub_district_id' => $request->current_address_sub_district_id,
                 'type' => AddressTypeEnum::CURRENT,
                 'detail' => $request->current_address_detail,
@@ -123,7 +131,7 @@ class UserController extends Controller
         }
 
         // Create user's emergency contact
-        $user->emergencyContact()->create([
+        $member->emergencyContact()->create([
             'name' => $request->emergency_name,
             'nickname' => $request->emergency_nickname,
             'age' => $request->emergency_age,
@@ -132,51 +140,53 @@ class UserController extends Controller
         ]);
 
         // Create user's emergency contact address
-        $user->emergencyContact->address()->create([
+        $member->emergencyContact->address()->create([
             'sub_district_id' => $request->emergency_address_sub_district_id,
             'type' => AddressTypeEnum::EMERGENCY,
             'detail' => $request->emergency_address_detail,
             'postcode' => $request->emergency_address_postcode
         ]);
 
-        return redirect()->route('membership.user.show', $user)->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.member.show', $member)->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param User $user
+     * @param Member $member
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(User $user)
+    public function show(Member $member)
     {
-        return view('membership.user.show', compact('user'));
+//        $member = User::churchStructureAccess()->findOrFail($member->id);
+
+        return view('membership.member.show', compact('member'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Member $member
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Member $member)
     {
-        $user = User::find($id);
+//        $member = User::findOrFail($id);
 
-        return view('membership.user.edit', compact('user'));
+        return view('membership.member.edit', compact('member'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param UserRequest|Request $request
-     * @param User $user
+     * @param MemberRequest|Request $request
+     * @param Member $member
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(UserRequest $request, User $user)
+    public function update(MemberRequest $request, Member $member)
     {
-        $user->update([
+        $member->update([
             'cell_id' => $request->cell_id,
             'email' => $request->email,
             'spiritual_status' => $request->spiritual_status,
@@ -194,7 +204,7 @@ class UserController extends Controller
         ]);
 
         // Update user's marige.
-        $user->mariage()->update([
+        $member->mariage()->update([
             'status' => $request->marital_status,
             'spouse_name' => $request->spoouse_name,
             'spouse_nickname' => $request->spouse_nickname,
@@ -203,7 +213,7 @@ class UserController extends Controller
         ]);
 
         // Update user's addresses.
-        foreach($user->addresses() as $address) {
+        foreach($member->addresses() as $address) {
             if ($address->type == AddressTypeEnum::ORIGINAL) {
                 $address->update([
                     'sub_district_id' => $request->original_address_sub_district_id,
@@ -214,23 +224,23 @@ class UserController extends Controller
         }
 
         // If a user didn't have the current address and wants to add more.
-        if (!$request->has('same_address') && $user->addresses->count() != 2) {
-            $user->addresses()->create([
+        if (!$request->has('same_address') && $member->addresses->count() != 2) {
+            $member->addresses()->create([
                 'sub_district_id' => $request->current_address_sub_district_id,
                 'type' => AddressTypeEnum::CURRENT,
                 'detail' => $request->current_address_detail,
                 'postcode' => $request->current_address_postcode
             ]);
         // If a user have the current address and wants to delete it.
-        } else if($request->has('same_address') && $user->addresses->count() == 2){
-            foreach($user->addresses as $address) {
+        } else if($request->has('same_address') && $member->addresses->count() == 2){
+            foreach($member->addresses as $address) {
                 if ($address->type == AddressTypeEnum::CURRENT) {
                     $address->delete();
                 }
             }
         // If a user just wants to update the current address.
         } else {
-            foreach($user->addresses as $address) {
+            foreach($member->addresses as $address) {
                 if ($address->type == AddressTypeEnum::CURRENT) {
                     $address->update([
                         'sub_district_id' => $request->current_address_sub_district_id,
@@ -242,7 +252,7 @@ class UserController extends Controller
         }
 
         // Create user's emergency contact
-        $user->emergencyContact()->update([
+        $member->emergencyContact()->update([
             'name' => $request->emergency_name,
             'nickname' => $request->emergency_nickname,
             'age' => $request->emergency_age,
@@ -251,27 +261,29 @@ class UserController extends Controller
         ]);
 
         // Create user's emergency contact address
-        $user->emergencyContact->address()->update([
+        $member->emergencyContact->address()->update([
             'sub_district_id' => $request->emergency_address_sub_district_id,
             'type' => AddressTypeEnum::EMERGENCY,
             'detail' => $request->emergency_address_detail,
             'postcode' => $request->emergency_address_postcode
         ]);
 
-        return redirect()->route('membership.user.show', $user)->with('success', 'แก้ไขข้อมูลสมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.member.show', $member)->with('success', 'แก้ไขข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param User $user
+     * @param Member $member
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(User $user)
+    public function destroy(Member $member)
     {
-        $user->delete();
+//        $member = User::churchStructureAccess()->findOrFail($member->id);
 
-        return redirect()->route('membership.user.index')->with('success', 'ลบข้อมูลสมาชิกเรียบร้อยแล้ว');
+        $member->delete();
+
+        return redirect()->route('membership.member.index')->with('success', 'ลบข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 }

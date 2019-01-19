@@ -15,14 +15,14 @@ class CreateEmergencyContactsTable extends Migration
     {
         Schema::create('emergency_contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('member_id');
             $table->string('name');
             $table->string('nickname')->nullable();
             $table->unsignedInteger('age')->nullable();
             $table->string('relationship');
             $table->string('mobile_number');
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('member_id')->references('id')->on('users');
         });
     }
 

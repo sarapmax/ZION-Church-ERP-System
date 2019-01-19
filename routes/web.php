@@ -25,7 +25,7 @@ Route::namespace('Membership')->name('membership.')->prefix('membership')->group
 
    Route::resource('cell', 'CellController');
 
-   Route::resource('user', 'UserController');
+   Route::resource('member', 'MemberController');
 });
 
 // Church geolocation data

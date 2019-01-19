@@ -39,7 +39,7 @@
                             {{ Auth::user()->fullname }}
                         </div>
                         <div class="logged-user-role">
-                            {{ Auth::user()->administrative_status }}
+                            {{ Auth::user()->administrative_status_name }}
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('membership.cell.index') }}">
+                        <a href="{{ route('membership.member.index') }}">
                             <div class="icon-w">
                                 <div class="fas fa-users"></div>
                             </div>
@@ -103,7 +103,7 @@
                             {{ Auth::user()->fullname }}
                         </div>
                         <div class="logged-user-role">
-                            {{ Auth::user()->administrative_status }}
+                            {{ Auth::user()->administrative_status_name }}
                         </div>
                     </div>
                     <div class="logged-user-toggler-arrow">
@@ -119,7 +119,7 @@
                                     {{ Auth::user()->fullname }}
                                 </div>
                                 <div class="logged-user-role">
-                                    {{ Auth::user()->administrative_status }}
+                                    {{ Auth::user()->administrative_status_name }}
                                 </div>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('membership.user.index') }}">
+                    <a href="{{ route('membership.member.index') }}">
                         <div class="icon-w">
                             <div class="fas fa-users"></div>
                         </div>
@@ -197,7 +197,7 @@
                                             {{ Auth::user()->fullname }}
                                         </div>
                                         <div class="logged-user-role">
-                                            {{ Auth::user()->administrative_status }}
+                                            {{ Auth::user()->administrative_status_name }}
                                         </div>
                                     </div>
                                 </div>
