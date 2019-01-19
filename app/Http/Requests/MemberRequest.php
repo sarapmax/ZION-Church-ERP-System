@@ -37,6 +37,7 @@ class MemberRequest extends FormRequest
             'last_name' =>                  'required|min:3',
             'nickname' =>                   'required|min:2',
             'gender' =>                     ['required', Rule::in(['male', 'female'])],
+            'profile_image' =>              'image|max:1024',
             'birthday' =>                   'required|date',
             'race' =>                       'required',
             'nationality' =>                'required',

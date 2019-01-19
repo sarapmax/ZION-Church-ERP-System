@@ -16,6 +16,17 @@ trait UserMemberShare
     }
 
     /**
+     * @return string
+     */
+    public function getProfileImagePathAttribute() {
+        if ($this->profile_image) {
+            return asset('profile-images/' . $this->profile_image);
+        }
+
+        return asset('images/profile-image-blank.png');
+    }
+
+    /**
     * Relate to user's cell.
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

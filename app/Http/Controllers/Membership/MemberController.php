@@ -7,6 +7,7 @@ use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class MemberController extends Controller
 {
@@ -78,7 +79,7 @@ class MemberController extends Controller
      */
     public function store(MemberRequest $request)
     {
-        $member = Member::create([
+        $input = [
             'cell_id' => $request->cell_id,
             'email' => $request->email,
             'spiritual_status' => $request->spiritual_status,
@@ -93,9 +94,22 @@ class MemberController extends Controller
             'mobile_number' => $request->mobile_number,
             'facebook' => $request->facebook,
             'line' => $request->line,
-        ]);
+        ];
 
-        // Create user's marige.
+        // Save profile image.
+        if ($request->has('profile_image')) {
+            $profileImage = $request->file('profile_image');
+
+            $profileImageName = time().'.'.$profileImage->getClientOriginalExtension();
+
+            $profileImage->move(public_path('profile-images'), $profileImageName);
+
+            $input['profile_image'] = $profileImageName;
+        }
+
+        $member = Member::create($input);
+
+        // Create user's mariage.
         $member->mariage()->create([
             'status' => $request->marital_status,
             'spouse_name' => $request->spoouse_name,
@@ -174,7 +188,7 @@ class MemberController extends Controller
      */
     public function update(MemberRequest $request, Member $member)
     {
-        $member->update([
+        $input = [
             'cell_id' => $request->cell_id,
             'email' => $request->email,
             'spiritual_status' => $request->spiritual_status,
@@ -189,9 +203,24 @@ class MemberController extends Controller
             'mobile_number' => $request->mobile_number,
             'facebook' => $request->facebook,
             'line' => $request->line,
-        ]);
+        ];
 
-        // Update user's marige.
+        // Save profile image.
+        if ($request->has('profile_image')) {
+            $profileImage = $request->file('profile_image');
+
+            $profileImageName = time().'.'.$profileImage->getClientOriginalExtension();
+
+            $profileImage->move(public_path('profile-images'), $profileImageName);
+
+            File::delete('profile-images/' . $member->profile_image);
+
+            $input['profile_image'] = $profileImageName;
+        }
+
+        $member->update($input);
+
+        // Update user's mariage.
         $member->mariage()->update([
             'status' => $request->marital_status,
             'spouse_name' => $request->spoouse_name,
@@ -201,7 +230,7 @@ class MemberController extends Controller
         ]);
 
         // Update user's addresses.
-        foreach($member->addresses() as $address) {
+        foreach($member->addresses as $address) {
             if ($address->type == AddressTypeEnum::ORIGINAL) {
                 $address->update([
                     'sub_district_id' => $request->original_address_sub_district_id,

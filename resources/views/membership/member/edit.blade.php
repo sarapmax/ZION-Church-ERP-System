@@ -9,7 +9,7 @@
                         แก้ไขข้อมูลสมาชิกรหัส {{ $member->code }}
                     </h5>
                     <div class="element-box">
-                        <form action="{{ route('membership.member.update', $member) }}" method="POST">
+                        <form action="{{ route('membership.member.update', $member) }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             {{ method_field('PUT') }}
@@ -109,6 +109,26 @@
                                     @if ($errors->has('gender'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('gender') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profile_image">รูปโปรไฟล์ </label>
+                                    <input id="profile_image" type="file"
+                                           class="form-control{{ $errors->has('profile_image') ? ' is-invalid' : '' }}"
+                                           name="profile_image">
+
+                                    @if ($member->profile_image)
+                                        <div class="mt-2">
+                                            <img src="{{ $member->profile_image_path }}"
+                                                 width="100px" alt="{{ $member->fullname }}"
+                                                 class="img-thumbnail">
+                                        </div>
+                                    @endif
+                                    @if ($errors->has('profile_image'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('profile_image') }}</strong>
                                         </span>
                                     @endif
                                 </div>

@@ -34,6 +34,7 @@ class Member extends Model
         'last_name',
         'nickname',
         'gender',
+        'profile_image',
         'birthday',
         'idcard',
         'race',

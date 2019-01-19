@@ -66,22 +66,28 @@
                         <table class="table table-lightborder">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th>รหัสสมาชิก</th>
+                                <th>ชื่อ</th>
+                                <th>สถานะฝ่ายจิตวิญญาณ</th>
                                 <th>คริสตจักร</th>
                                 <th>แคร์</th>
-                                <th>สถานะฝ่ายจิตวิญญาณ</th>
-                                <th>ชื่อ</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($members as $member)
                                 <tr>
+                                    <td>
+                                        <div class="cell-image-list">
+                                            <div class="cell-img" style="background-image: url({{ $member->profile_image_path }})"></div>
+                                        </div>
+                                    </td>
                                     <td>{{ $member->code }}</td>
+                                    <td>{{ $member->fullname }}</td>
+                                    <td>{{ __('spiritual-status.' . $member->spiritual_status_name) }}</td>
                                     <td>{{ $member->cell->church->name }}</td>
                                     <td>{{ $member->cell->name }}</td>
-                                    <td>{{ __('spiritual-status.' . $member->spiritual_status_name) }}</td>
-                                    <td>{{ $member->fullname }}</td>
                                     <td class="link-action">
                                         <a href="{{ route('membership.member.show', $member) }}"><i class="far fa-eye"></i></a>
                                         <a href="{{ route('membership.member.edit', $member) }}"><i class="far fa-edit"></i></a>

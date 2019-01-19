@@ -32,7 +32,7 @@
             <div class="menu-and-user">
                 <div class="logged-user-w">
                     <div class="avatar-w icon-lg">
-                        <i class="os-icon os-icon-user-male-circle"></i>
+                        <img src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
                     </div>
                     <div class="logged-user-info-w">
                         <div class="logged-user-name">
@@ -96,7 +96,7 @@
             <div class="logged-user-w avatar-inline">
                 <div class="logged-user-i">
                     <div class="avatar-w icon-lg">
-                        <i class="os-icon os-icon-user-male-circle"></i>
+                        <img src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
                     </div>
                     <div class="logged-user-info-w">
                         <div class="logged-user-name">
@@ -112,7 +112,7 @@
                     <div class="logged-user-menu color-style-bright">
                         <div class="logged-user-avatar-info">
                             <div class="avatar-w icon-lg text-white">
-                                <i class="os-icon os-icon-user-male-circle"></i>
+                                <img src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
                             </div>
                             <div class="logged-user-info-w">
                                 <div class="logged-user-name">
@@ -184,13 +184,14 @@
                     -------------------->
                     <div class="logged-user-w">
                         <div class="logged-user-i">
-                            <div class="avatar-w">
-                                <i class="os-icon os-icon-user-male-circle"></i> {{ Auth::user()->fullname }}
+                            <div class="avatar-w py-1">
+                                <img class="mr-2" src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}"> {{ Auth::user()->fullname }}
+                                <i class="fas fa-caret-down"></i>
                             </div>
                             <div class="logged-user-menu color-style-bright">
                                 <div class="logged-user-avatar-info">
                                     <div class="avatar-w text-white icon-lg">
-                                        <i class="os-icon os-icon-user-male-circle"></i>
+                                        <img src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
                                     </div>
                                     <div class="logged-user-info-w">
                                         <div class="logged-user-name">

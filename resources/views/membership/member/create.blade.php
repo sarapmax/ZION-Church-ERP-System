@@ -9,7 +9,7 @@
                         เพิ่มข้อมูลสมาชิก
                     </h5>
                     <div class="element-box">
-                        <form action="{{ route('membership.member.store') }}" method="POST">
+                        <form action="{{ route('membership.member.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             {{--Church detail fields--}}
@@ -107,6 +107,19 @@
                                     @if ($errors->has('gender'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('gender') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profile_image">รูปโปรไฟล์ </label>
+                                    <input id="profile_image" type="file"
+                                           class="form-control{{ $errors->has('profile_image') ? ' is-invalid' : '' }}"
+                                           name="profile_image">
+
+                                    @if ($errors->has('profile_image'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('profile_image') }}</strong>
                                         </span>
                                     @endif
                                 </div>

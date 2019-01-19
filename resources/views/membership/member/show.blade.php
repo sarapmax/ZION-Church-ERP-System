@@ -48,6 +48,14 @@
                     <h5 class="form-header">ข้อมูลส่วนตัว</h5>
                     <div class="element-box-content">
                         <div class="row border-bottom">
+                            <div class="col-sm-3 py-3"><span class="text-muted">รูปโปรไฟล์</span></div>
+                            <div class="col-sm-9 py-3">
+                                <img src="{{ $member->profile_image_path }}"
+                                     width="150px" alt="{{ $member->fullname }}"
+                                     class="img-thumbnail">
+                            </div>
+                        </div>
+                        <div class="row border-bottom">
                             <div class="col-sm-3 py-3"><span class="text-muted">ชื่อ</span></div>
                             <div class="col-sm-9 py-3">{{ $member->fullname }}</div>
                         </div>
