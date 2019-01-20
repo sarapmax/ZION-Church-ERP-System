@@ -34,7 +34,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($cells as $cell)
+                            @forelse($cells as $cell)
                                 <tr>
                                     <td>{{ $cell->id }}</td>
                                     <td>{{ $cell->church->district->province->name }}</td>
@@ -50,7 +50,11 @@
                                         ])
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No matching records found!.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
 

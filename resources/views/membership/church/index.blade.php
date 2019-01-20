@@ -33,7 +33,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($churches as $church)
+                        @forelse($churches as $church)
                         <tr>
                             <td>{{ $church->id }}</td>
                             <td>{{ $church->district->province->name }}</td>
@@ -48,7 +48,11 @@
                                 ])
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">No matching records found!.</td>
+                            </tr>
+                        @endforelse
                         </tbody>
                     </table>
 

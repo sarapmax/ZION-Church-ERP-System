@@ -76,7 +76,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($members as $member)
+                            @forelse($members as $member)
                                 <tr>
                                     <td>
                                         <div class="cell-image-list">
@@ -98,7 +98,11 @@
                                         ])
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No matching records found!.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
 
