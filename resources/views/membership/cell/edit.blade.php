@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('breadcrumbs')
+{{ Breadcrumbs::render('showCell', $cell->church, $cell) }}
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-lg-12">

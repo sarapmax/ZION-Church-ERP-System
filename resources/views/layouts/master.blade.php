@@ -227,14 +227,9 @@
             <!--------------------
             START - Breadcrumbs
             -------------------->
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="#">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span>Dashboard</span>
-                </li>
-            </ul>
+            <div class="d-none d-sm-block">
+                @yield('breadcrumbs')
+            </div>
             <!--------------------
             END - Breadcrumbs
             -------------------->

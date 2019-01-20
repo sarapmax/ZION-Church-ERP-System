@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware(['auth', 'churchMemberSystem']);
+})->middleware(['auth', 'churchMemberSystem'])->name('home');
 
 //Route('')
 
