@@ -10,6 +10,27 @@ require('./theme/main')
 
 window.Vue = require('vue');
 
+// Add a request interceptor.
+axios.interceptors.request.use(function (config) {
+    $('.page-loading-spinner').css('display', 'block')
+
+    return config;
+}, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+});
+
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+    $('.page-loading-spinner').css('display', 'none')
+
+    return response;
+}, function (error) {
+    $('.page-loading-spinner').css('display', 'none')
+    return Promise.reject(error);
+});
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

@@ -244,6 +244,11 @@
     </div>
 </div>
 
+<div class="page-loading-spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+</div>
+
 <script src="{{ mix('js/app.js') }}"></script>
 
 @yield('scripts')
