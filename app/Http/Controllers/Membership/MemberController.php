@@ -153,7 +153,7 @@ class MemberController extends Controller
             'postcode' => $request->emergency_address_postcode
         ]);
 
-        return redirect()->route('membership.member.index')->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
+        return redirect()->route('membership.member.show', $member)->with('success', 'เพิ่มข้อมูลสมาชิกเรียบร้อยแล้ว');
     }
 
     /**
