@@ -30,7 +30,13 @@
         },
 
         methods: {
-            getDistricts() {
+            getProvinces() {
+                axios.get('/geolocation-data/provinces').then(({data}) => {
+                    this.provinces = data
+                })
+            },
+
+            getDistricts(provinceId) {
                 this.districts = null
                 this.subDistricts = null
 
@@ -38,32 +44,36 @@
                 this.subDistrictId = null
                 this.postcode = null
 
-                if (this.provinceId) {
-                    return axios.get(`/geolocation-data/provinces/${this.provinceId}/districts`).then(({data}) => {
+                if (provinceId) {
+                    this.provinceId = provinceId
+
+                    return axios.get(`/geolocation-data/provinces/${provinceId}/districts`).then(({data}) => {
                         this.districts = data
                     })
                 }
             },
 
-            getSubDistricts() {
+            getSubDistricts(districtId) {
                 this.subDistricts = null
                 this.subDistrictId = null
                 this.postcode = null
 
-                if (this.districtId) {
-                    return axios.get(`/geolocation-data/districts/${this.districtId}/sub-districts`).then(({data}) => {
+                if (districtId) {
+                    this.districtId = districtId
+
+                    return axios.get(`/geolocation-data/districts/${districtId}/sub-districts`).then(({data}) => {
                         this.subDistricts = data
                     })
                 }
-
-
             },
 
-            getPostcode() {
+            getPostcode(subDistrictId) {
                 this.postcode = null
 
-                if (this.subDistrictId) {
-                    return axios.get(`/geolocation-data/sub-districts/${this.subDistrictId}/postcode`).then(({data}) => {
+                if (subDistrictId) {
+                    this.subDistrictId = subDistrictId
+
+                    return axios.get(`/geolocation-data/sub-districts/${subDistrictId}/postcode`).then(({data}) => {
                         this.postcode = data.code
                     })
                 }
@@ -95,23 +105,14 @@
             this.inputName.subDistrictId = this.name.sub_district_id || 'sub_district_id'
             this.inputName.postcode = this.name.postcode
 
-            axios.get('/geolocation-data/provinces').then(({data}) => {
-                this.provinces = data
-            })
+            axios.all([
+                this.getProvinces(),
+                this.getDistricts(this.old.province_id),
+                this.getSubDistricts(this.old.district_id),
+                this.getPostcode(this.old.sub_district_id),
+            ])
 
             this.setError()
-
-            this.provinceId = this.old.province_id
-
-            this.getDistricts().then(() => {
-                this.districtId = this.old.district_id
-
-                this.getSubDistricts().then(() => {
-                    this.subDistrictId = this.old.sub_district_id
-
-                    this.getPostcode()
-                })
-            })
         }
     }
 </script>

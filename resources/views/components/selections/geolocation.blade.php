@@ -7,7 +7,7 @@
                     :class="{ 'is-invalid': error.province }"
                     :name="inputName.provinceId"
                     v-model="provinceId"
-                    @change="getDistricts()">
+                    @change="getDistricts(provinceId)">
                 <option :value="null">-- Select --</option>
                 <option v-for="province in provinces" :value="province.id" v-text="province.name"></option>
             </select>
@@ -24,7 +24,7 @@
                     :class="{ 'is-invalid': error.district }"
                     :name="inputName.districtId"
                     v-model="districtId"
-                    @change="getSubDistricts()">
+                    @change="getSubDistricts(districtId)">
                 <option :value="null">-- Select --</option>
                 <option v-for="district in districts" :value="district.id" v-text="district.name"></option>
             </select>
@@ -43,7 +43,7 @@
                         :class="{ 'is-invalid': error.subDistrict }"
                         :name="inputName.subDistrictId"
                         v-model="subDistrictId"
-                        @change="getPostcode()">
+                        @change="getPostcode(subDistrictId)">
                     <option :value="null">-- Select --</option>
                     <option v-for="subDistrict in subDistricts" :value="subDistrict.id" v-text="subDistrict.name"></option>
                 </select>

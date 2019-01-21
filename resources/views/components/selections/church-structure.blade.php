@@ -6,7 +6,7 @@
                     class="form-control {{ $errors->has('province_id') ? 'is-invalid' : '' }}"
                     name="province_id"
                     v-model="provinceId"
-                    @change="getDistricts()">
+                    @change="getDistricts(provinceId)">
                 <option :value="null">-- Select --</option>
                 <option v-for="province in provinces" :value="province.id" v-text="province.name"></option>
             </select>
@@ -25,7 +25,7 @@
                     class="form-control {{ $errors->has('district_id') ? 'is-invalid' : '' }}"
                     name="district_id"
                     v-model="districtId"
-                    @change="getChurches()">
+                    @change="getChurches(districtId)">
                 <option :value="null">-- Select --</option>
                 <option v-for="district in districts" :value="district.id" v-text="district.name"></option>
             </select>
@@ -43,7 +43,7 @@
                     class="form-control{{ $errors->has('church_id') ? ' is-invalid' : '' }}"
                     name="church_id"
                     v-model="churchId"
-            @change="getCells()">
+            @change="getCells(churchId)">
             <option :value="null">-- Select --</option>
             <option v-for="church in churches" :value="church.id" v-text="church.name"></option>
             </select>
