@@ -130,10 +130,12 @@
 
                                 <div class="form-group">
                                     <label for="birthday" class="required">วันเกิด </label>
-                                    <input id="birthday" type="text"
+                                    <input id="birthday"
+                                           type="date"
                                            class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}"
                                            name="birthday"
-                                           value="{{ old('birthday') }}" required>
+                                           value="{{ old('birthday') }}"
+                                           required>
 
                                     @if ($errors->has('birthday'))
                                         <span class="invalid-feedback" role="alert">
