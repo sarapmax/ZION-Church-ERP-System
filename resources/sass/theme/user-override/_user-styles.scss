@@ -110,3 +110,12 @@
           }
     }
 }
+
+.with-pattern {
+    box-shadow: none;
+    border-radius: 0px;
+    background-image: url('../img/bg-pattern2.png');
+    background-size: contain;
+    background-repeat: repeat;
+    background-position: 0 0;
+}

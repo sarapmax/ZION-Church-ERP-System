@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>ZION SYSTEM</title>
     <meta charset="utf-8">
@@ -8,13 +8,12 @@
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="auth-wrapper">
-    <div class="all-wrapper menu-side with-pattern">
+<body class="h-100">
+    <div class="row h-100 justify-content-center align-items-center with-pattern">
         <div class="auth-box-w">
             <div class="logo-w">
                 <img alt="" src="{{ asset('images/logo-big.png') }}">
                 <h3 class="mt-4">ZION SYSTEM</h3>
-
             </div>
             <h4 class="auth-header">
                 Welcome Back!
@@ -55,5 +54,7 @@
             </form>
         </div>
     </div>
+
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

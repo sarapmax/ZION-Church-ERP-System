@@ -24,10 +24,10 @@ Contents:
 
 /* #1.  Screen size <= 1650px */
 @media (max-width: 1650px){
-  body,
-  body.auth-wrapper .all-wrapper {
-    padding: 40px;
-  }
+  //body,
+  //body.auth-wrapper .all-wrapper {
+  //  padding: 40px;
+  //}
   .content-panel {
     padding: 2rem;  
     flex: 0 0 350px;
@@ -58,10 +58,10 @@ Contents:
 
 /* #2.  Screen size <= 1550px */
 @media (max-width: 1550px){
-  body,
-  body.auth-wrapper .all-wrapper {
-    padding: 20px;
-  }
+  //body,
+  //body.auth-wrapper .all-wrapper {
+  //  padding: 20px;
+  //}
   .menu-side-w ul.main-menu {
     padding: 1.5rem 1rem;
   }
@@ -271,10 +271,10 @@ Contents:
     margin-left: -1.5rem;
     margin-right: -1.5rem;
   }
-  body,
-  body.auth-wrapper .all-wrapper {
-    padding: 0px;
-  }
+  //body,
+  //body.auth-wrapper .all-wrapper {
+  //  padding: 20px;
+  //}
   .content-w,
   .menu-side-w,
   .all-wrapper {
