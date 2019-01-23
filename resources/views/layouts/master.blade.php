@@ -128,6 +128,12 @@
                         </div>
                         <ul>
                             <li>
+                                <a href="{{ route('membership.member.show', Auth::user()) }}">
+                                    <i class="os-icon os-icon-user"></i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li>
                                 @include('partials.logout')
                             </li>
                         </ul>
@@ -206,6 +212,12 @@
                                     <i class="os-icon os-icon-wallet-loaded"></i>
                                 </div>
                                 <ul>
+                                    <li>
+                                        <a href="{{ route('membership.member.show', Auth::user()) }}">
+                                            <i class="os-icon os-icon-user"></i>
+                                            <span>Profile</span>
+                                        </a>
+                                    </li>
                                     <li>
                                         @include('partials.logout')
                                     </li>
