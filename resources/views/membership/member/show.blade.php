@@ -73,7 +73,10 @@
                         </div>
                         <div class="row border-bottom">
                             <div class="col-sm-3 py-3"><span class="text-muted">วันเกิด</span></div>
-                            <div class="col-sm-9 py-3">{{ $member->birthday->format('d/m/Y') }} (อายุ {{ $member->age }} ปี)</div>
+                            <div class="col-sm-9 py-3">
+                                {{ defaultDateFormat($member->birthday) }}
+                                @if ($member->birthday) (อายุ {{ $member->age }} ปี) @endif
+                            </div>
                         </div>
                         <div class="row border-bottom">
                             <div class="col-sm-3 py-3"><span class="text-muted">เลขบัตรประจำตัวประชาชน</span></div>
@@ -85,11 +88,11 @@
                         </div>
                         <div class="row border-bottom">
                             <div class="col-sm-3 py-3"><span class="text-muted">เพิ่มเข้าระบบเมื่อ</span></div>
-                            <div class="col-sm-9 py-3">{{ $member->created_at->format('d/m/Y') }}</div>
+                            <div class="col-sm-9 py-3">{{ defaultDateFormat($member->created_at) }}</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 py-3"><span class="text-muted">แก้ไขล่าสุดเมื่อ</span></div>
-                            <div class="col-sm-9 py-3">{{ $member->updated_at->format('d/m/Y') }}</div>
+                            <div class="col-sm-9 py-3">{{ defaultDateFormat($member->updated_at) }}</div>
                         </div>
                     </div>
                 </div>
@@ -190,7 +193,10 @@
                         </div>
                         <div class="row border-bottom">
                             <div class="col-sm-3 py-3"><span class="text-muted">วันเกิดคู่สมรส</span></div>
-                            <div class="col-sm-9 py-3">{{ $member->mariage->spouse_birthday->format('d/m/Y') }} (อายุ {{ $member->mariage->age }} ปี)</div>
+                            <div class="col-sm-9 py-3">
+                                {{ defaultDateFormat($member->mariage->spouse_birthday) }}
+                                @if ($member->mariage->spouse_birthday) (อายุ {{ $member->mariage->age }} ปี) @endif
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 py-3"><span class="text-muted">เป็นคริสเตียน</span></div>

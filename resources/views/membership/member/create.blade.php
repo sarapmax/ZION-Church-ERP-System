@@ -359,7 +359,8 @@
 
                                 <div class="form-group">
                                     <label for="spouse_birthday">วันเกิดคู่สมรถ </label>
-                                    <input id="spouse_birthday" type="text"
+                                    <input id="spouse_birthday"
+                                           type="date"
                                            class="form-control{{ $errors->has('spouse_birthday') ? ' is-invalid' : '' }}"
                                            name="spouse_birthday"
                                            value="{{ old('spouse_birthday') }}">

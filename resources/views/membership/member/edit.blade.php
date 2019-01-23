@@ -143,7 +143,7 @@
                                            type="date"
                                            class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}"
                                            name="birthday"
-                                           value="{{ old('birthday', $member->birthday) }}"
+                                           value="{{ old('birthday', defaultDateFormat($member->birthday)) }}"
                                            required>
 
                                     @if ($errors->has('birthday'))
@@ -388,10 +388,10 @@
 
                                 <div class="form-group">
                                     <label for="spouse_birthday">วันเกิดคู่สมรถ </label>
-                                    <input id="spouse_birthday" type="text"
+                                    <input id="spouse_birthday" type="date"
                                            class="form-control{{ $errors->has('spouse_birthday') ? ' is-invalid' : '' }}"
                                            name="spouse_birthday"
-                                           value="{{ old('spouse_birthday', $member->mariage->spouse_birthday) }}">
+                                           value="{{ old('spouse_birthday', defaultDateFormat($member->mariage->spouse_birthday)) }}">
 
                                     @if ($errors->has('spouse_birthday'))
                                         <span class="invalid-feedback" role="alert">
