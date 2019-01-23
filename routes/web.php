@@ -32,7 +32,7 @@ Route::namespace('Membership')->middleware(['auth', 'churchMemberSystem'])->name
 Route::namespace('ChurchStructure')->prefix('church-structure')->group(function() {
     Route::get('provinces', 'ProvinceController@index');
     Route::get('provinces/{province}/districts', 'DistrictController@index');
-    Route::get('districts/{district}/churches', 'Churchcontroller@index');
+    Route::get('districts/{district}/churches', 'ChurchController@index');
     Route::get('churches/{church}/cells', 'CellController@index');
 });
 
