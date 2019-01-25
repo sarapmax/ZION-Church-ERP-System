@@ -43,13 +43,11 @@
                         </span>
                     @endif
                 </div>
+                <div class="form-group">
+                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> จำฉันในครั้งต่อไป
+                </div>
                 <div class="buttons-w">
                     <button class="btn btn-primary">เข้าสู่ระบบ</button>
-                    <div class="form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> จำฉันในครั้งต่อไป
-                        </label>
-                    </div>
                 </div>
             </form>
         </div>

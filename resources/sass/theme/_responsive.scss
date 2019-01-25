@@ -700,6 +700,14 @@ Contents:
 
 /* #10. Phones & Vertical Tablets (<= 768px) */
 @media (max-width: 768px){
+  .top-bar {
+    flex-direction: initial;
+
+    .top-menu-controls {
+      margin-left: inherit;
+    }
+  }
+
   .element-balances.mobile-full-width {
     > .balance {
       flex: 1;
@@ -1015,7 +1023,7 @@ Contents:
   }
   .top-bar {
     padding: 0px;
-    flex-direction: column;
+    flex-direction: initial;
     .fancy-selector-w {
       width: 100%;
       .fancy-selector-current {
