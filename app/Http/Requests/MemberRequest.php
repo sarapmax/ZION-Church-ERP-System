@@ -91,7 +91,7 @@ class MemberRequest extends FormRequest
             $name . '_province_id' => 'required|exists:provinces,id',
             $name . '_district_id' => 'required|exists:districts,id',
             $name . '_sub_district_id' => 'required|exists:sub_districts,id',
-            $name . '_detail' => 'required|min:10',
+            $name . '_detail' => 'required|min:5',
             $name . '_postcode' => 'required|alpha_num|digits:5',
         ];
     }

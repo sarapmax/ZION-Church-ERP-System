@@ -359,7 +359,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="spoouse_name">ชื่อคู่สมรส </label>
+                                    <label for="spoouse_name">ชื่อ - สกุล คู่สมรส  </label>
                                     <input id="spoouse_name" type="text"
                                            class="form-control{{ $errors->has('spoouse_name') ? ' is-invalid' : '' }}"
                                            name="spoouse_name"
@@ -420,7 +420,7 @@
                                 </legend>
 
                                 <div class="form-group">
-                                    <label for="emergency_name" class="required">ชื่อ </label>
+                                    <label for="emergency_name" class="required">ชื่อ - สกุล </label>
                                     <input id="emergency_name" type="text"
                                            class="form-control{{ $errors->has('emergency_name') ? ' is-invalid' : '' }}"
                                            name="emergency_name"
