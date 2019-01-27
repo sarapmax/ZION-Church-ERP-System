@@ -181,7 +181,7 @@
                     <div class="element-box-content">
                         <div class="row border-bottom">
                             <div class="col-sm-3 py-3"><span class="text-muted">สถานะ</span></div>
-                            <div class="col-sm-9 py-3">{{ $member->mariage->status }}</div>
+                            <div class="col-sm-9 py-3">{{ __('mariage-status.' . $member->mariage->status_name) }}</div>
                         </div>
                         <div class="row border-bottom">
                             <div class="col-sm-3 py-3"><span class="text-muted">ชื่อคู่สมรส</span></div>

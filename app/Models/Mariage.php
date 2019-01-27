@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\MariageStatusEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -51,5 +52,14 @@ class Mariage extends Model
      */
     public function getAgeAttribute() {
         return Carbon::parse($this->spouse_birthday)->age;
+    }
+
+    /**
+     * Get mariage status name.
+     *
+     * @return mixed
+     */
+    public function getStatusNameAttribute() {
+        return (new MariageStatusEnum($this->status))->getKey();
     }
 }
