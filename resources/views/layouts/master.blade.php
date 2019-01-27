@@ -48,6 +48,7 @@
                 START - Mobile Menu List
                 -------------------->
                 <ul class="main-menu">
+                    @if (Auth::user()->can('manage-church-structure'))
                     <li class="selected">
                         <a href="{{ route('membership.church.index') }}">
                             <div class="icon-w">
@@ -64,6 +65,7 @@
                             <span>กลุ่มแคร์</span>
                         </a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ route('membership.member.index') }}">
                             <div class="icon-w">
@@ -147,22 +149,24 @@
                 <li class="sub-header">
                     <span>ระบบฐานข้อมูลสมาชิก</span>
                 </li>
-                <li>
-                    <a href="{{ route('membership.church.index') }}">
-                        <div class="icon-w">
-                            <div class="fas fa-church"></div>
-                        </div>
-                        <span>คริสตจักร</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('membership.cell.index') }}">
-                        <div class="icon-w">
-                            <div class="fas fa-place-of-worship"></div>
-                        </div>
-                        <span>กลุ่มแคร์</span>
-                    </a>
-                </li>
+                @if (Auth::user()->can('manage-church-structure'))
+                    <li>
+                        <a href="{{ route('membership.church.index') }}">
+                            <div class="icon-w">
+                                <div class="fas fa-church"></div>
+                            </div>
+                            <span>คริสตจักร </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('membership.cell.index') }}">
+                            <div class="icon-w">
+                                <div class="fas fa-place-of-worship"></div>
+                            </div>
+                            <span>กลุ่มแคร์</span>
+                        </a>
+                    </li>
+                @endif
                 <li>
                     <a href="{{ route('membership.member.index') }}">
                         <div class="icon-w">

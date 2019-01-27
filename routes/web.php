@@ -15,16 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware(['auth', 'churchMemberSystem'])->name('home');
 
-//Route('')
-
 Auth::routes(['register' => false]);
 
 // Church member database system
 Route::namespace('Membership')->middleware(['auth', 'churchMemberSystem'])->name('membership.')->prefix('membership')->group(function() {
-   Route::resource('church', 'ChurchController');
-
-   Route::resource('cell', 'CellController');
-
+   Route::resource('church', 'ChurchController')->middleware('can:manage-church-structure');
+   Route::resource('cell', 'CellController')->middleware('can:manage-church-structure');
    Route::resource('member', 'MemberController');
 });
 
