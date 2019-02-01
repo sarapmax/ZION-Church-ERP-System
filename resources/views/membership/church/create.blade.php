@@ -5,13 +5,15 @@
 @endsection
 
 @section('content')
+<div class="header mt-3">
+    <div class="header-body">
+        <h1 class="header-title">เพิ่มคริสตจักร</h1>
+    </div>
+</div>
 <div class="row">
-    <div class="col-lg-12">
-        <div class="element-wrapper">
-            <h5 class="element-header">
-                เพิ่มคริสจักร
-            </h5>
-            <div class="element-box">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
                 <form action="{{ route('membership.church.store') }}" method="POST">
                     @csrf
 

@@ -1,7 +1,38 @@
 // 
 // user.scss
 // Use this to write your custom SCSS
-//.page-loading-spinner {
+//
+
+.breadcrumb {
+    margin-top: 1rem;
+}
+
+.header {
+    .header-body {
+        padding-top: 0;
+    }
+}
+
+.table {
+    thead {
+        th {
+            font-size: 1rem;
+        }
+    }
+
+    .link-action {
+        padding: 0;
+        vertical-align: inherit;
+
+        a {
+            font-size: 1.2rem;
+        }
+
+        a:not(:last-child) {
+            margin-right: .2rem;
+        }
+    }
+}
 
 .page-loading-spinner {
     display: none;
