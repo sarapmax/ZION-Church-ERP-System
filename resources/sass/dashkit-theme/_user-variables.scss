@@ -1,0 +1,22 @@
+// 
+// user-variables.scss
+// Use this to overwrite Bootstrap and Dashkit variables
+//
+
+// Example of a variable override to change Dashkit's background color
+// Remove the "//" to comment it in and see it in action!
+// $body-bg: #12263F;
+
+$blue:       #2C7BE5;
+$green:      #24B314;
+
+$primary:       $green;
+$success:       $blue;
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+
+// stylelint-disable value-keyword-case
+$font-family-athiti: 'Athiti', sans-serif;
+$font-family-base: $font-family-athiti;
