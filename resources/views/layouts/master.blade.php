@@ -11,262 +11,156 @@
     @yield('styles')
 </head>
 
-<body class="menu-position-side menu-side-left full-screen">
-<div class="all-wrapper solid-bg-all">
-    <div class="layout-w">
-        <!--------------------
-        START - Mobile Menu
-        -------------------->
-        <div class="menu-mobile menu-activated-on-click color-scheme-dark">
-            <div class="mm-logo-buttons-w">
-                <a class="mm-logo" href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}"><span> ZION SYSTEM</span></a>
-                <div class="mm-buttons">
-                    <div class="content-panel-open">
-                        <div class="os-icon os-icon-grid-circles"></div>
-                    </div>
-                    <div class="mobile-menu-trigger">
-                        <div class="os-icon os-icon-hamburger-menu-1"></div>
+<body>
+    {{--Sidebar--}}
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-dark" id="sidebar">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse"
+                    aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url('/') }}">
+                {{--<img src="{{ asset('images/logo.png') }}" class="navbar-brand-img  mx-auto" alt="...">--}}
+                <strong>Zion System</strong>
+            </a>
+
+            <div class="navbar-user d-md-none">
+                <div class="dropdown">
+                    <a href="#" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle align-self-center" width="40px" height="40px"  src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="" class="dropdown-item">ข้อมูลส่วนตัวของฉัน</a>
+                        <hr class="dropdown-divider">
+                        <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ออกจากระบบ</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                              style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="menu-and-user">
-                <div class="logged-user-w">
-                    <div class="avatar-w icon-lg">
-                        <img src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
-                    </div>
-                    <div class="logged-user-info-w">
-                        <div class="logged-user-name">
-                            {{ Auth::user()->fullname }}
-                        </div>
-                        <div class="logged-user-role">
-                            {{ Auth::user()->administrative_status_name }}
-                        </div>
-                    </div>
-                </div>
 
-                <!--------------------
-                START - Mobile Menu List
-                -------------------->
-                <ul class="main-menu">
-                    @if (Auth::user()->can('manage-church-structure'))
-                    <li class="selected">
-                        <a href="{{ route('membership.church.index') }}">
-                            <div class="icon-w">
-                                <div class="fas fa-church"></div>
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+
+                <form class="mt-4 mb-3 d-md-none">
+                    <div class="input-group input-group-rounded input-group-merge">
+                        <input type="search" class="form-control form-control-rounded form-control-prepended"
+                               placeholder="Search" aria-label="Search">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="fe fe-search"></span>
                             </div>
-                            <span>คริสตจักร</span>
+                        </div>
+                    </div>
+                </form>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">
+                            <i class="fe fe-monitor"></i>
+                            Dashboard
                         </a>
                     </li>
-                    <li class="selected">
-                        <a href="{{ route('membership.cell.index') }}">
-                            <div class="icon-w">
-                                <div class="fas fa-place-of-worship"></div>
-                            </div>
-                            <span>กลุ่มแคร์</span>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarMembership" data-toggle="collapse" role="button"
+                           aria-expanded="{{ setActive('membership') ? 'true' : 'false' }}"
+                           aria-controls="sidebarMembership">
+                            <i class="fe fe-home"></i> ระบบฐานข้อมูลสมาชิก
                         </a>
-                    </li>
-                    @endif
-                    <li>
-                        <a href="{{ route('membership.member.index') }}">
-                            <div class="icon-w">
-                                <div class="fas fa-users"></div>
-                            </div>
-                            <span>ข้อมูลสมาชิก</span>
-                        </a>
+                        <div class="collapse {{ setActive('membership') ? 'show' : '' }}" id="sidebarMembership">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('membership.church.index') }}"
+                                       class="nav-link {{ setActive('membership/church') ? 'active' : '' }}">
+                                        คริสตจักร
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('membership.cell.index') }}"
+                                       class="nav-link {{ setActive('membership/cell') ? 'active' : '' }}">
+                                        กลุ่มแคร์
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('membership.member.index') }}"
+                                       class="nav-link {{ setActive('membership/member') ? 'active' : '' }}">
+                                        ข้อมูลสมาชิก
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
-                <!--------------------
-                END - Mobile Menu List
-                -------------------->
             </div>
         </div>
-        <!--------------------
-        END - Mobile Menu
-        -------------------->
-        <!--------------------
-        START - Main Menu
-        -------------------->
-        <div class="menu-w color-scheme-light menu-position-side menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link">
-            <div class="logo-w">
-                <a class="logo" href="{{ url('/') }}">
-                    <div class="logo-element"></div>
-                    <div class="logo-label">
-                        ZION SYSTEM
-                    </div>
-                </a>
-            </div>
-            <div class="logged-user-w avatar-inline">
-                <div class="logged-user-i">
-                    <div class="avatar-w icon-lg">
-                        <img src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
-                    </div>
-                    <div class="logged-user-info-w">
-                        <div class="logged-user-name">
-                            {{ Auth::user()->fullname }}
-                        </div>
-                        <div class="logged-user-role">
-                            {{ Auth::user()->administrative_status_name }}
-                        </div>
-                    </div>
-                    <div class="logged-user-toggler-arrow">
-                        <div class="os-icon os-icon-chevron-down"></div>
-                    </div>
-                    <div class="logged-user-menu color-style-bright">
-                        <div class="logged-user-avatar-info">
-                            <div class="avatar-w icon-lg text-white">
-                                <img src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
-                            </div>
-                            <div class="logged-user-info-w">
-                                <div class="logged-user-name">
-                                    {{ Auth::user()->fullname }}
-                                </div>
-                                <div class="logged-user-role">
-                                    {{ Auth::user()->administrative_status_name }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-icon">
-                            <i class="os-icon os-icon-wallet-loaded"></i>
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="{{ route('membership.member.show', Auth::user()) }}">
-                                    <i class="os-icon os-icon-user"></i>
-                                    <span>Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                @include('partials.logout')
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <h1 class="menu-page-header">
-                Page Header
-            </h1>
-            <ul class="main-menu">
-                <li class="sub-header">
-                    <span>ระบบฐานข้อมูลสมาชิก</span>
-                </li>
-                @if (Auth::user()->can('manage-church-structure'))
-                    <li>
-                        <a href="{{ route('membership.church.index') }}">
-                            <div class="icon-w">
-                                <div class="fas fa-church"></div>
-                            </div>
-                            <span>คริสตจักร </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('membership.cell.index') }}">
-                            <div class="icon-w">
-                                <div class="fas fa-place-of-worship"></div>
-                            </div>
-                            <span>กลุ่มแคร์</span>
-                        </a>
-                    </li>
-                @endif
-                <li>
-                    <a href="{{ route('membership.member.index') }}">
-                        <div class="icon-w">
-                            <div class="fas fa-users"></div>
-                        </div>
-                        <span>ข้อมูลสมาชิก</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!--------------------
-        END - Main Menu
-        -------------------->
-        <div class="content-w">
-            <!--------------------
-             START - Top Bar
-             -------------------->
-            <div class="top-bar color-scheme-transparent">
-                <!--------------------
-                START - Top Menu Controls
-                -------------------->
-                <div class="top-menu-controls">
-                    <!--------------------
-                    START - User avatar and menu in secondary top menu
-                    -------------------->
-                    <div class="logged-user-w">
-                        <div class="logged-user-i">
-                            <div class="avatar-w py-1">
-                                <img class="mr-2" src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}"> {{ Auth::user()->fullname }}
-                                <i class="fas fa-caret-down"></i>
-                            </div>
-                            <div class="logged-user-menu color-style-bright">
-                                <div class="logged-user-avatar-info">
-                                    <div class="avatar-w text-white icon-lg">
-                                        <img src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
-                                    </div>
-                                    <div class="logged-user-info-w">
-                                        <div class="logged-user-name">
-                                            {{ Auth::user()->fullname }}
-                                        </div>
-                                        <div class="logged-user-role">
-                                            {{ Auth::user()->administrative_status_name }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bg-icon">
-                                    <i class="os-icon os-icon-wallet-loaded"></i>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('membership.member.show', Auth::user()) }}">
-                                            <i class="os-icon os-icon-user"></i>
-                                            <span>Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        @include('partials.logout')
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--------------------
-                    END - User avatar and menu in secondary top menu
-                    -------------------->
-                </div>
-                <!--------------------
-                END - Top Menu Controls
-                -------------------->
-            </div>
-            <!--------------------
-            END - Top Bar
-            -------------------->
-            <!--------------------
-            START - Breadcrumbs
-            -------------------->
-            <div class="d-none d-sm-block">
-                @yield('breadcrumbs')
-            </div>
-            <!--------------------
-            END - Breadcrumbs
-            -------------------->
-            <div class="content-i">
-                <div class="content-box" id="app">
-                    @include('layouts.flash-message')
+    </nav>
 
-                    @yield('content')
+    <div class="main-content">
+
+        {{--Topbar--}}
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+            <div class="container-fluid">
+
+
+                <!-- User -->
+                <div class="navbar-user ml-auto">
+                    <!-- Dropdown -->
+                    <div class="dropdown">
+
+                        <!-- Toggle -->
+                        <a href="#" class="dropdown-toggle d-flex" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{--<div class="avatar avatar-sm">--}}
+                            {{--<span class="avatar-title rounded-circle">ZS</span>--}}
+                            {{--</div>--}}
+                            <img class="rounded-circle align-self-center" width="40px" height="40px" src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
+                            <div class="d-flex flex-column align-items-center ml-3 text-secondary">
+                                <div>{{ Auth::user()->fullname }}</div>
+                                <small class="mr-auto">{{ Auth::user()->administrative_status_name }}</small>
+                            </div>
+                            <i class="text-secondary fe fe-chevron-down ml-2"></i>
+                        </a>
+
+
+                        <!-- Menu -->
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="" class="dropdown-item">ข้อมูลส่วนตัวของฉัน</a>
+                            <hr class="dropdown-divider">
+                            <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ออกจากระบบ</a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
+        </nav>
+
+        {{--Main content--}}
+        <div class="container-fluid" id="app">
+            @yield('breadcrumbs')
+
+            @include('layouts.flash-message')
+
+            @yield('content')
         </div>
+
     </div>
-</div>
 
-<div class="page-loading-spinner">
-    <div class="double-bounce1"></div>
-    <div class="double-bounce2"></div>
-</div>
+    <div class="page-loading-spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
 
-<script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 
-@yield('scripts')
+    @yield('scripts')
 </body>
 </html>
