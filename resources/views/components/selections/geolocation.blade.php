@@ -60,9 +60,9 @@
                        :class="{ 'is-invalid': error.postcode }"
                        :name="inputName.postcode"
                        v-model="postcode">
-                <div class="help-block form-text text-muted form-control-feedback">
+                <small class="help-block text-muted">
                     รหัสไปรษณีย์ 5 หลัก
-                </div>
+                </small>
 
                 <span v-if="error.postcode" class="invalid-feedback" role="alert">
                     <strong v-text="error.postcode"></strong>

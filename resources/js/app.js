@@ -6,8 +6,6 @@
  */
 
 require('./bootstrap');
-require('./theme/main')
-
 window.Vue = require('vue');
 
 // Add a request interceptor.
