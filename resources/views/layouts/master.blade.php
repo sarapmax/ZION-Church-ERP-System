@@ -20,8 +20,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{--<img src="{{ asset('images/logo.png') }}" class="navbar-brand-img  mx-auto" alt="...">--}}
-                <strong>Zion System</strong>
+                ZION SYSTEM
             </a>
 
             <div class="navbar-user d-md-none">
@@ -44,19 +43,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="sidebarCollapse">
-
-                <form class="mt-4 mb-3 d-md-none">
-                    <div class="input-group input-group-rounded input-group-merge">
-                        <input type="search" class="form-control form-control-rounded form-control-prepended"
-                               placeholder="Search" aria-label="Search">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <span class="fe fe-search"></span>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
+                <hr class="navbar-divider my-3 d-none d-md-block">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">
@@ -68,7 +55,7 @@
                         <a class="nav-link" href="#sidebarMembership" data-toggle="collapse" role="button"
                            aria-expanded="{{ setActive('membership') ? 'true' : 'false' }}"
                            aria-controls="sidebarMembership">
-                            <i class="fe fe-home"></i> ระบบฐานข้อมูลสมาชิก
+                            <i class="fe fe-users"></i> ระบบฐานข้อมูลสมาชิก
                         </a>
                         <div class="collapse {{ setActive('membership') ? 'show' : '' }}" id="sidebarMembership">
                             <ul class="nav nav-sm flex-column">
@@ -99,32 +86,18 @@
     </nav>
 
     <div class="main-content">
-
-        {{--Topbar--}}
         <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
             <div class="container-fluid">
-
-
-                <!-- User -->
                 <div class="navbar-user ml-auto">
-                    <!-- Dropdown -->
                     <div class="dropdown">
-
-                        <!-- Toggle -->
                         <a href="#" class="dropdown-toggle d-flex" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{--<div class="avatar avatar-sm">--}}
-                            {{--<span class="avatar-title rounded-circle">ZS</span>--}}
-                            {{--</div>--}}
                             <img class="rounded-circle align-self-center" width="40px" height="40px" src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
                             <div class="d-flex flex-column align-items-center ml-3 text-secondary">
                                 <div>{{ Auth::user()->fullname }}</div>
-                                <small class="mr-auto">{{ Auth::user()->administrative_status_name }}</small>
+                                <span class="mr-auto small text-muted">{{ Auth::user()->administrative_status_name }}</span>
                             </div>
                             <i class="text-secondary fe fe-chevron-down ml-2"></i>
                         </a>
-
-
-                        <!-- Menu -->
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="" class="dropdown-item">ข้อมูลส่วนตัวของฉัน</a>
                             <hr class="dropdown-divider">
@@ -135,11 +108,8 @@
                                 {{ csrf_field() }}
                             </form>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </nav>
 
