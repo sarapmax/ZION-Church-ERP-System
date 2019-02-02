@@ -94,9 +94,8 @@
                     @forelse($members as $member)
                         <tr>
                             <td>
-                                <div class="cell-image-list">
-                                    <div class="cell-img"
-                                         style="background-image: url({{ $member->profile_image_path }})"></div>
+                                <div class="avatar avatar-xs">
+                                    <img src="{{ asset($member->profile_image_path) }}" alt="{{ $member->fullname }}" class="avatar-img rounded-circle">
                                 </div>
                             </td>
                             <td>{{ $member->code }}</td>
