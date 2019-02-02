@@ -59,6 +59,7 @@
                         </a>
                         <div class="collapse {{ setActive('membership') ? 'show' : '' }}" id="sidebarMembership">
                             <ul class="nav nav-sm flex-column">
+                                @if (Auth::user()->can('manage-church-structure'))
                                 <li class="nav-item">
                                     <a href="{{ route('membership.church.index') }}"
                                        class="nav-link {{ setActive('membership/church') ? 'active' : '' }}">
@@ -71,6 +72,7 @@
                                         กลุ่มแคร์
                                     </a>
                                 </li>
+                                @endif
                                 <li class="nav-item">
                                     <a href="{{ route('membership.member.index') }}"
                                        class="nav-link {{ setActive('membership/member') ? 'active' : '' }}">
