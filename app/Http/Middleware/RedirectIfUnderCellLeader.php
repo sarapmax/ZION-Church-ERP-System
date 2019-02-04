@@ -25,8 +25,7 @@ class RedirectIfUnderCellLeader
             SpiritualStatusEnum::REGULAR_BELIEVER,
             SpiritualStatusEnum::CHURCH_MEMBER,
             SpiritualStatusEnum::SHEPHERD
-        ]) && Auth::user()->administrative_status == AdministrativeStatusEnum::MEMBER
-        ) {
+        ])) {
             Auth::logout();
 
             return redirect('/login')->with('error', "You're not allowed to access the system.");
