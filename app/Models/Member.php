@@ -76,9 +76,11 @@ class Member extends Model
 
             $member->code = $memberCode;
             $member->password = bcrypt($memberCode);
-            $member->administrative_status = AdministrativeStatusEnum::MEMBER;
-
             $member->save();
+
+            $member->administrativeStatuses()->create([
+                'status' => AdministrativeStatusEnum::MEMBER
+            ]);
         });
     }
 
@@ -136,5 +138,15 @@ class Member extends Model
      */
     public function getAgeAttribute() {
         return Carbon::parse($this->birthday)->age;
+    }
+
+    /**
+     * Get administrative statuses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function administrativeStatuses()
+    {
+        return $this->hasMany(AdministrativeStatus::class);
     }
 }

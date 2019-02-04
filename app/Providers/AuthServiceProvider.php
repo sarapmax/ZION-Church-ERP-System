@@ -27,10 +27,13 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('manage-church-structure', function ($user) {
-            return in_array($user->administrative_status, [
-               AdministrativeStatusEnum::ADMIN,
-               AdministrativeStatusEnum::DEVELOPER
-            ]);
+            return in_array(AdministrativeStatusEnum::ADMIN,
+                $user->administrativeStatuses->pluck('status')->toArray());
+        });
+
+        Gate::define('manage-church-finance', function ($user) {
+            return in_array(AdministrativeStatusEnum::FINANCIAL_OFFICER,
+                $user->administrativeStatuses->pluck('status')->toArray());
         });
     }
 }

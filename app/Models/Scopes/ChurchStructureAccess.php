@@ -22,8 +22,10 @@ class ChurchStructureAccess implements Scope
     {
         $user = Auth::user();
 
-        //Only if the administrative status of user is "USER" is applied for this accession.
-        if ($user->administrative_status == AdministrativeStatusEnum::MEMBER) {
+        //Only if a user has only "MEMBER" status is applied for this accession.
+        if (in_array(AdministrativeStatusEnum::MEMBER, $user->administrativeStatuses->pluck('status')->toArray())
+            && $user->administrativeStatuses->count() == 1
+        ) {
             $cellLeaderAccessable = [
                 SpiritualStatusEnum::NEW_COMER,
                 SpiritualStatusEnum::NEW_BELIEVER,

@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('cell_id');
             $table->string('email')->unique();
             $table->string('password')->nullable();
-            $table->unsignedInteger('administrative_status')->nullable();
             $table->unsignedInteger('spiritual_status');
             $table->string('first_name');
             $table->string('last_name');

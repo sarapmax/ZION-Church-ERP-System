@@ -19,14 +19,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     * Get member's administrative status;
-     *
-     * @return AdministrativeStatusEnum
-     * @internal param $attribute
-     */
-    public function getAdministrativeStatusNameAttribute() {
-        return (new AdministrativeStatusEnum($this->attributes['administrative_status']))->getKey();
-    }
 }
