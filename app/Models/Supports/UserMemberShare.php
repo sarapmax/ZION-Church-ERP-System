@@ -2,6 +2,7 @@
 
 namespace App\Models\Supports;
 
+use App\Models\AdministrativeStatus;
 use App\Models\Cell;
 
 trait UserMemberShare
@@ -27,11 +28,21 @@ trait UserMemberShare
     }
 
     /**
-    * Relate to user's cell.
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    */
+     * Relate to user's cell.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function cell() {
         return $this->belongsTo(Cell::class);
+    }
+
+    /**
+     * Get administrative statuses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function administrativeStatuses()
+    {
+        return $this->hasMany(AdministrativeStatus::class, 'member_id');
     }
 }

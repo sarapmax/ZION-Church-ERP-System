@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Member extends Model
+class Member extends User
 {
     use SoftDeletes, UserMemberShare;
 
@@ -138,15 +138,5 @@ class Member extends Model
      */
     public function getAgeAttribute() {
         return Carbon::parse($this->birthday)->age;
-    }
-
-    /**
-     * Get administrative statuses.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function administrativeStatuses()
-    {
-        return $this->hasMany(AdministrativeStatus::class);
     }
 }
