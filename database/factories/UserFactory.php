@@ -12,14 +12,12 @@ use Faker\Generator as Faker;
 | model instances for testing / seeding your application's database.
 |
 */
-
 $factory->define(App\Models\Member::class, function (Faker $faker) {
     return [
-        'cell_id' => 1,
+        'cell_id' => factory(\App\Models\Cell::class),
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
         'remember_token' => str_random(10),
-        'administrative_status' => 1,
         'spiritual_status' => $faker->randomElement(\App\Enums\SpiritualStatusEnum::values()),
         'first_name' => $faker->name,
         'last_name' => $faker->lastName,
@@ -33,4 +31,28 @@ $factory->define(App\Models\Member::class, function (Faker $faker) {
         'facebook' => $faker->word,
         'line' => $faker->word,
     ];
+});
+
+$factory->afterCreating(\App\Models\Member::class, function ($member, $faker) {
+    $member->addresses()->save(factory(\App\Models\Address::class)->make([
+        'type' => \App\Enums\AddressTypeEnum::CURRENT
+    ]));
+
+    $member->addresses()->save(factory(App\Models\Address::class)->make([
+        'type' => \App\Enums\AddressTypeEnum::ORIGINAL
+    ]));
+
+    $member->mariage()->save(factory(\App\Models\Mariage::class)->make());
+
+    $emergencyContact = $member->emergencyContact()->save(factory(\App\Models\EmergencyContact::class)->make());
+
+    $emergencyContact->address()->save(factory(\App\Models\Address::class)->make([
+        'type' => \App\Enums\AddressTypeEnum::EMERGENCY
+    ]));
+//
+//    if (env('APP_ENV') == 'testing') {
+//        $member->administrativeStatuses()->create([
+//            'status' => \App\Enums\AdministrativeStatusEnum::MEMBER
+//        ]);
+//    }
 });
