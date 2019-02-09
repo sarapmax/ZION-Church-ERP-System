@@ -4,6 +4,7 @@ namespace App\Models\Supports;
 
 use App\Models\AdministrativeStatus;
 use App\Models\Cell;
+use App\Models\ServiceRound;
 
 trait UserMemberShare
 {
@@ -44,5 +45,13 @@ trait UserMemberShare
     public function administrativeStatuses()
     {
         return $this->hasMany(AdministrativeStatus::class, 'member_id');
+    }
+
+    /**
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function serviceRounds()
+    {
+        return $this->hasMany(ServiceRound::class, 'member_id');
     }
 }

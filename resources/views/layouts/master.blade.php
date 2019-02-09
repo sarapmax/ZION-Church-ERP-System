@@ -81,6 +81,23 @@
                                 </li>
                             </ul>
                         </div>
+                        @if (Auth::user()->can('manage-church-finance'))
+                        <a class="nav-link" href="#sidebarFinance" data-toggle="collapse" role="button"
+                           aria-expanded="{{ setActive('finance') ? 'true' : 'false' }}"
+                           aria-controls="sidebarMembership">
+                            <i class="fe fe-dollar-sign"></i> ระบบการเงิน
+                        </a>
+                        <div class="collapse {{ setActive('finance') ? 'show' : '' }}" id="sidebarFinance">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('finance.service-round.index') }}"
+                                       class="nav-link {{ setActive('finance/service-round') ? 'active' : '' }}">
+                                        รอบนมัสการ
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        @endif
                     </li>
                 </ul>
             </div>

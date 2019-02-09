@@ -4,7 +4,12 @@ Breadcrumbs::for('home', function($trail) {
    $trail->push('home', route('home'));
 });
 
-// Membership
+/*
+|--------------------------------------------------------------------------
+| Membership
+|--------------------------------------------------------------------------
+|
+*/
 Breadcrumbs::for('membership', function($trail) {
     $trail->push(__('global.membership'));
 });
@@ -60,5 +65,27 @@ Breadcrumbs::for('showMember', function($trail, $church, $cell, $member) {
     $trail->push($member->code);
 });
 
+/*
+|--------------------------------------------------------------------------
+| Finance system
+|--------------------------------------------------------------------------
+|
+*/
+Breadcrumbs::for('finance', function($trail) {
+    $trail->push(__('global.finance'));
+});
 
+Breadcrumbs::for('serviceRound', function($trail) {
+    $trail->parent('finance');
+    $trail->push(__('global.service_round'), route('finance.service-round.index'));
+});
 
+Breadcrumbs::for('createServiceRound', function($trail) {
+    $trail->parent('finance');
+    $trail->push(__('global.create_service_round'), route('finance.service-round.create'));
+});
+
+Breadcrumbs::for('showServiceRound', function($trail, $serviceRound) {
+    $trail->parent('serviceRound');
+    $trail->push(defaultDateFormat($serviceRound->date));
+});
