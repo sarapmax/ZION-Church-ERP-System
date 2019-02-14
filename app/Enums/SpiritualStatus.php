@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-use Nasyrov\Laravel\Enums\Enum;
+use BenSampo\Enum\Enum;
 
-class SpiritualStatusEnum extends Enum
+class SpiritualStatus extends Enum
 {
     const NEW_COMER = 1;
     const NEW_BELIEVER = 2;

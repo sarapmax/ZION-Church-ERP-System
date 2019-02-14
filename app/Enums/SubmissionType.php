@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-use Nasyrov\Laravel\Enums\Enum;
+use BenSampo\Enum\Enum;
 
-class SubmissionTypeEnum extends Enum
+class SubmissionType extends Enum
 {
     const ADD = 0;
     const ADD_AND_ADD_ANOTHER = 1;

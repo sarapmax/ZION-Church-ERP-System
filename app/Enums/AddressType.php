@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-use Nasyrov\Laravel\Enums\Enum;
+use BenSampo\Enum\Enum;
 
-class AddressTypeEnum extends Enum
+class AddressType extends Enum
 {
     const ORIGINAL = 1;
     const CURRENT = 2;

@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Enums\AdministrativeStatusEnum;
-use App\Enums\SpiritualStatusEnum;
+use App\Enums\AdministrativeStatus;
+use App\Enums\SpiritualStatus;
 use App\Models\Member;
 use Illuminate\Database\Eloquent\Collection;
 use Tests\TestCase;
@@ -20,16 +20,16 @@ class MemberTest extends TestCase
         $member = factory(Member::class)->create();
 
         $member->administrativeStatuses()->createMany([
-            ['status' => AdministrativeStatusEnum::MEMBER],
-            ['status' => AdministrativeStatusEnum::ADMIN]
+            ['status' => AdministrativeStatus::MEMBER],
+            ['status' => AdministrativeStatus::ADMIN]
         ]);
 
         $this->assertDatabaseHas('administrative_statuses', [
-            'status' => AdministrativeStatusEnum::MEMBER
+            'status' => AdministrativeStatus::MEMBER
         ]);
 
         $this->assertDatabaseHas('administrative_statuses', [
-            'status' => AdministrativeStatusEnum::ADMIN
+            'status' => AdministrativeStatus::ADMIN
         ]);
     }
 
@@ -37,11 +37,11 @@ class MemberTest extends TestCase
     public function a_financial_officer_has_service_rounds()
     {
         $member = factory(Member::class)->create([
-            'spiritual_status' => SpiritualStatusEnum::CELL_LEADER
+            'spiritual_status' => SpiritualStatus::CELL_LEADER
         ]);
 
         $member->AdministrativeStatuses()->create([
-            'status' => AdministrativeStatusEnum::FINANCIAL_OFFICER
+            'status' => AdministrativeStatus::FINANCIAL_OFFICER
         ]);
 
         $this->assertInstanceOf(Collection::class, $member->serviceRounds);

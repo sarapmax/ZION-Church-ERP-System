@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Enums\AdministrativeStatusEnum;
-use App\Enums\SpiritualStatusEnum;
+use App\Enums\AdministrativeStatus;
+use App\Enums\SpiritualStatus;
 use App\Models\Member;
 use App\Models\ServiceRound;
 use App\Models\User;
@@ -20,8 +20,8 @@ class ServiceRoundTest extends TestCase
     {
         parent::setUp();
 
-        $this->signInAs(SpiritualStatusEnum::CELL_LEADER, [
-            AdministrativeStatusEnum::FINANCIAL_OFFICER
+        $this->signInAs(SpiritualStatus::CELL_LEADER, [
+            AdministrativeStatus::FINANCIAL_OFFICER
         ]);
     }
 

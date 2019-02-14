@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\AdministrativeStatusEnum;
-use App\Enums\SpiritualStatusEnum;
+use App\Enums\AdministrativeStatus;
+use App\Enums\SpiritualStatus;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,11 +20,11 @@ class RedirectIfUnderCellLeader
     {
         // We don't allow member who has the spiritual status under SpiritualStatusEnum::CELL_LEADER access the system.
         if (in_array(Auth::user()->spiritual_status, [
-            SpiritualStatusEnum::NEW_COMER,
-            SpiritualStatusEnum::NEW_BELIEVER,
-            SpiritualStatusEnum::REGULAR_BELIEVER,
-            SpiritualStatusEnum::CHURCH_MEMBER,
-            SpiritualStatusEnum::SHEPHERD
+            SpiritualStatus::NEW_COMER,
+            SpiritualStatus::NEW_BELIEVER,
+            SpiritualStatus::REGULAR_BELIEVER,
+            SpiritualStatus::CHURCH_MEMBER,
+            SpiritualStatus::SHEPHERD
         ])) {
             Auth::logout();
 

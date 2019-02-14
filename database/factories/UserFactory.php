@@ -18,7 +18,7 @@ $factory->define(App\Models\Member::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
         'remember_token' => str_random(10),
-        'spiritual_status' => $faker->randomElement(\App\Enums\SpiritualStatusEnum::values()),
+        'spiritual_status' => $faker->randomElement(\App\Enums\SpiritualStatus::getValues()),
         'first_name' => $faker->name,
         'last_name' => $faker->lastName,
         'nickname' => $faker->userName,
@@ -35,11 +35,11 @@ $factory->define(App\Models\Member::class, function (Faker $faker) {
 
 $factory->afterCreating(\App\Models\Member::class, function ($member, $faker) {
     $member->addresses()->save(factory(\App\Models\Address::class)->make([
-        'type' => \App\Enums\AddressTypeEnum::CURRENT
+        'type' => \App\Enums\AddressType::CURRENT
     ]));
 
     $member->addresses()->save(factory(App\Models\Address::class)->make([
-        'type' => \App\Enums\AddressTypeEnum::ORIGINAL
+        'type' => \App\Enums\AddressType::ORIGINAL
     ]));
 
     $member->mariage()->save(factory(\App\Models\Mariage::class)->make());
@@ -47,7 +47,7 @@ $factory->afterCreating(\App\Models\Member::class, function ($member, $faker) {
     $emergencyContact = $member->emergencyContact()->save(factory(\App\Models\EmergencyContact::class)->make());
 
     $emergencyContact->address()->save(factory(\App\Models\Address::class)->make([
-        'type' => \App\Enums\AddressTypeEnum::EMERGENCY
+        'type' => \App\Enums\AddressType::EMERGENCY
     ]));
 //
 //    if (env('APP_ENV') == 'testing') {

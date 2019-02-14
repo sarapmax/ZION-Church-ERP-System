@@ -60,7 +60,7 @@
                                                 <select id="spiritual_status" class="form-control"
                                                         name="spiritual_status">
                                                     <option value="">-- Select --</option>
-                                                    @foreach(SpiritualStatus::constants() as $key => $value)
+                                                    @foreach(SpiritualStatus::toArray() as $key => $value)
                                                         <option value="{{ $value }}"
                                                                 @if($value == app('request')->spiritual_status) selected @endif>{{ __('spiritual-status.' . $key) }}</option>
                                                     @endforeach
@@ -100,7 +100,7 @@
                             </td>
                             <td>{{ $member->code }}</td>
                             <td>{{ $member->fullname }}</td>
-                            <td>{{ __('spiritual-status.' . $member->spiritual_status_name) }}</td>
+                            <td>{{ __('spiritual-status.' . SpiritualStatus::getKey($member->spiritual_status)) }}</td>
                             <td>{{ $member->cell->church->name }}</td>
                             <td>{{ $member->cell->name }}</td>
                             <td class="link-action">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Membership;
 
-use App\Enums\AddressTypeEnum;
+use App\Enums\AddressType;
 use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use Illuminate\Http\Request;
@@ -121,7 +121,7 @@ class MemberController extends Controller
         // Create user's addresses.
         $member->addresses()->create([
             'sub_district_id' => $request->original_address_sub_district_id,
-            'type' => AddressTypeEnum::ORIGINAL,
+            'type' => AddressType::ORIGINAL,
             'detail' => $request->original_address_detail,
             'postcode' => $request->original_address_postcode
         ]);
@@ -130,7 +130,7 @@ class MemberController extends Controller
         if (!$request->has('same_address')) {
             $member->addresses()->create([
                 'sub_district_id' => $request->current_address_sub_district_id,
-                'type' => AddressTypeEnum::CURRENT,
+                'type' => AddressType::CURRENT,
                 'detail' => $request->current_address_detail,
                 'postcode' => $request->current_address_postcode
             ]);
@@ -148,7 +148,7 @@ class MemberController extends Controller
         // Create user's emergency contact address
         $member->emergencyContact->address()->create([
             'sub_district_id' => $request->emergency_address_sub_district_id,
-            'type' => AddressTypeEnum::EMERGENCY,
+            'type' => AddressType::EMERGENCY,
             'detail' => $request->emergency_address_detail,
             'postcode' => $request->emergency_address_postcode
         ]);
@@ -231,7 +231,7 @@ class MemberController extends Controller
 
         // Update user's addresses.
         foreach($member->addresses as $address) {
-            if ($address->type == AddressTypeEnum::ORIGINAL) {
+            if ($address->type == AddressType::ORIGINAL) {
                 $address->update([
                     'sub_district_id' => $request->original_address_sub_district_id,
                     'detail' => $request->original_address_detail,
@@ -244,21 +244,21 @@ class MemberController extends Controller
         if (!$request->has('same_address') && $member->addresses->count() != 2) {
             $member->addresses()->create([
                 'sub_district_id' => $request->current_address_sub_district_id,
-                'type' => AddressTypeEnum::CURRENT,
+                'type' => AddressType::CURRENT,
                 'detail' => $request->current_address_detail,
                 'postcode' => $request->current_address_postcode
             ]);
         // If a user have the current address and wants to delete it.
         } else if($request->has('same_address') && $member->addresses->count() == 2){
             foreach($member->addresses as $address) {
-                if ($address->type == AddressTypeEnum::CURRENT) {
+                if ($address->type == AddressType::CURRENT) {
                     $address->delete();
                 }
             }
         // If a user just wants to update the current address.
         } else {
             foreach($member->addresses as $address) {
-                if ($address->type == AddressTypeEnum::CURRENT) {
+                if ($address->type == AddressType::CURRENT) {
                     $address->update([
                         'sub_district_id' => $request->current_address_sub_district_id,
                         'detail' => $request->current_address_detail,
@@ -280,7 +280,7 @@ class MemberController extends Controller
         // Create user's emergency contact address
         $member->emergencyContact->address()->update([
             'sub_district_id' => $request->emergency_address_sub_district_id,
-            'type' => AddressTypeEnum::EMERGENCY,
+            'type' => AddressType::EMERGENCY,
             'detail' => $request->emergency_address_detail,
             'postcode' => $request->emergency_address_postcode
         ]);

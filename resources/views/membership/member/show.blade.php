@@ -48,7 +48,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-3 py-3"><span class="text-muted">สถานะฝ่ายจิตวิญญาณ</span></div>
-                    <div class="col-sm-9 py-3">{{ __('spiritual-status.' . $member->spiritual_status_name) }}</div>
+                    <div class="col-sm-9 py-3">{{ __('spiritual-status.' . SpiritualStatus::getKey($member->spiritual_status)) }}</div>
                 </div>
             </div>
         </div>
@@ -196,7 +196,7 @@
             <div class="card-body">
                 <div class="row border-bottom">
                     <div class="col-sm-3 py-3"><span class="text-muted">สถานะ</span></div>
-                    <div class="col-sm-9 py-3">{{ __('mariage-status.' . $member->mariage->status_name) }}</div>
+                    <div class="col-sm-9 py-3">{{ __('mariage-status.' . MariageStatus::getKey($member->mariage->status)) }}</div>
                 </div>
                 <div class="row border-bottom">
                     <div class="col-sm-3 py-3"><span class="text-muted">ชื่อคู่สมรส</span></div>

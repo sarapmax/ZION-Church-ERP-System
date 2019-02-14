@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Enums\AdministrativeStatusEnum;
-use App\Enums\SpiritualStatusEnum;
+use App\Enums\AdministrativeStatus;
+use App\Enums\SpiritualStatus;
 use App\Models\Member;
 use App\Models\ServiceRound;
 use Illuminate\Support\Carbon;
@@ -19,8 +19,8 @@ class ManageServiceRoundTest extends TestCase
     protected function setUp() {
         parent::setUp();
 
-        $this->signInAs(SpiritualStatusEnum::CELL_LEADER, [
-            AdministrativeStatusEnum::FINANCIAL_OFFICER
+        $this->signInAs(SpiritualStatus::CELL_LEADER, [
+            AdministrativeStatus::FINANCIAL_OFFICER
         ]);
     }
 
@@ -29,8 +29,8 @@ class ManageServiceRoundTest extends TestCase
     {
         $this->assertTrue(Gate::allows('manage-church-finance'));
 
-        $this->signInAs(SpiritualStatusEnum::CELL_LEADER, [
-            AdministrativeStatusEnum::MEMBER
+        $this->signInAs(SpiritualStatus::CELL_LEADER, [
+            AdministrativeStatus::MEMBER
         ]);
 
         $this->assertTrue(Gate::denies('manage-church-finance'));

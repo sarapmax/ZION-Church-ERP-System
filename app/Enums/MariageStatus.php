@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-use Nasyrov\Laravel\Enums\Enum;
+use BenSampo\Enum\Enum;
 
-class MariageStatusEnum extends Enum
+class MariageStatus extends Enum
 {
     const SINGLE = 1;
     const MARRIED = 2;

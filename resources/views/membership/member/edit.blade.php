@@ -40,7 +40,7 @@
                                 <label for="spiritual_status" class="required">สถานะผู้เชื่อ </label>
                                 <select id="spiritual_status" class="form-control{{ $errors->has('spiritual_status') ? ' is-invalid' : '' }}" name="spiritual_status">
                                     <option value="">-- Select --</option>
-                                    @foreach(SpiritualStatus::constants() as $key => $value)
+                                    @foreach(SpiritualStatus::toArray() as $key => $value)
                                         <option value="{{ $value }}" @if(old('spiritual_status', $member->spiritual_status) == $value) selected @endif>{{ __('spiritual-status.' . $key) }}</option>
                                     @endforeach
                                 </select>
@@ -348,7 +348,7 @@
                                 <label for="marital_status" class="required">สถานภาพ </label>
                                 <select id="marital_status" class="form-control{{ $errors->has('marital_status') ? ' is-invalid' : '' }}" name="marital_status" required>
                                     <option value="">-- Select --</option>
-                                    @foreach(MariageStatus::constants() as $key => $value)
+                                    @foreach(MariageStatus::toArray() as $key => $value)
                                         <option value="{{ $value }}" @if(old('marital_status', $member->mariage->status) == $value) selected @endif>{{ __('mariage-status.' . $key) }}</option>
                                     @endforeach
                                 </select>

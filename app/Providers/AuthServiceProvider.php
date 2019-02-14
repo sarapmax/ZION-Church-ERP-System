@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Enums\AdministrativeStatusEnum;
+use App\Enums\AdministrativeStatus;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -27,12 +27,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('manage-church-structure', function ($user) {
-            return in_array(AdministrativeStatusEnum::ADMIN,
+            return in_array(AdministrativeStatus::ADMIN,
                 $user->administrativeStatuses->pluck('status')->toArray());
         });
 
         Gate::define('manage-church-finance', function ($user) {
-            return in_array(AdministrativeStatusEnum::FINANCIAL_OFFICER,
+            return in_array(AdministrativeStatus::FINANCIAL_OFFICER,
                 $user->administrativeStatuses->pluck('status')->toArray());
         });
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Membership;
 
 use App\Models\Cell;
-use App\Enums\SubmissionTypeEnum;
+use App\Enums\SubmissionType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
@@ -49,7 +49,7 @@ class CellController extends Controller
 
         Cell::create($request->all());
 
-        if ($request->submit_type == SubmissionTypeEnum::ADD_AND_ADD_ANOTHER) {
+        if ($request->submit_type == SubmissionType::ADD_AND_ADD_ANOTHER) {
             return redirect()->back()->with('success', 'เพิ่มคริสตจักรเรียบร้อยแล้ว')->withInput($request->except('name'));
         }
 

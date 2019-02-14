@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\MariageStatusEnum;
-use App\Enums\SpiritualStatusEnum;
+use App\Enums\MariageStatus;
+use App\Enums\SpiritualStatus;
+use BenSampo\Enum\Rules\EnumValue;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -31,7 +32,7 @@ class MemberRequest extends FormRequest
             'district_id' =>                'required|exists:districts,id',
             'church_id' =>                  'required|exists:churches,id',
             'cell_id' =>                    'required|exists:cells,id',
-            'spiritual_status' =>           ['required', Rule::in(array_values(SpiritualStatusEnum::constants()->toArray()))],
+            'spiritual_status' =>           ['required', new EnumValue(SpiritualStatus::class, false)],
 
             'first_name' =>                  'required|min:3',
             'last_name' =>                  'required|min:3',
@@ -44,7 +45,7 @@ class MemberRequest extends FormRequest
 
             'mobile_number' =>              'required|alpha_num|digits:10',
 
-            'marital_status' =>            ['required', Rule::in(array_values(MariageStatusEnum::constants()->toArray()))],
+            'marital_status' =>            ['required', new EnumValue(MariageStatus::class, false)],
 
             'emergency_name' =>            'required|min:3',
             'emergency_relationship' =>    'required',

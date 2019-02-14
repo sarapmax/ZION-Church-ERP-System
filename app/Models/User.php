@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use App\Enums\AdministrativeStatusEnum;
+use App\Enums\AdministrativeStatus;
 use App\Models\Supports\UserMemberShare;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

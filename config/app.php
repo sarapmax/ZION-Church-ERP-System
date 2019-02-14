@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Nasyrov\Laravel\Enums\EnumServiceProvider::class,
+        BenSampo\Enum\EnumServiceProvider::class
 
     ],
 
@@ -227,9 +227,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         // Custom enum
-        'SpiritualStatus' => \App\Enums\SpiritualStatusEnum::class,
-        'MariageStatus' => \App\Enums\MariageStatusEnum::class,
-        'AddressType' => \App\Enums\AddressTypeEnum::class,
+        'SubmissionType' => \App\Enums\SubmissionType::class,
+        'SpiritualStatus' => \App\Enums\SpiritualStatus::class,
+        'MariageStatus' => \App\Enums\MariageStatus::class,
+        'AddressType' => \App\Enums\AddressType::class,
     ],
 
 ];

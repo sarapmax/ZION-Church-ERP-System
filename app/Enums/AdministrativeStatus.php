@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-use Nasyrov\Laravel\Enums\Enum;
+use BenSampo\Enum\Enum;
 
-class AdministrativeStatusEnum extends Enum
+class AdministrativeStatus extends Enum
 {
     const MEMBER = 1;
     const ADMIN = 2;

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\AdministrativeStatusEnum;
-use App\Enums\SpiritualStatusEnum;
+use App\Enums\AdministrativeStatus;
+use App\Enums\SpiritualStatus;
 use App\Models\Scopes\ChurchStructureAccess;
 use App\Models\Supports\UserMemberShare;
 use Carbon\Carbon;
@@ -79,19 +79,9 @@ class Member extends User
             $member->save();
 
             $member->administrativeStatuses()->create([
-                'status' => AdministrativeStatusEnum::MEMBER
+                'status' => AdministrativeStatus::MEMBER
             ]);
         });
-    }
-
-    /**
-     * Get member's spiritual status;
-     *
-     * @return SpiritualStatusEnum
-     * @internal param $attribute
-     */
-    public function getSpiritualStatusNameAttribute() {
-        return (new SpiritualStatusEnum($this->spiritual_status))->getKey();
     }
 
     /**
