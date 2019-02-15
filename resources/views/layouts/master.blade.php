@@ -26,7 +26,9 @@
             <div class="navbar-user d-md-none">
                 <div class="dropdown">
                     <a href="#" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle align-self-center" width="40px" height="40px"  src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
+                        <div class="avatar avatar-sm">
+                            <img class="avatar-img rounded-circle" width="30px" src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
+                        </div>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
@@ -116,12 +118,13 @@
                 <div class="navbar-user ml-auto">
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle d-flex" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle align-self-center" width="40px" height="40px" src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
-                            <div class="d-flex flex-column align-items-center ml-3 text-secondary">
-                                <div>{{ Auth::user()->fullname }}</div>
-                                <span class="mr-auto small text-muted">{{ Auth::user()->administrative_status_name }}</span>
+                            <div class="avatar avatar-xs">
+                                <img class="avatar-img rounded-circle" src="{{ auth()->user()->profile_image_path }}" alt="{{ Auth::user()->fullname }}">
                             </div>
-                            <i class="text-secondary fe fe-chevron-down ml-2"></i>
+                            <div class="d-flex flex-column align-items-center justify-content-center ml-3 text-secondary">
+                                <div>{{ Auth::user()->fullname }}</div>
+                            </div>
+                            <i class="text-secondary fe fe-chevron-down ml-2 d-flex flex-column align-items-center justify-content-center"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="" class="dropdown-item">ข้อมูลส่วนตัวของฉัน</a>
