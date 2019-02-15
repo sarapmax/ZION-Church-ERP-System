@@ -79,6 +79,8 @@ class MemberController extends Controller
      */
     public function store(MemberRequest $request)
     {
+        $member = new Member;
+
         $input = [
             'cell_id' => $request->cell_id,
             'email' => $request->email,
@@ -98,16 +100,12 @@ class MemberController extends Controller
 
         // Save profile image.
         if ($request->has('profile_image')) {
-            $profileImage = $request->file('profile_image');
-
-            $profileImageName = time().'.'.$profileImage->getClientOriginalExtension();
-
-            $profileImage->move(public_path('profile-images'), $profileImageName);
+            $profileImageName = $member->uploadProfileImage($request->file('profile_image'));
 
             $input['profile_image'] = $profileImageName;
         }
 
-        $member = Member::create($input);
+        $member = $member->create($input);
 
         // Create user's mariage.
         $member->mariage()->create([
@@ -207,11 +205,7 @@ class MemberController extends Controller
 
         // Save profile image.
         if ($request->has('profile_image')) {
-            $profileImage = $request->file('profile_image');
-
-            $profileImageName = time().'.'.$profileImage->getClientOriginalExtension();
-
-            $profileImage->move(public_path('profile-images'), $profileImageName);
+            $profileImageName = $member->uploadProfileImage($request->file('profile_image'));
 
             File::delete('profile-images/' . $member->profile_image);
 

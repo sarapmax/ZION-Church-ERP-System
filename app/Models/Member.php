@@ -9,6 +9,7 @@ use App\Models\Supports\UserMemberShare;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Intervention\Image\ImageManagerStatic;
 
 class Member extends User
 {
@@ -128,5 +129,25 @@ class Member extends User
      */
     public function getAgeAttribute() {
         return Carbon::parse($this->birthday)->age;
+    }
+
+    /**
+     * Upload member profile image.
+     *
+     * @param $profileImage
+     * @return string
+     */
+    public function uploadProfileImage($profileImage)
+    {
+        $profileImageName = time().'.'.$profileImage->getClientOriginalExtension();
+
+        $profileImage = ImageManagerStatic::make($profileImage->getRealPath());
+        $profileImage->resize(400, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
+        $profileImage->save(public_path('profile-images') . '/' . $profileImageName);
+
+        return $profileImageName;
     }
 }
