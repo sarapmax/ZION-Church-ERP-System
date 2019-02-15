@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
         if (env('APP_ENV') !== 'production') {
             // Wipe up 5 churches, and each church has 5 cells, and each cell has 20 members associated with.
             // In other word, we wipe up 500 church members.
-            for ($i = 0; $i < 5; $i++) {
+            for ($i = 0; $i < 2; $i++) {
                 $church = factory(\App\Models\Church::class)->create();
 
-                $church->cells()->saveMany(factory(\App\Models\Cell::class, 5)->create([
+                $church->cells()->saveMany(factory(\App\Models\Cell::class, 2)->create([
                     'church_id' => $church->id
                 ])->each(function($cell) {
-                    $cell->members()->saveMany(factory(App\Models\Member::class, 20)->create([
+                    $cell->members()->saveMany(factory(App\Models\Member::class, 10)->create([
                         'cell_id' => $cell
                     ]));
                 }));
