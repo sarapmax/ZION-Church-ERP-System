@@ -46,4 +46,9 @@ class ServiceRound extends Model
     {
         return $this->hasMany(Offering::class)->latest();
     }
+
+    public function getTotalOfferingAmountByChurchBankAccount($churchBankAccount)
+    {
+        return $this->offerings()->whereIn('type', $churchBankAccount)->sum('amount');
+    }
 }

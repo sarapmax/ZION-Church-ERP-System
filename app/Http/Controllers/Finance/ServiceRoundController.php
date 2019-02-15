@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Finance;
 
+use App\Enums\ChurchBankAccount;
 use App\Models\Offering;
 use App\Models\ServiceRound;
 use Illuminate\Http\Request;
@@ -61,7 +62,16 @@ class ServiceRoundController extends Controller
     {
         $offeringRecords = Offering::whereServiceRoundId($serviceRound->id)->with('member')->latest()->paginate(20);
 
-        return view('finance.service-round.show', compact('serviceRound', 'offeringRecords'));
+        $churchBankAccounts = [];
+        $index = 0;
+        foreach (ChurchBankAccount::toArray() as $key => $value) {
+            $churchBankAccounts[$index]['name'] = $key;
+            $churchBankAccounts[$index]['total_offering_amount'] = $serviceRound->getTotalOfferingAmountByChurchBankAccount($value);
+
+            $index++;
+        }
+
+        return view('finance.service-round.show', compact('serviceRound', 'offeringRecords', 'churchBankAccounts'));
     }
 
     /**

@@ -50,6 +50,27 @@
         </div>
     </div>
     <div class="row">
+        @foreach($churchBankAccounts as $churchBankAccount)
+        <div class="col-md-4 col-md-3 col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4 class="card-title text-uppercase text-muted mb-2">
+                                {{ __('church-bank-account.' . $churchBankAccount['name']) }}
+                            </h4>
+                            <span class="h2 mb-0">฿{{ number_format($churchBankAccount['total_offering_amount']) }}</span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="h2 fe fe-{{ __('church-bank-account.' . $churchBankAccount['name'] .  '_ICON') }} text-muted mb-0"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    <div class="row">
         <div class="col-md-12">
             @include('finance.partials.offering-listing', [
                 'offeringRecords' => $offeringRecords,
