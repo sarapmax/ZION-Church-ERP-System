@@ -27,6 +27,7 @@ Route::namespace('Membership')->middleware(['auth', 'churchMember'])->name('memb
 // Church financial system
 Route::namespace('Finance')->middleware(['auth', 'churchMember'])->name('finance.')->prefix('finance')->group(function() {
    Route::resource('service-round', 'ServiceRoundController')->middleware('can:manage-church-finance');
+   Route::resource('offering', 'OfferingController')->middleware('can:manage-church-finance');
 });
 
 // Church geolocation data

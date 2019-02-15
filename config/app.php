@@ -231,6 +231,7 @@ return [
         'SpiritualStatus' => \App\Enums\SpiritualStatus::class,
         'MariageStatus' => \App\Enums\MariageStatus::class,
         'AddressType' => \App\Enums\AddressType::class,
+        'OfferingType' => \App\Enums\OfferingType::class,
     ],
 
 ];

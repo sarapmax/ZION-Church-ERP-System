@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Finance;
 
+use App\Models\Offering;
 use App\Models\ServiceRound;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -58,7 +59,9 @@ class ServiceRoundController extends Controller
      */
     public function show(ServiceRound $serviceRound)
     {
-        return view('finance.service-round.show', compact('serviceRound'));
+        $offeringRecords = Offering::whereServiceRoundId($serviceRound->id)->with('member')->latest()->paginate(20);
+
+        return view('finance.service-round.show', compact('serviceRound', 'offeringRecords'));
     }
 
     /**

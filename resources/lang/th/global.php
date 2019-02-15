@@ -28,4 +28,5 @@ return [
     'service_round' => 'รอบนมัสการ',
     'create_service_round' => 'เพิ่มรอบนมัสการ',
     'edit_service_round' => 'แก้ไขรอบนมัสการ',
+    'manage_offering' => 'บันทึกเงินถวาย',
 ];

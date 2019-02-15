@@ -95,6 +95,12 @@
                                         รอบนมัสการ
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('finance.offering.index') }}"
+                                       class="nav-link {{ setActive('finance/offering') ? 'active' : '' }}">
+                                        บันทึกเงินถวาย
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         @endif

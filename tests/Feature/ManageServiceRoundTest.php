@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Enums\AdministrativeStatus;
 use App\Enums\SpiritualStatus;
 use App\Models\Member;
+use App\Models\Offering;
 use App\Models\ServiceRound;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Gate;
@@ -98,7 +99,21 @@ class ManageServiceRoundTest extends TestCase
     }
 
     /** @test */
-    public function a_finance_officer_can_softly_delete_a_service_round()
+    public function a_financial_officer_can_view_a_service_round_and_offering_records()
+    {
+        $this->withoutExceptionHandling();
+
+        $serviceRound = factory(ServiceRound::class)->create();
+
+        $offeringRecords = $serviceRound->offerings()->createMany(factory(Offering::class, 10)->raw());
+
+        $this->get(route('finance.service-round.show', $serviceRound))
+        ->assertViewHasAll(['serviceRound', 'offeringRecords'])
+        ->assertSee(number_format($offeringRecords->sum('amount')));
+    }
+
+    /** @test */
+    public function a_financial_officer_can_softly_delete_a_service_round()
     {
         $serviceRound = factory(ServiceRound::class)->create();
 

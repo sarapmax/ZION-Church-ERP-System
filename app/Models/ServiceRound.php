@@ -38,4 +38,12 @@ class ServiceRound extends Model
     {
         return  Carbon::parse($this->date)->weekOfYear . '/' . Carbon::parse($this->date)->year;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function offerings()
+    {
+        return $this->hasMany(Offering::class)->latest();
+    }
 }

@@ -89,3 +89,8 @@ Breadcrumbs::for('showServiceRound', function($trail, $serviceRound) {
     $trail->parent('serviceRound');
     $trail->push(defaultDateFormat($serviceRound->date));
 });
+
+Breadcrumbs::for('manageOfferingForm', function($trail) {
+    $trail->parent('finance');
+    $trail->push(__('global.manage_offering'));
+});

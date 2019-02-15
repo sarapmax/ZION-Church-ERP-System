@@ -29,9 +29,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($serviceRounds as $serviceRound)
+                        @forelse($serviceRounds as $index => $serviceRound)
                             <tr>
-                                <td>{{ $serviceRound->id }}</td>
+                                <td>{{ $index + 1 }}</td>
                                 <td>{{ defaultDateFormat($serviceRound->date) }}</td>
                                 <td>{{ $serviceRound->weekOfYear }}</td>
                                 <td class="link-action">
@@ -52,7 +52,7 @@
                         </tbody>
                     </table>
 
-                    {{ $serviceRounds->appends($_GET)->links() }}
+                    {{ $serviceRounds->links() }}
                 </div>
             </div>
         </div>

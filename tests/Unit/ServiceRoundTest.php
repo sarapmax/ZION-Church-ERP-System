@@ -7,6 +7,7 @@ use App\Enums\SpiritualStatus;
 use App\Models\Member;
 use App\Models\ServiceRound;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -41,5 +42,13 @@ class ServiceRoundTest extends TestCase
         $weekOfYear =  Carbon::parse($serviceRound->date)->weekOfYear . '/' . Carbon::parse($serviceRound->date)->year;
 
         $this->assertEquals($weekOfYear, $serviceRound->weekOfYear);
+    }
+
+    /** @test */
+    public function it_has_offering_records()
+    {
+        $serviceRound = factory(ServiceRound::class)->create();
+
+        $this->assertInstanceOf(Collection::class, $serviceRound->offerings);
     }
 }
