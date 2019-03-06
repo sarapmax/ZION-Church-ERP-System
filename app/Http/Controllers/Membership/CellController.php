@@ -44,7 +44,7 @@ class CellController extends Controller
             'province_id' => 'required|exists:provinces,id',
             'district_id' => 'required|exists:districts,id',
             'church_id' => 'required|exists:churches,id',
-            'name' => 'required|min:3|unique:cells'
+            'name' => 'required|min:2|unique:cells'
         ]);
 
         Cell::create($request->all());
@@ -96,7 +96,7 @@ class CellController extends Controller
             'church_id' => 'required|exists:churches,id',
             'name' => [
                 'required',
-                'min:3',
+                'min:2',
                 Rule::unique('cells')->ignore($cell->id)
             ],
         ]);

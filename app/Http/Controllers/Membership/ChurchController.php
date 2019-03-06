@@ -43,7 +43,7 @@ class ChurchController extends Controller
         $request->validate([
             'province_id' => 'required|exists:provinces,id',
             'district_id' => 'required|exists:districts,id',
-            'name' => 'required|min:3|unique:churches'
+            'name' => 'required|min:2|unique:churches'
         ]);
 
         Church::create($request->all());
@@ -94,7 +94,7 @@ class ChurchController extends Controller
             'district_id' => 'required|exists:districts,id',
             'name' => [
                 'required',
-                'min:3',
+                'min:2',
                 Rule::unique('churches')->ignore($church->id)
             ],
         ]);
