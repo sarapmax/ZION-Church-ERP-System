@@ -43,7 +43,7 @@
                     class="form-control{{ $errors->has('church_id') ? ' is-invalid' : '' }}"
                     name="church_id"
                     v-model="churchId"
-            @change="getCells(churchId)">
+            @change="getAreas(churchId)">
             <option :value="null">-- Select --</option>
             <option v-for="church in churches" :value="church.id" v-text="church.name"></option>
             </select>
@@ -54,6 +54,26 @@
             </span>
             @endif
         </div>
+
+        @if(!in_array("area", $excepts))
+        <div class="form-group">
+            <label for="area_id" class="required">เขต </label>
+            <select id="area_id"
+                    class="form-control{{ $errors->has('area_id') ? ' is-invalid' : '' }}"
+                    name="area_id"
+                    v-model="areaId"
+                    @change="getCells(areaId)">
+                <option :value="null">-- Select --</option>
+                <option v-for="area in areas" :value="area.id" v-text="area.name"></option>
+            </select>
+
+            @if ($errors->has('area_id'))
+                <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('area_id') }}</strong>
+            </span>
+            @endif
+        </div>
+        @endif
 
         @if(!in_array("cell", $excepts))
             <div class="form-group">

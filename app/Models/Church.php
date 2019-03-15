@@ -26,7 +26,7 @@ class Church extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function cells() {
-        return $this->hasMany(Cell::class);
+    public function areas() {
+        return $this->hasMany(Area::class);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-{{ Breadcrumbs::render('showMember', $member->cell->church, $member->cell, $member) }}
+{{ Breadcrumbs::render('showMember', $member->cell->area->church, $member->cell->area, $member->cell, $member) }}
 @endsection
 
 @section('content')
@@ -28,9 +28,10 @@
 
                             @include('components.selections.church-structure', [
                                 'old' => [
-                                    'province_id' => old('province_id', $member->cell->church->district->province->id),
-                                    'district_id' => old('district_id', $member->cell->church->district->id),
-                                    'church_id' => old('church_id', $member->cell->church->id),
+                                    'province_id' => old('province_id', $member->cell->area->church->district->province->id),
+                                    'district_id' => old('district_id', $member->cell->area->church->district->id),
+                                    'church_id' => old('church_id', $member->cell->area->church->id),
+                                    'area_id' => old('church_id', $member->cell->area->id),
                                     'cell_id' => old('cell_id', $member->cell_id)
                                 ],
                                 'excepts' => []

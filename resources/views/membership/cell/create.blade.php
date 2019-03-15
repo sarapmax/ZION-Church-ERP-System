@@ -22,6 +22,7 @@
                             'province_id' => old('province_id'),
                             'district_id' => old('district_id'),
                             'church_id' => old('church_id'),
+                            'area_id' => old('area_id'),
                         ],
                         'excepts' => ['cell']
                     ])

@@ -7,11 +7,13 @@
                 provinces: [],
                 districts: [],
                 churches: [],
+                areas: [],
                 cells: [],
 
                 provinceId: null,
                 districtId: null,
                 churchId: null,
+                areaId: null,
                 cellId: null
             }
         },
@@ -26,10 +28,12 @@
             getDistricts(provinceId) {
                 this.districts = null
                 this.churches = null
+                this.areas = null
                 this.cells = null
 
                 this.districtId = null
                 this.churchId = null
+                this.areaId = null
                 this.cellId = null
 
                 if (provinceId) {
@@ -43,9 +47,11 @@
 
             getChurches(districtId) {
                 this.churches = null
+                this.areas = null
                 this.cells = null
 
                 this.churchId = null
+                this.areaId = null
                 this.cellId = null
 
                 if (districtId) {
@@ -57,14 +63,30 @@
                 }
             },
 
-            getCells(churchId) {
+            getAreas(churchId) {
+                this.areas = null
                 this.cells = null
+
+                this.areaId = null
                 this.cellId = null
 
                 if (churchId) {
                     this.churchId = churchId
 
-                    axios.get(`/church-structure/churches/${churchId}/cells`).then(({data}) => {
+                    axios.get(`/church-structure/churches/${churchId}/areas`).then(({data}) => {
+                        this.areas = data
+                    })
+                }
+            },
+
+            getCells(areaId) {
+                this.cells = null
+                this.cellId = null
+
+                if (areaId) {
+                    this.areaId = areaId
+
+                    axios.get(`/church-structure/areas/${areaId}/cells`).then(({data}) => {
                         this.cells = data
                     })
                 }
@@ -76,7 +98,8 @@
                 this.getProvinces(),
                 this.getDistricts(this.old.province_id),
                 this.getChurches(this.old.district_id),
-                this.getCells(this.old.church_id),
+                this.getAreas(this.old.church_id),
+                this.getCells(this.old.area_id),
             ]).then(() => {
                 this.cellId = this.old.cell_id
             })

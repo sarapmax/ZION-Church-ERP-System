@@ -24,12 +24,16 @@ class DatabaseSeeder extends Seeder
             for ($i = 0; $i < 2; $i++) {
                 $church = factory(\App\Models\Church::class)->create();
 
-                $church->cells()->saveMany(factory(\App\Models\Cell::class, 2)->create([
+                $church->areas()->saveMany(factory(\App\Models\Area::class, 2)->create([
                     'church_id' => $church->id
-                ])->each(function($cell) {
-                    $cell->members()->saveMany(factory(App\Models\Member::class, 10)->create([
-                        'cell_id' => $cell
-                    ]));
+                ])->each(function($area) {
+                    $area->cells()->saveMany(factory(\App\Models\Cell::class, 2)->create([
+                        'area_id' => $area->id
+                    ])->each(function($cell) {
+                        $cell->members()->saveMany(factory(App\Models\Member::class, 10)->create([
+                            'cell_id' => $cell
+                        ]));
+                    }));
                 }));
             }
         }

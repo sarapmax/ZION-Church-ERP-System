@@ -19,7 +19,7 @@ class MemberController extends Controller
      */
     public function index(Request $request)
     {
-        $member = Member::with('cell', 'cell.church');
+        $member = Member::with(['cell', 'cell.area', 'cell.area.church']);
 
         if ($request->search_keyword != null) {
             $member->where('first_name', 'LIKE', '%' . $request->search_keyword . '%')
@@ -29,20 +29,26 @@ class MemberController extends Controller
         }
 
         if ($request->province_id != null) {
-            $member->whereHas('cell.church.district.province', function($query) use($request) {
+            $member->whereHas('cell.area.church.district.province', function($query) use($request) {
                 $query->whereId($request->province_id);
             });
         }
 
         if ($request->district_id != null) {
-            $member->whereHas('cell.church.district', function($query) use($request) {
+            $member->whereHas('cell.area.church.district', function($query) use($request) {
                 $query->whereId($request->district_id);
             });
         }
 
         if ($request->church_id != null) {
-            $member->whereHas('cell.church', function($query) use($request) {
+            $member->whereHas('cell.area.church', function($query) use($request) {
                 $query->whereId($request->church_id);
+            });
+        }
+
+        if ($request->area_id != null) {
+            $member->whereHas('cell.area', function($query) use($request) {
+                $query->whereId($request->area_id);
             });
         }
 

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Membership;
 
-use App\Models\Cell;
 use App\Enums\SubmissionType;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 
-class CellController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class CellController extends Controller
      */
     public function index()
     {
-        $cells = Cell::with(['area', 'area.church', 'area.church.district', 'area.church.district.province'])->paginate(20);
+        $areas = Area::with(['church', 'church.district', 'church.district.province'])->paginate(20);
 
-        return view('membership.cell.index', compact('cells'));
+        return view('membership.area.index', compact('areas'));
     }
 
     /**
@@ -29,7 +29,7 @@ class CellController extends Controller
      */
     public function create()
     {
-        return view('membership.cell.create');
+        return view('membership.area.create');
     }
 
     /**
@@ -44,17 +44,16 @@ class CellController extends Controller
             'province_id' => 'required|exists:provinces,id',
             'district_id' => 'required|exists:districts,id',
             'church_id' => 'required|exists:churches,id',
-            'area_id' => 'required|exists:areas,id',
             'name' => 'required|min:2|unique:cells'
         ]);
 
-        Cell::create($request->all());
+        Area::create($request->all());
 
         if ($request->submit_type == SubmissionType::ADD_AND_ADD_ANOTHER) {
-            return redirect()->back()->with('success', 'เพิ่มกลุ่มแคร์เรียบร้อยแล้ว')->withInput($request->except('name'));
+            return redirect()->back()->with('success', 'เพิ่มเขตเรียบร้อยแล้ว')->withInput($request->except('name'));
         }
 
-        return redirect()->route('membership.cell.index')->with('success', 'เพิ่มกลุ่มแคร์เรียบร้อยแล้ว');
+        return redirect()->route('membership.area.index')->with('success', 'เพิ่มเขตเรียบร้อยแล้ว');
     }
 
     /**
@@ -76,49 +75,47 @@ class CellController extends Controller
      */
     public function edit($id)
     {
-        $cell = Cell::with(['area', 'area.church', 'area.church.district', 'area.church.district.province'])->find($id);
+        $area = Area::with(['church', 'church.district', 'church.district.province'])->find($id);
 
-        return view('membership.cell.edit', compact('cell'));
+        return view('membership.area.edit', compact('area'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param Cell $cell
+     * @param Area $area
      * @return \Illuminate\Http\Response
-     * @internal param int $id
      */
-    public function update(Request $request, Cell $cell)
+    public function update(Request $request, Area $area)
     {
         $request->validate([
             'province_id' => 'required|exists:provinces,id',
             'district_id' => 'required|exists:districts,id',
             'church_id' => 'required|exists:churches,id',
-            'area_id' => 'required|exists:areas,id',
             'name' => [
                 'required',
                 'min:2',
-                Rule::unique('cells')->ignore($cell->id)
+                Rule::unique('areas')->ignore($area->id)
             ],
         ]);
 
-        $cell->update($request->all());
+        $area->update($request->all());
 
-        return redirect()->route('membership.cell.index')->with('success', 'แก้ไขกลุ่มแคร์เรียบร้อยแล้ว');
+        return redirect()->route('membership.area.index')->with('success', 'แก้ไขเขตเรียบร้อยแล้ว');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Cell $cell
+     * @param Area $area
      * @return \Illuminate\Http\Response
-     * @internal param int $id
+     * @throws \Exception
      */
-    public function destroy(Cell $cell)
+    public function destroy(Area $area)
     {
-        $cell->delete();
+        $area->delete();
 
-        return redirect()->route('membership.cell.index')->with('success', 'ลบกลุ่มแคร์เรียบร้อยแล้ว');
+        return redirect()->route('membership.area.index')->with('success', 'ลบเขตเรียบร้อยแล้ว');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cell extends Model
+class Area extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,21 +12,21 @@ class Cell extends Model
      * @var array
      */
     protected $fillable = [
-        'area_id',
+        'church_id',
         'name'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function area() {
-        return $this->belongsTo(Area::class);
+    public function church() {
+        return $this->belongsTo(Church::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function members() {
-        return $this->hasMany(Member::class);
+    public function cells() {
+        return $this->hasMany(Cell::class);
     }
 }

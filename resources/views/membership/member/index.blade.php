@@ -51,6 +51,7 @@
                                                     'province_id' => app('request')->province_id,
                                                     'district_id' => app('request')->district_id,
                                                     'church_id' => app('request')->church_id,
+                                                    'area_id' => app('request')->area_id,
                                                     'cell_id' => app('request')->cell_id
                                                 ],
                                                 'excepts' => []
@@ -86,6 +87,7 @@
                         <th>ชื่อ</th>
                         <th>สถานะฝ่ายจิตวิญญาณ</th>
                         <th>คริสตจักร</th>
+                        <th>เขต</th>
                         <th>แคร์</th>
                         <th></th>
                     </tr>
@@ -101,7 +103,8 @@
                             <td>{{ $member->code }}</td>
                             <td>{{ $member->fullname }}</td>
                             <td>{{ __('spiritual-status.' . SpiritualStatus::getKey($member->spiritual_status)) }}</td>
-                            <td>{{ $member->cell->church->name }}</td>
+                            <td>{{ $member->cell->area->church->name }}</td>
+                            <td>{{ $member->cell->area->name }}</td>
                             <td>{{ $member->cell->name }}</td>
                             <td class="link-action">
                                 <a href="{{ route('membership.member.show', $member) }}"><i class="fe fe-eye"></i></a>

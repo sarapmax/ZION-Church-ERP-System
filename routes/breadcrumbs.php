@@ -31,6 +31,23 @@ Breadcrumbs::for('showChurch', function($trail, $church) {
 });
 
 // Cell crud pages.
+Breadcrumbs::for('area', function($trail) {
+    $trail->parent('membership');
+    $trail->push(__('global.area'), route('membership.area.index'));
+});
+
+Breadcrumbs::for('createArea', function($trail) {
+    $trail->parent('area');
+    $trail->push(__('global.create_area'), route('membership.area.create'));
+});
+
+Breadcrumbs::for('showArea', function($trail, $church, $area) {
+    $trail->parent('membership');
+    $trail->push($church->name);
+    $trail->push($area->name);
+});
+
+// Cell crud pages.
 Breadcrumbs::for('cell', function($trail) {
     $trail->parent('membership');
     $trail->push(__('global.cell'), route('membership.cell.index'));
@@ -41,9 +58,10 @@ Breadcrumbs::for('createCell', function($trail) {
     $trail->push(__('global.create_cell'), route('membership.cell.create'));
 });
 
-Breadcrumbs::for('showCell', function($trail, $church, $cell) {
+Breadcrumbs::for('showCell', function($trail, $church, $area, $cell) {
     $trail->parent('membership');
     $trail->push($church->name);
+    $trail->push($area->name);
     $trail->push($cell->name);
 });
 
@@ -58,10 +76,11 @@ Breadcrumbs::for('createMember', function($trail) {
     $trail->push(__('global.create_member'), route('membership.member.create'));
 });
 
-Breadcrumbs::for('showMember', function($trail, $church, $cell, $member) {
+Breadcrumbs::for('showMember', function($trail, $church, $area, $cell, $member) {
     $trail->parent('membership');
     $trail->push($church->name);
     $trail->push($cell->name);
+    $trail->push($area->name);
     $trail->push($member->code);
 });
 

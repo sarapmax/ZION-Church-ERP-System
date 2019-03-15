@@ -21,6 +21,7 @@ Auth::routes(['register' => false]);
 Route::namespace('Membership')->middleware(['auth', 'churchMember'])->name('membership.')->prefix('membership')->group(function() {
    Route::resource('church', 'ChurchController')->middleware('can:manage-church-structure');
    Route::resource('cell', 'CellController')->middleware('can:manage-church-structure');
+   Route::resource('area', 'AreaController')->middleware('can:manage-church-structure');
    Route::resource('member', 'MemberController');
 });
 
@@ -35,7 +36,8 @@ Route::namespace('ChurchStructure')->prefix('church-structure')->group(function(
     Route::get('provinces', 'ProvinceController@index');
     Route::get('provinces/{province}/districts', 'DistrictController@index');
     Route::get('districts/{district}/churches', 'ChurchController@index');
-    Route::get('churches/{church}/cells', 'CellController@index');
+    Route::get('churches/{church}/areas', 'AreaController@index');
+    Route::get('areas/{area}/cells', 'CellController@index');
 });
 
 // Geolocation data

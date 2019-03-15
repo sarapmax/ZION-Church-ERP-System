@@ -3,7 +3,13 @@
 namespace Tests;
 
 use App\Models\Member;
+use Closure;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\SQLiteBuilder;
+use Illuminate\Database\SQLiteConnection;
+use Illuminate\Support\Fluent;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\DB;
 
 abstract class TestCase extends BaseTestCase
 {

@@ -68,6 +68,12 @@
                                         คริสตจักร
                                     </a>
                                 </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('membership.area.index') }}"
+                                           class="nav-link {{ setActive('membership/area') ? 'active' : '' }}">
+                                            เขต
+                                        </a>
+                                    </li>
                                 <li class="nav-item">
                                     <a href="{{ route('membership.cell.index') }}"
                                        class="nav-link {{ setActive('membership/cell') ? 'active' : '' }}">

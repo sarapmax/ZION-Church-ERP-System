@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('breadcrumbs')
-{{ Breadcrumbs::render('showMember', $member->cell->church, $member->cell, $member) }}
+    {{ Breadcrumbs::render('showMember', $member->cell->area->church, $member->cell->area, $member->cell, $member) }}
 @endsection
 
 @section('content')
@@ -28,19 +28,23 @@
             <div class="card-body">
                 <div class="row border-bottom">
                     <div class="col-sm-3 py-3"><span class="text-muted">ภูมิภาค</span></div>
-                    <div class="col-sm-9 py-3">{{ $member->cell->church->district->province->region->name }}</div>
+                    <div class="col-sm-9 py-3">{{ $member->cell->area->church->district->province->region->name }}</div>
                 </div>
                 <div class="row border-bottom">
                     <div class="col-sm-3 py-3"><span class="text-muted">จังหวัด</span></div>
-                    <div class="col-sm-9 py-3">{{ $member->cell->church->district->province->name }}</div>
+                    <div class="col-sm-9 py-3">{{ $member->cell->area->church->district->province->name }}</div>
                 </div>
                 <div class="row border-bottom">
                     <div class="col-sm-3 py-3"><span class="text-muted">อำเภอ/เขต</span></div>
-                    <div class="col-sm-9 py-3">{{ $member->cell->church->district->name }}</div>
+                    <div class="col-sm-9 py-3">{{ $member->cell->area->church->district->name }}</div>
                 </div>
                 <div class="row border-bottom">
                     <div class="col-sm-3 py-3"><span class="text-muted">คริสตจักร</span></div>
-                    <div class="col-sm-9 py-3">{{ $member->cell->church->name }}</div>
+                    <div class="col-sm-9 py-3">{{ $member->cell->area->church->name }}</div>
+                </div>
+                <div class="row border-bottom">
+                    <div class="col-sm-3 py-3"><span class="text-muted">เขต</span></div>
+                    <div class="col-sm-9 py-3">{{ $member->cell->area->name }}</div>
                 </div>
                 <div class="row border-bottom">
                     <div class="col-sm-3 py-3"><span class="text-muted">กลุ่มแคร์</span></div>
