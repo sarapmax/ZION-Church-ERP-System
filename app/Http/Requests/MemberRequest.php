@@ -70,7 +70,7 @@ class MemberRequest extends FormRequest
             case 'POST':
                 $rules += [
                     'idcard' => ['required', 'alpha_num', 'digits:13', 'unique:users'],
-                    'email' =>  ['email', 'unique:users']
+                    'email' =>  ['sometimes', 'nullable', 'email', 'unique:users']
                 ];
                 break;
 
@@ -79,7 +79,7 @@ class MemberRequest extends FormRequest
             case 'PUT':
                 $rules += [
                     'idcard' => ['required', 'alpha_num', 'digits:13', Rule::unique('users')->ignore($this->route('member'))],
-                    'email' =>  ['email', Rule::unique('users')->ignore($this->route('member'))]
+                    'email' =>  ['sometimes', 'nullable', 'email', Rule::unique('users')->ignore($this->route('member'))]
                 ];
                 break;
         }
