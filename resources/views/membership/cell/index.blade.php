@@ -26,7 +26,7 @@
                         <th>จังหวัด</th>
                         <th>อำเภอ</th>
                         <th>คริสตจักร</th>
-                        <th>เขต</th>
+                        <th>หน่วย</th>
                         <th class="text-primary">กลุ่มแคร์</th>
                         <th></th>
                     </tr>

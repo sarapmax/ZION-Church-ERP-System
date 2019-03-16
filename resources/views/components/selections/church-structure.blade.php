@@ -57,7 +57,7 @@
 
         @if(!in_array("area", $excepts))
         <div class="form-group">
-            <label for="area_id" class="required">เขต </label>
+            <label for="area_id" class="required">หน่วย </label>
             <select id="area_id"
                     class="form-control{{ $errors->has('area_id') ? ' is-invalid' : '' }}"
                     name="area_id"

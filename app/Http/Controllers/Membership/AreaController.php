@@ -50,10 +50,10 @@ class AreaController extends Controller
         Area::create($request->all());
 
         if ($request->submit_type == SubmissionType::ADD_AND_ADD_ANOTHER) {
-            return redirect()->back()->with('success', 'เพิ่มเขตเรียบร้อยแล้ว')->withInput($request->except('name'));
+            return redirect()->back()->with('success', 'เพิ่มหน่วยเรียบร้อยแล้ว')->withInput($request->except('name'));
         }
 
-        return redirect()->route('membership.area.index')->with('success', 'เพิ่มเขตเรียบร้อยแล้ว');
+        return redirect()->route('membership.area.index')->with('success', 'เพิ่มหน่วยเรียบร้อยแล้ว');
     }
 
     /**
@@ -102,7 +102,7 @@ class AreaController extends Controller
 
         $area->update($request->all());
 
-        return redirect()->route('membership.area.index')->with('success', 'แก้ไขเขตเรียบร้อยแล้ว');
+        return redirect()->route('membership.area.index')->with('success', 'แก้ไขหน่วยเรียบร้อยแล้ว');
     }
 
     /**
@@ -116,6 +116,6 @@ class AreaController extends Controller
     {
         $area->delete();
 
-        return redirect()->route('membership.area.index')->with('success', 'ลบเขตเรียบร้อยแล้ว');
+        return redirect()->route('membership.area.index')->with('success', 'ลบหน่วยเรียบร้อยแล้ว');
     }
 }

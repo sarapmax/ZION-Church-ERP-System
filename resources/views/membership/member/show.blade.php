@@ -43,7 +43,7 @@
                     <div class="col-sm-9 py-3">{{ $member->cell->area->church->name }}</div>
                 </div>
                 <div class="row border-bottom">
-                    <div class="col-sm-3 py-3"><span class="text-muted">เขต</span></div>
+                    <div class="col-sm-3 py-3"><span class="text-muted">หน่วย</span></div>
                     <div class="col-sm-9 py-3">{{ $member->cell->area->name }}</div>
                 </div>
                 <div class="row border-bottom">

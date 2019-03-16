@@ -8,9 +8,9 @@
 <div class="header">
     <div class="header-body">
         <div class="row align-items-end">
-            <div class="col"><h1 class="header-title">เขต</h1></div>
+            <div class="col"><h1 class="header-title">หน่วย</h1></div>
             <div class="col-auto">
-                <a href="{{ route('membership.area.create') }}" class="btn btn-primary">เพิ่มเขต</a>
+                <a href="{{ route('membership.area.create') }}" class="btn btn-primary">เพิ่มหน่วย</a>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
                         <th>จังหวัด</th>
                         <th>อำเภอ</th>
                         <th>คริสตจักร</th>
-                        <th class="text-primary">เขต</th>
+                        <th class="text-primary">หน่วย</th>
                         <th></th>
                     </tr>
                     </thead>

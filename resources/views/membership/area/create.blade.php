@@ -7,7 +7,7 @@
 @section('content')
 <div class="header mt-3">
     <div class="header-body">
-        <h1 class="header-title">เพิ่มเขต</h1>
+        <h1 class="header-title">เพิ่มหน่วย</h1>
     </div>
 </div>
 <div class="row">
@@ -27,7 +27,7 @@
                     ])
 
                     <div class="form-group">
-                        <label for="name">ชื่อเขต </label>
+                        <label for="name">ชื่อหน่วย </label>
                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                name="name" value="{{ old('name') }}">
 
