@@ -9,12 +9,14 @@
                 churches: [],
                 areas: [],
                 cells: [],
+                shepards: [],
 
                 provinceId: null,
                 districtId: null,
                 churchId: null,
                 areaId: null,
-                cellId: null
+                cellId: null,
+                shepardId: null,
             }
         },
 
@@ -30,11 +32,13 @@
                 this.churches = null
                 this.areas = null
                 this.cells = null
+                this.shepards = null
 
                 this.districtId = null
                 this.churchId = null
                 this.areaId = null
                 this.cellId = null
+                this.shepardId = null
 
                 if (provinceId) {
                     this.provinceId = provinceId
@@ -49,10 +53,12 @@
                 this.churches = null
                 this.areas = null
                 this.cells = null
+                this.shepards = null
 
                 this.churchId = null
                 this.areaId = null
                 this.cellId = null
+                this.shepardId = null
 
                 if (districtId) {
                     this.districtId = districtId
@@ -66,9 +72,11 @@
             getAreas(churchId) {
                 this.areas = null
                 this.cells = null
+                this.shepards = null
 
                 this.areaId = null
                 this.cellId = null
+                this.shepardId = null
 
                 if (churchId) {
                     this.churchId = churchId
@@ -81,13 +89,29 @@
 
             getCells(areaId) {
                 this.cells = null
+                this.shepards = null
+
                 this.cellId = null
+                this.shepardId = null
 
                 if (areaId) {
                     this.areaId = areaId
 
                     axios.get(`/church-structure/areas/${areaId}/cells`).then(({data}) => {
                         this.cells = data
+                    })
+                }
+            },
+
+            getShepards(cellId) {
+                this.shepards = null
+                this.shepardId = null
+
+                if (cellId) {
+                    this.cellId = cellId
+
+                    axios.get(`/church-structure/cells/${cellId}/shepards`).then(({data}) => {
+                        this.shepards = data
                     })
                 }
             }
@@ -100,8 +124,9 @@
                 this.getChurches(this.old.district_id),
                 this.getAreas(this.old.church_id),
                 this.getCells(this.old.area_id),
+                this.getShepards(this.old.cell_id),
             ]).then(() => {
-                this.cellId = this.old.cell_id
+                this.shepardId = this.old.shepard_id
             })
         }
     }

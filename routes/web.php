@@ -38,6 +38,7 @@ Route::namespace('ChurchStructure')->prefix('church-structure')->group(function(
     Route::get('districts/{district}/churches', 'ChurchController@index');
     Route::get('churches/{church}/areas', 'AreaController@index');
     Route::get('areas/{area}/cells', 'CellController@index');
+    Route::get('cells/{cell}/shepards', 'ShepardController@index');
 });
 
 // Geolocation data

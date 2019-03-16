@@ -26,7 +26,7 @@
                             'church_id' => old('church_id', $cell->area->church->id),
                             'area_id' => old('area_id', $cell->area_id),
                         ],
-                        'excepts' => ['cell']
+                        'excepts' => ['cell', 'shepard']
                     ])
 
                     <div class="form-group">

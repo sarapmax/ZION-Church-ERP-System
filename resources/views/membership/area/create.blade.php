@@ -23,7 +23,7 @@
                             'district_id' => old('district_id'),
                             'church_id' => old('church_id'),
                         ],
-                        'excepts' => ['area', 'cell']
+                        'excepts' => ['area', 'cell', 'shepard']
                     ])
 
                     <div class="form-group">

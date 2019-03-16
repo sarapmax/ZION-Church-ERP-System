@@ -30,7 +30,8 @@
                                     'district_id' => old('district_id'),
                                     'church_id' => old('church_id'),
                                     'area_id' => old('area_id'),
-                                    'cell_id' => old('cell_id')
+                                    'cell_id' => old('cell_id'),
+                                    'shepard_id' => old('shepard_id'),
                                 ],
                                 'excepts' => []
                             ])

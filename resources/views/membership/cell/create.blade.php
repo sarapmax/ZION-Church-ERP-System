@@ -24,7 +24,7 @@
                             'church_id' => old('church_id'),
                             'area_id' => old('area_id'),
                         ],
-                        'excepts' => ['cell']
+                        'excepts' => ['cell', 'shepard']
                     ])
 
                     <div class="form-group">

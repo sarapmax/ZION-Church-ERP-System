@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique()->nullable();
+            $table->unsignedInteger('shepard_id')->nullable();
             $table->unsignedInteger('cell_id');
             $table->string('email')->unique();
             $table->string('password')->nullable();
@@ -36,6 +37,7 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
+            $table->foreign('shepard_id')->references('id')->on('users');
             $table->foreign('cell_id')->references('id')->on('cells');
         });
     }

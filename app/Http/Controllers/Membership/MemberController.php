@@ -88,6 +88,7 @@ class MemberController extends Controller
         $member = new Member;
 
         $input = [
+            'shepard_id' => $request->shepard_id,
             'cell_id' => $request->cell_id,
             'email' => $request->email,
             'spiritual_status' => $request->spiritual_status,
@@ -193,6 +194,7 @@ class MemberController extends Controller
     public function update(MemberRequest $request, Member $member)
     {
         $input = [
+            'shepard_id' => $request->shepard_id,
             'cell_id' => $request->cell_id,
             'email' => $request->email,
             'spiritual_status' => $request->spiritual_status,

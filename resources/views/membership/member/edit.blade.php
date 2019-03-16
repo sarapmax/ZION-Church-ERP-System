@@ -32,7 +32,8 @@
                                     'district_id' => old('district_id', $member->cell->area->church->district->id),
                                     'church_id' => old('church_id', $member->cell->area->church->id),
                                     'area_id' => old('church_id', $member->cell->area->id),
-                                    'cell_id' => old('cell_id', $member->cell_id)
+                                    'cell_id' => old('cell_id', $member->cell_id),
+                                    'shepard_id' => old('shepard_id', $member->shepard_id)
                                 ],
                                 'excepts' => []
                             ])

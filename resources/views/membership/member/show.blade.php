@@ -50,6 +50,10 @@
                     <div class="col-sm-3 py-3"><span class="text-muted">กลุ่มแคร์</span></div>
                     <div class="col-sm-9 py-3">{{ $member->cell->name }}</div>
                 </div>
+                <div class="row border-bottom">
+                    <div class="col-sm-3 py-3"><span class="text-muted">พี่เลี้ยง</span></div>
+                    <div class="col-sm-9 py-3">{{ $member->shepard ? $member->shepard->code . ' - ' . $member->shepard->fullname : '' }}</div>
+                </div>
                 <div class="row">
                     <div class="col-sm-3 py-3"><span class="text-muted">สถานะฝ่ายจิตวิญญาณ</span></div>
                     <div class="col-sm-9 py-3">{{ __('spiritual-status.' . SpiritualStatus::getKey($member->spiritual_status)) }}</div>

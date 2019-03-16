@@ -81,7 +81,8 @@
                 <select id="cell_id"
                         class="form-control{{ $errors->has('cell_id') ? ' is-invalid' : '' }}"
                         name="cell_id"
-                        v-model="cellId">
+                        v-model="cellId"
+                        @change="getShepards(cellId)">
                     <option :value="null">-- Select --</option>
                     <option v-for="cell in cells" :value="cell.id" v-text="cell.name"></option>
                 </select>
@@ -89,6 +90,25 @@
                 @if ($errors->has('cell_id'))
                     <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('cell_id') }}</strong>
+                </span>
+                @endif
+            </div>
+        @endif
+
+        @if(!in_array("shepard", $excepts))
+            <div class="form-group">
+                <label for="shepard_id" class="required">พี่เลี้ยง </label>
+                <select id="shepard_id"
+                        class="form-control{{ $errors->has('shepard_id') ? ' is-invalid' : '' }}"
+                        name="shepard_id"
+                        v-model="shepardId">
+                    <option :value="null">-- Select --</option>
+                    <option v-for="shepard in shepards" :value="shepard.id" v-text="shepard.code + ' - ' + shepard.first_name + ' ' + shepard.last_name"></option>
+                </select>
+
+                @if ($errors->has('shepard_id'))
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('shepard_id') }}</strong>
                 </span>
                 @endif
             </div>

@@ -28,6 +28,7 @@ class Member extends User
      * @var array
      */
     protected $fillable = [
+        'shepard_id',
         'cell_id',
         'email',
         'spiritual_status',
@@ -83,6 +84,13 @@ class Member extends User
                 'status' => AdministrativeStatus::MEMBER
             ]);
         });
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function shepard() {
+        return $this->belongsTo(Member::class, 'shepard_id');
     }
 
     /**

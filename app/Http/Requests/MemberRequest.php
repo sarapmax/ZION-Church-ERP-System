@@ -32,6 +32,7 @@ class MemberRequest extends FormRequest
             'district_id' =>                'required|exists:districts,id',
             'church_id' =>                  'required|exists:churches,id',
             'cell_id' =>                    'required|exists:cells,id',
+            'shepard_id' =>                 'sometimes|nullable|exists:users,id',
             'spiritual_status' =>           ['required', new EnumValue(SpiritualStatus::class, false)],
 
             'first_name' =>                  'required|min:3',
