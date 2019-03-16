@@ -9,8 +9,10 @@ return [
      'CHURCH_MEMBER'        => 'สมาชิก',
      'SHEPHERD'             => 'พี่เลี้ยง',
      'CELL_LEADER'          => 'หัวหน้าแคร์',
+     'AREA_LEADER'          => 'หัวหน้าเขต',
      'CHURCH_LEADER'        => 'ผู้นำคริสตจักร',
      'DISTRICT_LEADER'      => 'ผู้นำอำเภอ',
      'PROVINCE_LEADER'      => 'ผู้นำจังหวัด',
+     'REGION_LEADER'        => 'ผู้นำภาค',
      'PASTOR'               => 'ศิษยาภิบาลองค์กร'
 ];
