@@ -58,6 +58,10 @@ class MemberController extends Controller
             });
         }
 
+        if ($request->shepard_id != null) {
+            $member->whereShepardId($request->shepard_id);
+        }
+
         if ($request->spiritual_status != null) {
             $member->whereSpiritualStatus($request->spiritual_status);
         }

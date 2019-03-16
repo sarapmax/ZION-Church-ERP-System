@@ -52,7 +52,8 @@
                                                     'district_id' => app('request')->district_id,
                                                     'church_id' => app('request')->church_id,
                                                     'area_id' => app('request')->area_id,
-                                                    'cell_id' => app('request')->cell_id
+                                                    'cell_id' => app('request')->cell_id,
+                                                    'shepard_id' => app('request')->shepard_id
                                                 ],
                                                 'excepts' => []
                                             ])
