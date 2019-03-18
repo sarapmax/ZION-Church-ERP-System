@@ -32,6 +32,7 @@ class Member extends User
         'cell_id',
         'email',
         'spiritual_status',
+        'name_prefix',
         'first_name',
         'last_name',
         'nickname',

@@ -232,6 +232,7 @@ return [
         'MariageStatus' => \App\Enums\MariageStatus::class,
         'AddressType' => \App\Enums\AddressType::class,
         'OfferingType' => \App\Enums\OfferingType::class,
+        'NamePrefix' => \App\Enums\NamePrefix::class,
     ],
 
 ];

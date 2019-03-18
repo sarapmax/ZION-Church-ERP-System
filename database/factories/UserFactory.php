@@ -19,6 +19,7 @@ $factory->define(App\Models\Member::class, function (Faker $faker) {
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
         'remember_token' => str_random(10),
         'spiritual_status' => $faker->randomElement(\App\Enums\SpiritualStatus::getValues()),
+        'name_prefix' => $faker->randomElement(\App\Enums\NamePrefix::getValues()),
         'first_name' => $faker->name,
         'last_name' => $faker->lastName,
         'nickname' => $faker->userName,

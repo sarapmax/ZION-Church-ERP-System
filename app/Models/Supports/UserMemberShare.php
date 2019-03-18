@@ -2,6 +2,7 @@
 
 namespace App\Models\Supports;
 
+use App\Enums\NamePrefix;
 use App\Models\AdministrativeStatus;
 use App\Models\Cell;
 use App\Models\Offering;
@@ -15,7 +16,7 @@ trait UserMemberShare
     * @return string
     */
     public function getFullnameAttribute() {
-        return $this->first_name . ' ' . $this->last_name;
+        return __('name-prefix.' . NamePrefix::getKey($this->name_prefix)) . ' ' . $this->first_name . ' ' . $this->last_name;
     }
 
     /**

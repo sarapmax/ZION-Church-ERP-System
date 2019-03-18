@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\MariageStatus;
+use App\Enums\NamePrefix;
 use App\Enums\SpiritualStatus;
 use BenSampo\Enum\Rules\EnumValue;
 use Illuminate\Foundation\Http\FormRequest;
@@ -35,6 +36,7 @@ class MemberRequest extends FormRequest
             'shepard_id' =>                 'sometimes|nullable|exists:users,id',
             'spiritual_status' =>           ['required', new EnumValue(SpiritualStatus::class, false)],
 
+            'name_prefix' =>                ['required', new EnumValue(NamePrefix::class, false)],
             'first_name' =>                  'required|min:3',
             'last_name' =>                  'required|min:3',
             'nickname' =>                   'required|min:2',

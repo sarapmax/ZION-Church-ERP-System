@@ -63,6 +63,25 @@
                             </legend>
 
                             <div class="form-group">
+                                <label for="name_prefix" class="required">คำนำหน้าชื่อ </label>
+                                <select id="name_prefix"
+                                        class="form-control{{ $errors->has('name_prefix') ? ' is-invalid' : '' }}"
+                                        name="name_prefix"
+                                        required>
+                                    <option value="">-- Select --</option>
+                                    @foreach(NamePrefix::toArray() as $key => $value)
+                                        <option value="{{ $value }}" @if(old('name_prefix') == $value) selected @endif>{{ __('name-prefix.' . $key) }}</option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('name_prefix'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name_prefix') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
                                 <label for="first_name" class="required">ชื่อ </label>
                                 <input id="first_name" type="text"
                                        class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
