@@ -81,8 +81,7 @@
                 <select id="cell_id"
                         class="form-control{{ $errors->has('cell_id') ? ' is-invalid' : '' }}"
                         name="cell_id"
-                        v-model="cellId"
-                        @change="getShepards(cellId)">
+                        v-model="cellId">
                     <option :value="null">-- Select --</option>
                     <option v-for="cell in cells" :value="cell.id" v-text="cell.name"></option>
                 </select>
