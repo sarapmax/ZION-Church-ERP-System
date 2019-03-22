@@ -66,7 +66,7 @@ class MemberController extends Controller
             $member->whereSpiritualStatus($request->spiritual_status);
         }
 
-        $members = $member->orderBy('cell_id')->orderBy('spiritual_status', 'desc')->paginate(20);
+        $members = $member->orderBy('code')->paginate(20);
 
         return view('membership.member.index', compact('members'));
     }
